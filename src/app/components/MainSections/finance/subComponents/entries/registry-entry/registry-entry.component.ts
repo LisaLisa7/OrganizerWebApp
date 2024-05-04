@@ -115,7 +115,7 @@ export class RegistryEntryComponent {
       this.entries2 = await this.registryService.getAllEntries();
       this.entriesToday = await this.registryService.getRecentEntriesToday();
       this.entriesYesterday = await this.registryService.getRecentEntriesYesterday();
-      
+      //wtf
 
       //console.log(this.entries2)
     } catch (error) {
