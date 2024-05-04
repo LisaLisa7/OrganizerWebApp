@@ -58,6 +58,7 @@ export class SavingsService {
   async getRecentEntriesToday(){
     const currentDate = new Date();
     const today = this.formatData(currentDate);
+    let picUrl = "";
 
     const filterString = `Type != "Income" && Type != "Expenses"`
     console.log(filterString)
@@ -73,7 +74,11 @@ export class SavingsService {
 
     //const firstFilename = record['Pic']; // Assuming 'Pic' is an array of filenames
     //const url = this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'})
-    const picUrl = await this.getPicById(record['Pictogram_Id']);
+    if(record['Pictogram_Id'] != "")
+      { picUrl = await this.getPicById(record['Pictogram_Id']);
+        console.log("BOMBAAAAAAAAAAAAAAA");
+      }
+    
 
     return {
       Id: record['id'],
@@ -99,6 +104,8 @@ export class SavingsService {
       sort: '-created',requestKey: null,
     });
 
+    let picUrl = "";
+
     const entries: registryEntry[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
       
       //console.log(this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'}));
@@ -106,7 +113,11 @@ export class SavingsService {
 
       //const firstFilename = record['Pic']; // Assuming 'Pic' is an array of filenames
       //const url = this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'})
-      const picUrl = await this.getPicById(record['Pictogram_Id']);
+
+      if(record['Pictogram_Id'] != "")
+        { picUrl = await this.getPicById(record['Pictogram_Id']);
+          console.log("BOMBAAAAAAAAAAAAAAA");
+        }
 
       return {
         Id: record['id'],
@@ -163,6 +174,7 @@ export class SavingsService {
     const yesterdayDate = new Date(currentDate);
     yesterdayDate.setDate(currentDate.getDate() - 1);
     const yesterday = this.formatData(yesterdayDate);
+    let picUrl = "";
 
     
     const filterString = `Date >= "${yesterday} 00:00:00" && Date < "${yesterday} 23:59:59"`
@@ -177,7 +189,11 @@ export class SavingsService {
 
     //const firstFilename = record['Pic']; // Assuming 'Pic' is an array of filenames
     //const url = this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'})
-    const picUrl = await this.getPicById(record['Pictogram_Id']);
+    if(record['Pictogram_Id'] != "")
+      { picUrl = await this.getPicById(record['Pictogram_Id']);
+        console.log("BOMBAAAAAAAAAAAAAAA");
+      }
+    
 
     return {
       Id: record['id'],

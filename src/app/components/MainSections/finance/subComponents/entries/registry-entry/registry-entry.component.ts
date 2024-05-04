@@ -28,7 +28,8 @@ import { RecurringService } from '../../../../../../services/recurring.service';
         </thead>
       <tbody>
         <tr *ngFor="let entry of entriesToday" [ngClass]="{'expense-entry': entry.Type === 'Expenses', 'income-entry': entry.Type === 'Income'}">
-          <td class="td"><img [src]="entry.Pictogram"></td>
+          <td class="td"><img *ngIf="entry.Pictogram" [src]="entry.Pictogram"></td>
+          
           <td class="td">{{ entry.Description}}</td>
           <td class="td" >{{ entry.Type === 'Expenses' ? '-' : '+' }}{{ entry.Sum }}</td>
           <td class="td">{{entry.Date | date:' HH:mm':'UTC'}}</td>

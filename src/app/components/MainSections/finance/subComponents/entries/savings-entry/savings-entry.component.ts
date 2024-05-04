@@ -27,7 +27,7 @@ import { SavingsService } from '../../../../../../services/savings.service';
         </thead>
       <tbody>
         <tr *ngFor="let entry of entriesToday" [ngClass]="{'expense-entry': entry.Type === 'Savings-', 'income-entry': entry.Type === 'Savings+'}">
-          <td class="td"><img [src]="entry.Pictogram"></td>
+          <td class="td"><img *ngIf="entry.Pictogram" [src]="entry.Pictogram"></td>
           <td class="td">{{ entry.Description}}</td>
           <td class="td" >{{ entry.Type === 'Savings-' ? '-' : '+' }}{{ entry.Sum }}</td>
           <td class="td">{{entry.Date | date:' dd MMM':'UTC'}}</td>

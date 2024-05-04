@@ -16,6 +16,7 @@ table {
   background-color: #f8afaf; /* Adjust the background color for expenses */
   border-radius: 5px; /* Adjust the radius as needed */
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-height: 50px;
   
 }
 
@@ -23,6 +24,7 @@ table {
   background-color: #cef3c5; /* Adjust the background color for income */
   border-radius: 5px; /* Adjust the radius as needed */
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-height: 50px;
   
 }
 
@@ -33,6 +35,7 @@ td{
   border-bottom: 1px solid #ccc; /* Adjust the color and style as needed */
   border-top: 1px solid #ccc;
   min-width: 70px;
+  height: 50px;
   
 }
 
@@ -60,6 +63,7 @@ h1{
 }
 img{
   width: 50px;
+  height: 50px;
   margin-left: 3px;
 }
 
