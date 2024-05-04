@@ -1,0 +1,165 @@
+.entry-img{
+  width: 50px;
+  height: 50px;
+}
+
+.entry .delete-button {
+  
+  transition: opacity 0.3s ease-out; /* Apply transition to opacity */
+  opacity: 0; /* Initially hide the delete button */
+}
+
+.entry:hover .delete-button {
+  opacity: 1; /* Show the delete button when the entry is hovered */
+}
+
+.delete-button:hover{
+  cursor: pointer;
+}
+
+
+
+.pageContainer{
+  width: 100vw;
+  height: calc(100vh - 70px);
+}
+
+.pictogramContainer {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    justify-content: flex-start; /* Align items to the left */
+    
+}
+.pictogramContainerWrapper{
+    display: flex;
+    justify-content: center;
+    margin-left: 37px;
+    justify-content: flex-start; /* Align items to the left */
+}
+
+
+
+.entry {
+  flex: 0 0 calc(25% - 20px); /* Calculate width with padding */
+  width: 80px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffeedd;
+  /*margin: 5px; /* Add margin for spacing between entries */
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  
+}
+
+.entry:hover{
+    background-color: #ffd8be;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+
+
+.categoriesContainer{
+
+    width: auto;
+    display: flex; /* Use flexbox */
+  flex-wrap: nowrap; /* Prevent wrapping to multiple lines */
+  margin-left: 37px;
+  
+}
+
+.category-button{
+    width: 70px;
+    height: 30px;
+    
+  
+}
+
+.category-button:hover{
+    cursor: pointer;
+    background-color: #ccc;
+    transform: scaleX(1.05);
+    width: 100px;
+}
+
+.category-button {
+    position: relative;
+    
+    width: 100px;
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #9381FF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+.category-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: width 0.3s ease;
+}
+
+.category-button:hover::after {
+  width: 100%; /* Expand width on hover */
+}
+  
+
+
+.newPictogramButton
+{
+    width: 220px;
+    margin: 20px;
+    background-color: white;
+    color: var(--primary-color);
+    border-color:var(--primary-color);
+}
+.newPictogramButton{
+  height: 50px;
+  padding-left: 10px;
+  border-radius: 5px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.newPictogramButton:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+
+.button-container{
+
+  margin-top: 20px;
+  justify-content: center;
+  display: flex;
+
+
+}
+
+.buttonPic{
+  float: left;
+  width: 30px; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.newPictogramButton span{
+  display: inline-block;
+  padding-top: 9px;
+}
+
+
+

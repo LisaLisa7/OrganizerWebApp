@@ -1,0 +1,66 @@
+img{
+    width: 50px;
+    height: 50px;
+  }
+
+.pictogramContainer {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 80vh;
+    
+    overflow-y: auto;
+    
+}
+.pictogramContainerWrapper{
+    display: flex;
+    justify-content: center;
+    justify-content: flex-start; /* Align items to the left */
+}
+
+
+.entry {
+    flex: 0 0 25%; /* This makes each entry take up 25% of the container width */
+    padding: 10px; /* Add spacing between entries */
+    box-sizing: border-box; /* Include padding in the width */
+    border: 1px solid black; /* Add black border */
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children horizontally */
+    align-items: center; /* Center children vertically */
+    
+    width: 80px;
+    /*background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);*/
+    background-color: #ffeedd;
+}
+
+.entry:hover{
+    background-color: #ffd8be;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.categoriesContainer{
+
+    width: auto;
+    display: flex; /* Use flexbox */
+    flex-wrap: wrap; /* Prevent wrapping to multiple lines */
+
+}
+
+
+.category-button {
+    position: relative;
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #9381FF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /*overflow: hidden;*/
+  }
+
+
+
+
+
+

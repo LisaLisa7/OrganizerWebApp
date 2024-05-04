@@ -1,0 +1,45 @@
+.income-summary {
+    
+    width: 300px;
+    /*background-color: #FFEEDD;*/
+    background-color: #cef3c5;
+    /*background-color: black;
+    color: #f8f7ff;*/
+    border-radius: 8px;
+}
+  
+.expenses-summary {
+    
+    width: 300px;
+    /*background-color: #FFEEDD;*/
+    background-color: #f8afaf;
+    /*background-color: black;
+    color: #f8f7ff;*/
+    margin-right: 10px;
+    border-radius: 8px;
+}
+
+.balance-summary {
+    
+  width: 300px;
+  /*background-color: #FFEEDD;*/
+  background-color: #cdcdcd;
+  /*background-color: black;
+  color: #f8f7ff;*/
+  margin-left: 10px;
+  border-radius: 8px;
+}
+
+h1:first-child {
+    position: relative;
+  }
+
+  h1:first-child::after {
+    content: '';
+  position: absolute;
+  left: 20px; /* Adjust space on the left side */
+  right: 20px; /* Adjust space on the right side */
+  bottom: 0;
+  height: 1px; /* Adjust line thickness as needed */
+  background-color: black; /* Adjust line color as needed */
+  }

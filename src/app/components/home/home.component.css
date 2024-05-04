@@ -1,0 +1,52 @@
+
+  app-section{
+    margin-left: 140px;
+    margin-right: 100px;
+    text-align: center;
+  }
+
+  section h1{
+    padding-top: 100px;
+    text-align: center;
+  }
+  
+  input[type="text"] {
+    border: solid 1px var(--primary-color);
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 4px;
+    display: inline-block;
+    width: 30%;
+  }
+  
+  button {
+    padding: 10px;
+    border: solid 1px var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+  }
+  .card-container{
+    display: flex;
+    justify-content: center; /* Adjust as needed for spacing between cards */
+    align-items: center; /* Align cards vertically in the center */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line if they don't fit */
+    text-align: center;
+    
+  }
+ 
+  
+  @media (min-width: 500px) and (max-width: 768px) {
+    .results {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    input[type="text"] {
+        width: 70%;
+    }   
+  }
+  
+  @media (max-width: 499px) {
+    .results {
+        grid-template-columns: 1fr;
+    }    
+  }

@@ -1,0 +1,91 @@
+.entry-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  table {
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    width: 100%; /* Ensures the table takes up full width of its parent */
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  
+  }
+    
+  .expense-entry {
+    background-color: #f8afaf; /* Adjust the background color for expenses */
+    border-radius: 5px; /* Adjust the radius as needed */
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    
+  }
+  
+  .income-entry {
+    background-color: #cef3c5; /* Adjust the background color for income */
+    border-radius: 5px; /* Adjust the radius as needed */
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    
+  }
+  
+  
+  td{
+  
+    text-align: center;
+    border-bottom: 1px solid #ccc; /* Adjust the color and style as needed */
+    border-top: 1px solid #ccc;
+    min-width: 70px;
+    
+   
+    
+  }
+
+  th{
+    text-align: center;
+  }
+  
+  tr td:first-child{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px; 
+  }
+  tr td:last-child{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px; 
+  }
+  
+  .separator {
+    border-left: 2px solid rgb(87, 84, 84); /* Vertical line */
+    height: 100%; /* Full height */
+    margin: 0 20px; /* Adjust margin as needed */
+    min-height: 30px; /* Ensure the separator appears even without content */
+  
+  }
+  
+  h1{
+    text-align: center;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  
+  }
+  img{
+    width: 50px;
+    margin-left: 3px;
+  }
+  
+  
+  .buttonContainer{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  
+  button{
+    width: 70px;
+    height: 20px;
+    border-radius: 8px;
+    margin-right: 20px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  
+  }
+  button:hover{
+    cursor: pointer;
+    background-color: #ccc;
+  }
+  

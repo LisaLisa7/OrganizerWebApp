@@ -1,0 +1,147 @@
+.envelope-container{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* 10 elements per row */
+    margin-left: 100px;
+}
+
+img{
+    width: 50px; /* Ensure the image fills the container */
+    height: auto; /* Maintain aspect ratio */
+    
+}
+
+img:hover{
+    transform: scale(1.05);
+}
+
+
+
+.savingsCom{
+
+    width: 100vw;
+    height: calc(100vh - 70px);
+    /*background-image: url(/assets/moneyBG.png);*/
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.container-left
+{
+    /*background-color: #76eb22;*/
+    flex-grow: 1; /* This will make the left container take up half of the parent's width */
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.container-left-1 h1{
+    text-align: left;
+}
+
+.container-right{
+    /*background-color: blue;*/
+    flex-grow: 1; /* This will make the right container take up half of the parent's width */
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: center;
+    
+}
+
+.container-left-1{
+
+    /*background-color: aquamarine;*/
+    margin-top: 10px;
+    /*background-color: #B8B8FF;*/
+    flex-grow: 1/2;
+    display: flex;
+    flex-direction: column;
+    align-items: left; /* Center align the child elements horizontally */
+    /*margin-right: 20px;*/
+    margin-left: 35px;
+    border-radius: 8px;
+    
+    
+    
+}
+.container-left-2{
+    /*background-color: rgb(238, 216, 23);*/
+    /*background-color: #c7c7c7;*/
+    flex-grow: 1;
+    margin-right: 20px;
+    margin-left: 35px;
+    /*border-radius: 8px;*/
+    /*border: 2px solid var(--shadow-color);*/
+    /*margin-bottom: 20px;*/
+}
+
+
+.container-right-1{
+
+    /*background-color: rgb(199, 176, 126);*/
+    margin-top: 10px;
+    margin-bottom: 0px;
+    /*background-color: #B8B8FF;*/
+    /*background-color: #c7c7c7;*/
+    margin-right: 20px;
+    border-radius: 8px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the child elements horizontally */
+
+}
+.container-right-2{
+    /*background-color: rgb(48, 8, 35);*/
+    /*background-color: #B8B8FF;*/
+    /*margin-bottom: 20px;*/
+    /*border: 2px solid var(--shadow-color);*/
+    padding: 2px;
+    margin-right: 20px;
+    padding-left: 10px;
+    flex-grow: 1;
+    border-radius: 8px;
+    /*background-color: #c7c7c7;*/
+}
+
+.container-right-2 h1, h3
+{
+    text-align: left;
+}
+
+.container-right-3{
+    /*background-color: rgb(151, 224, 220);*/
+    /*background-color: #B8B8FF;*/
+    
+    flex-grow: 1;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    border-radius: 8px;
+}
+
+
+.seeAllButton{
+    width: 100px;
+    margin: 20px;
+    height: 30px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.seeAllButton:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    
+
+}
+
+
+
+.summary-container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Adjust as needed for spacing between cards */
+    align-items: center; /* Align cards vertically in the center */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line if they don't fit */
+    text-align: center;
+    
+}
