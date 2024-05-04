@@ -67,5 +67,30 @@ export class StatsService {
 
     return pieChartData;
   }
+
+  calculateDataBarChart(currentMonthEntries:registryEntry[])
+  {
+
+    const typeSum: { [type: string]: number } = {};
+  let barChartData;
+
+  // Count the sum of entries for each type
+  currentMonthEntries.forEach(entry => {
+    if (typeSum[entry.Type]) {
+      typeSum[entry.Type] += entry.Sum;
+    } else {
+      typeSum[entry.Type] = entry.Sum;
+    }
+  });
+
+  // Convert typeSum to barChartData
+  barChartData = Object.keys(typeSum).map(type => ({
+    name: type,
+    value: typeSum[type]
+  }));
+
+  return barChartData;
+
+  }
   
 }
