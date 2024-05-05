@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Color, NgxChartsModule } from '@swimlane/ngx-charts';
-import { registryEntry } from '../../../../../../../interfaces/registryEntry';
-import { StatsService } from '../../../../../../../services/stats.service';
+import { registryEntry } from '../../../../../../interfaces/registryEntry';
+import { StatsService } from '../../../../../../services/stats.service';
 
 
 @Component({
@@ -41,26 +41,9 @@ export class BarChartComponent {
     { name: "2022", value: '#febb00' },
   ]
 
+
   @Input() barChartData!:{};
 
- 
-
   gradient = false;
-
-  //entriesCurrentMonth :registryEntry[] = [];
-  
-  /*
-  constructor(private statsService:StatsService){
-
-    this.loadData();
-  }
-
-  async loadData(){
-    this.entriesCurrentMonth = await this.statsService.getEntriesByMonth();
-    this.barChartData  =  this.statsService.calculateDataBarChart(this.entriesCurrentMonth);
-
-  }
-  */
-
 
 }

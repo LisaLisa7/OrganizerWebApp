@@ -21,6 +21,7 @@ import { registryEntry } from '../../../../../../interfaces/registryEntry';
     <ngx-charts-pie-chart
       [results]="single"
       [view]="[500,400]"
+      [scheme]="'forest'"
       [explodeSlices]="false"
       [doughnut]="false"
       [labels]="true">
