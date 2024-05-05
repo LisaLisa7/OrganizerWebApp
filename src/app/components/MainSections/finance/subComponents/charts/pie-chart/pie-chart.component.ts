@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { StatsService } from '../../../../../../services/stats.service';
 import { registryEntry } from '../../../../../../interfaces/registryEntry';
@@ -41,15 +41,8 @@ export class PieChartComponent {
 
   entriesCurrentMonth :registryEntry[] = [];
 
- single = {};
+ //single = {};
+ @Input() single!:{};
 
-  constructor(private statsService:StatsService){
-    this.loadData();
-  }
-
-  async loadData(){
-    this.entriesCurrentMonth = await this.statsService.getEntriesByMonth();
-    this.single =  this.statsService.calculateProportionsPieChart(this.entriesCurrentMonth);
-
-  }
+  
 }

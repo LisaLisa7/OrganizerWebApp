@@ -314,7 +314,7 @@ export class RegistryService {
 
     const records = await this.pb.collection('Registry').getFullList({
       
-      fields: 'id,Description,Sum,Source,Date,Pictogram,Type',
+      //fields: 'id,Description,Sum,Source,Date,Pictogram,Type',
       //filter: 'Date>= "2024-05-29 00:00:00"',
       filter: `Date >= "${currentYear}-${currentMonth.toString().padStart(2, '0')}-01" && Date <= "${currentYear}-${currentMonth.toString().padStart(2, '0')}-${lastDayOfMonth}"`,
       requestKey: null,
@@ -326,7 +326,7 @@ export class RegistryService {
       Id: record['id'],
       Date: record['Date'],
       Description: record['Description'],
-      Pictogram: record['Pictogram'],
+      Pictogram: record['Pictogram_Id'],
       Source: record['Source'],
       Sum: record['Sum'],
       Type: record['Type']

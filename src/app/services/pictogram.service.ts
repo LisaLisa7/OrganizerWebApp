@@ -65,6 +65,9 @@ export class PictogramService {
     const deleteRec = await this.pb.collection('Pictograms').delete(id);
   }
 
+
+
+
   async getAllPictograms() : Promise<PictogramEntry[]>{
 
     const records = await this.pb.collection('Pictograms').getFullList({

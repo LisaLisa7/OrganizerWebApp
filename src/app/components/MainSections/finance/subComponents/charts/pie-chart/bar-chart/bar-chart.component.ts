@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Color, NgxChartsModule } from '@swimlane/ngx-charts';
 import { registryEntry } from '../../../../../../../interfaces/registryEntry';
 import { StatsService } from '../../../../../../../services/stats.service';
@@ -23,8 +23,8 @@ import { StatsService } from '../../../../../../../services/stats.service';
   [legend]="true"
   [showXAxisLabel]="true"
   [showYAxisLabel]="true"
-  xAxisLabel="Type (lei)"
-  yAxisLabel="Sum">
+  xAxisLabel="Type"
+  yAxisLabel="Sum (lei)">
 </ngx-charts-bar-vertical>
     
   `,
@@ -41,16 +41,15 @@ export class BarChartComponent {
     { name: "2022", value: '#febb00' },
   ]
 
-
-  barChartData :any;
+  @Input() barChartData!:{};
 
  
 
   gradient = false;
 
-  entriesCurrentMonth :registryEntry[] = [];
+  //entriesCurrentMonth :registryEntry[] = [];
   
-
+  /*
   constructor(private statsService:StatsService){
 
     this.loadData();
@@ -61,7 +60,7 @@ export class BarChartComponent {
     this.barChartData  =  this.statsService.calculateDataBarChart(this.entriesCurrentMonth);
 
   }
-  
+  */
 
 
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase'
 import { registryEntry } from '../interfaces/registryEntry';
+import { PictogramEntry } from '../interfaces/pictogram-entry';
 
 @Injectable({
   providedIn: 'root'
@@ -12,38 +13,18 @@ export class StatsService {
 
 
   
-  async getEntriesByMonth():Promise<registryEntry[]>{
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth() + 1; // January is 0, so we add 1
+
+
+  async getCategoryOfPictogram(id:string){
+  const record = await this.pb.collection('Pictograms').getOne(id, {
+    fields: "Category",requestKey:null});
+
+    console.log(record);
+    return record;
     
-    const lastDayOfMonth = new Date(currentYear, currentMonth, 0).getDate() +1;
-    //console.log(lastDayOfMonth);
-
-
-    const records = await this.pb.collection('Registry').getFullList({
-      
-      fields: 'id,Description,Sum,Source,Date,Pictogram,Type',
-      //filter: 'Date>= "2024-05-29 00:00:00"',
-      filter: `Date >= "${currentYear}-${currentMonth.toString().padStart(2, '0')}-01" && Date <= "${currentYear}-${currentMonth.toString().padStart(2, '0')}-${lastDayOfMonth}"`,
-      requestKey: null,
-    });
-    
-
-    // Assuming records is an array of objects with the structure defined in registryEntry
-    const entries: registryEntry[] = records.map((record: { [key: string]: any }) => ({
-      Id: record['id'],
-      Date: record['Date'],
-      Description: record['Description'],
-      Pictogram: record['Pictogram'],
-      Source: record['Source'],
-      Sum: record['Sum'],
-      Type: record['Type']
-    }));
-
-    //console.log(entries);
-  return entries;
   }
+
+
 
   calculateProportionsPieChart(currentMonthEntries:registryEntry[]) {
     const typeCounts: { [type: string]: number } = {};
@@ -67,6 +48,48 @@ export class StatsService {
 
     return pieChartData;
   }
+
+
+  
+  async calculateProportionsPieChart2(currentMonthEntries:registryEntry[]) 
+  {
+
+    const typeCounts: { [type: string]: number } = {};
+    let count = 0;
+
+    // Iterate over the current month entries
+    for (const entry of currentMonthEntries) {
+      // Get the category for the entry's pictogram
+      if(entry.Type === "Expenses")
+      {
+        count += 1;
+      const category = await this.getCategoryOfPictogram(entry.Pictogram);
+      
+      // Increment the count for the category
+      if (category) {
+        typeCounts[category['Category']] = (typeCounts[category['Category']] || 0) + 1;
+      }
+    }
+    }
+    
+
+    // Convert the typeCounts object into an array of { category, count } objects
+    const pieChartData = Object.keys(typeCounts).map(category => ({
+      name : category,
+      value: (typeCounts[category] /count) * 100 // Calculate percentage
+    }));
+
+    return pieChartData;
+    //console.log(pieChartData);
+  }
+    
+
+  
+  
+
+
+  
+
 
   calculateDataBarChart(currentMonthEntries:registryEntry[])
   {
