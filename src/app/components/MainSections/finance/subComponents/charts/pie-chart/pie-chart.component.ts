@@ -3,26 +3,16 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { StatsService } from '../../../../../../services/stats.service';
 import { registryEntry } from '../../../../../../interfaces/registryEntry';
 
-
-
-
-
 @Component({
   selector: 'app-pie-chart',
   standalone: true,
   imports: [NgxChartsModule],
   template: `
-    <p>
-      pie-chart works!
-    </p>
-
-    <div style="display: block;">
-
     <ngx-charts-pie-chart
       [results]="single"
       [view]="[500,400]"
-      [scheme]="'forest'"
       [explodeSlices]="false"
+      [customColors]="customColors"
       [doughnut]="false"
       [labels]="true">
       <ng-template #tooltipTemplate let-model="model">
@@ -33,8 +23,6 @@ import { registryEntry } from '../../../../../../interfaces/registryEntry';
       </ng-template>
     </ngx-charts-pie-chart>
 
-    </div>
-
   `,
   styleUrl: './pie-chart.component.css'
 })
@@ -44,6 +32,7 @@ export class PieChartComponent {
 
  //single = {};
  @Input() single!:{};
+ @Input() customColors !: {};
 
   
 }

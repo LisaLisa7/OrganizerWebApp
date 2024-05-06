@@ -9,23 +9,19 @@ import { StatsService } from '../../../../../../services/stats.service';
   standalone: true,
   imports: [NgxChartsModule],
   template: `
-    <p>
-      bar-chart works!
-    </p>
-
     <ngx-charts-bar-vertical
-  [view]="[700,400]"
-  [customColors]="barChartcustomColors"
-  [results]="barChartData"
-  [gradient]="gradient"
-  [xAxis]="true"
-  [yAxis]="true"
-  [legend]="true"
-  [showXAxisLabel]="true"
-  [showYAxisLabel]="true"
-  xAxisLabel="Type"
-  yAxisLabel="Sum (lei)">
-</ngx-charts-bar-vertical>
+      [view]="[600,400]"
+      [customColors]="customColors"
+      [results]="barChartData"
+      [gradient]="gradient"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      xAxisLabel="Type"
+      yAxisLabel="Sum (lei)">
+    </ngx-charts-bar-vertical>
     
   `,
   styleUrl: './bar-chart.component.css'
@@ -33,13 +29,7 @@ import { StatsService } from '../../../../../../services/stats.service';
 export class BarChartComponent {
 
   
-  barChartcustomColors = 
-  [
-    { name: "Type 1", value: '#febb00' },
-    { name: "Type 2", value: '#1dd068' },
-    { name: "Type 3", value: '#1dd068' },
-    { name: "2022", value: '#febb00' },
-  ]
+  @Input() customColors = {};
 
 
   @Input() barChartData!:{};

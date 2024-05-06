@@ -6,9 +6,6 @@ import { Color, NgxChartsModule } from '@swimlane/ngx-charts';
   standalone: true,
   imports: [NgxChartsModule],
   template: `
-    <p>
-      grouped-bar-chart works!
-    </p>
     <ngx-charts-bar-vertical-2d
       [view]="[700, 400]"
       [customColors]="barChartcustomColors"
@@ -22,8 +19,7 @@ import { Color, NgxChartsModule } from '@swimlane/ngx-charts';
       [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel"
       [legendTitle]="legendTitle">
-    </ngx-charts-bar-vertical-2d>
-    
+    </ngx-charts-bar-vertical-2d>    
   `,
   styleUrl: './grouped-bar-chart.component.css'
 })
@@ -34,10 +30,16 @@ export class GroupedBarChartComponent {
   gradient: boolean = true;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Country';
+  xAxisLabel: string = 'Type';
   showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Population';
-  legendTitle: string = 'Years';
+  yAxisLabel: string = 'Sum (lei)';
+  legendTitle: string = 'Month';
+
+
+  legend: boolean = true;
+  xAxis: boolean = true;
+  yAxis: boolean = true;
+  timeline: boolean = true;
   
   barChartcustomColors = 
   [
@@ -50,6 +52,45 @@ export class GroupedBarChartComponent {
 
   @Input() monthlyData!:[];
 
+
+  monthlySumData = [
+    {
+      "name": "Income",
+      "series": [
+        {
+          "name": "May",
+          "value": 8000
+        },
+        {
+          "name": "April",
+          "value": 5000
+        },
+        {
+          "name" : "March",
+          "value" : 10000
+        }
+      ]
+    },
+  
+    {
+      "name": "Expenses",
+      "series": [
+        {
+          "name": "May",
+          "value": 4000
+        },
+        {
+          "name": "April",
+          "value": 5000
+        },
+        {
+          "name" : "March",
+          "value" : 650
+        }
+      ]
+    },
+  
+  ];
 
 
 }

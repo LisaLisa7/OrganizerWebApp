@@ -337,6 +337,46 @@ export class RegistryService {
   }
 
 
+  async getEntriesLastMonth():Promise<registryEntry[]>{
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1; 
+
+    const lastMonth = currentMonth === 0 ? 11 : currentMonth - 1; 
+
+    let lastMonthYear = currentYear;
+    if (currentMonth === 0) {
+      lastMonthYear = currentYear - 1; 
+    }
+    const lastDayOfPreviousMonth = new Date(lastMonthYear, lastMonth + 1, 0).getDate();
+    //console.log(lastDayOfMonth);
+
+
+    const records = await this.pb.collection('Registry').getFullList({
+      
+      //fields: 'id,Description,Sum,Source,Date,Pictogram,Type',
+      //filter: 'Date>= "2024-05-29 00:00:00"',
+      filter: `Date >= "${lastMonthYear}-${lastMonth.toString().padStart(2, '0')}-01" && Date <= "${lastMonthYear}-${lastMonth.toString().padStart(2, '0')}-${lastDayOfPreviousMonth}"`,
+      requestKey: null,
+    });
+    
+
+    // Assuming records is an array of objects with the structure defined in registryEntry
+    const entries: registryEntry[] = records.map((record: { [key: string]: any }) => ({
+      Id: record['id'],
+      Date: record['Date'],
+      Description: record['Description'],
+      Pictogram: record['Pictogram_Id'],
+      Source: record['Source'],
+      Sum: record['Sum'],
+      Type: record['Type']
+    }));
+
+    //console.log(entries);
+  return entries;
+  }
+
+
 async createRecord(data:any){
   
   const record = await this.pb.collection('Registry').create(data);

@@ -83,61 +83,48 @@ export class StatsService {
     //console.log(pieChartData);
   }
 
-  async getFked(){
-    let monthlyData = [
+
+  async calculateDataBarChart2(currentMonthEntries:registryEntry[],lastMonthEntries:registryEntry[],
+                              currentMonthName: string, lastMonthName: string
+  )
+  {
+     
+    const currentMonthIncome = currentMonthEntries
+    .filter(entry => entry.Type === 'Income')
+    .reduce((sum, entry) => sum + entry.Sum, 0);
+
+    const currentMonthExpenses = currentMonthEntries
+    .filter(entry => entry.Type === 'Expenses')
+    .reduce((sum, entry) => sum + entry.Sum, 0);
+
+    const lastMonthIncome = lastMonthEntries
+    .filter(entry => entry.Type === 'Income')
+    .reduce((sum, entry) => sum + entry.Sum, 0);
+
+    const lastMonthExpenses = lastMonthEntries
+    .filter(entry => entry.Type === 'Expenses')
+    .reduce((sum, entry) => sum + entry.Sum, 0);
+
+    const data: any[] = [
       {
-        "name": "Germany",
-        "series": [
-          {
-            "name": "2010",
-            "value": 7300000
-          },
-          {
-            "name": "2011",
-            "value": 8940000
-          }
+        name: "Income",
+        series: [
+          { name: currentMonthName, value: currentMonthIncome },
+          { name: lastMonthName, value: lastMonthIncome }
         ]
       },
-    
       {
-        "name": "USA",
-        "series": [
-          {
-            "name": "2010",
-            "value": 7870000
-          },
-          {
-            "name": "2011",
-            "value": 8270000
-          }
-        ]
-      },
-    
-      {
-        "name": "France",
-        "series": [
-          {
-            "name": "2010",
-            "value": 5000002
-          },
-          {
-            "name": "2011",
-            "value": 5800000
-          }
+        name: "Expenses",
+        series: [
+          { name: currentMonthName, value: currentMonthExpenses },
+          { name: lastMonthName, value: lastMonthExpenses }
         ]
       }
     ];
-    
+  
+    return data;
 
-
-    return monthlyData;
   }
-    
-
-  
-  
-
-
   
 
 

@@ -12,10 +12,45 @@ import { GroupedBarChartComponent } from '../charts/grouped-bar-chart/grouped-ba
     standalone: true,
     template: `
     <div class="pageContainer">
-      <app-pie-chart [single]="pieChartData"></app-pie-chart>
-      <app-bar-chart [barChartData]="barChartData" ></app-bar-chart>
-      <app-pie-chart [single]="pieChartData2"></app-pie-chart>
-      <app-grouped-bar-chart [monthlyData]="barChartData2"></app-grouped-bar-chart>
+    <h1>{{month_current}} financial overview</h1>
+      <div class="container-up">
+        
+        <div class="container-up-left">
+          <div class="graph">
+            <h3>Distribution of this month's entries</h3>
+            <app-pie-chart [single]="pieChartData" [customColors]="customColors1"></app-pie-chart>
+            </div>
+        </div>
+
+        <div class="container-up-right">
+          
+            <div class="graph">
+            <h3>Total sum of this month's entries</h3>
+            <app-bar-chart [barChartData]="barChartData" [customColors]="customColors1" ></app-bar-chart>
+            </div>
+        </div>
+      </div>
+
+
+      <div class="container-down">
+
+      
+      <div class="container-down-left">
+        <div class="graph">
+          <h3>Distribution of expenses's categories</h3>
+          <app-pie-chart [single]="pieChartData2" ></app-pie-chart>
+        </div>
+      </div>
+      
+      <div class="container-down-right">
+        <div class="graph">
+          <h3>Comparison with last month</h3>
+          <app-grouped-bar-chart [monthlyData]="barChartData2"></app-grouped-bar-chart>
+        </div>
+      </div>
+
+
+      </div>
       
     </div>
   `,
@@ -25,22 +60,55 @@ import { GroupedBarChartComponent } from '../charts/grouped-bar-chart/grouped-ba
 export class StatsComponent {
 
   entriesCurrentMonth :registryEntry[] = [];
+  entriesLastMonth :registryEntry[] = [];
   pieChartData : any;
   barChartData :any;
   pieChartData2 : any;
   barChartData2 : any;
+  month_current : string;
+  month_prev : string;
+
+
+  customColors1 = [
+              { name: "Expenses", value: '#f25f5c' },
+              { name: "Income", value: '#70c1b3' },
+              { name: "Savings+", value: '#ffe066' }
+                ]
+
+  customColors2 = [
+    { name: "Expenses", value: '#f25f5c' },
+    { name: "Income", value: '#70c1b3' },
+    { name: "Savings+", value: '#ffe066' }
+      ]
 
   constructor(private statsService:StatsService,private registryService:RegistryService){
+    let currentDate = new Date();
+    this.month_current = new Intl.DateTimeFormat('en', { month: 'long' }).format(currentDate);
+    
+    // pt luna trecuta aucum
+
+    const currentMonth = currentDate.getMonth(); // Get the current month index
+    const lastMonth = (currentMonth === 0) ? 11 : currentMonth - 1; // Calculate the index of the last month
+    const lastMonthDate = new Date(); // Create a new Date object
+    lastMonthDate.setMonth(lastMonth); // Set the month to the last month
+    this.month_prev = new Intl.DateTimeFormat('en', { month: 'long' }).format(lastMonthDate); // Get the name of the last month
+
+
     this.loadData();
   }
 
   async loadData(){
+
     this.entriesCurrentMonth = await this.registryService.getEntriesByMonth();
+    this.entriesLastMonth = await this.registryService.getEntriesLastMonth();
+    console.log(this.entriesLastMonth);
     console.log(this.entriesCurrentMonth);
     this.pieChartData =  this.statsService.calculateProportionsPieChart(this.entriesCurrentMonth);
     this.barChartData  =  this.statsService.calculateDataBarChart(this.entriesCurrentMonth);
     this.pieChartData2 = await this.statsService.calculateProportionsPieChart2(this.entriesCurrentMonth);
-    this.barChartData2 = await this.statsService.getFked();
+    //this.barChartData2 = await this.statsService.getFked();
+
+    this.barChartData2 = await this.statsService.calculateDataBarChart2(this.entriesCurrentMonth,this.entriesLastMonth,this.month_current,this.month_prev);
     console.log(this.barChartData);
     console.log(this.barChartData2);
   }

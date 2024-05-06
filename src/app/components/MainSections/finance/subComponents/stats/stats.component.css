@@ -2,5 +2,76 @@
     width: 100vw;
     height: calc(100vh - 70px);
     display: flex;
-    
+    flex-direction: column;
   }
+
+  
+.container-up
+{
+    flex: 1;
+    /*border: 1px solid #000; /* */
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.container-down{
+  flex: 1;
+ /*border: 1px solid #000; /*  */
+  display: flex;
+  flex-direction: row;
+  /*align-items:flex-start /* Align items vertically center */
+}
+
+.container-up-left{
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.container-up-right{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*border: 1px solid #000; /**/
+
+}
+
+
+.container-down-left{
+
+  margin-top: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*border: 1px solid #000; /* Add border */
+  
+
+}
+
+.container-down-right{
+  margin-top: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*border: 1px solid #000; /* Add border */
+  
+
+}
+
+h1{
+  text-align: center;
+}
+h3{
+  text-align: center;
+}
