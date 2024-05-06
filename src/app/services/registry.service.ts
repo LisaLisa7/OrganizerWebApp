@@ -94,16 +94,18 @@ export class RegistryService {
         console.log("BOMBAAAAAAAAAAAAAAA");
       }
       
-      
+      let date = record['Date'];
+      date = new Date(date);
+      date = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
 
       return {
         Id: record['id'],
-        Date: record['Date'],
         Description: record['Description'],
-        Pictogram: picUrl,
-        Source: record['Source'],
-        Sum: record['Sum'],
         Type: record['Type'],
+        Pictogram: picUrl,
+        Sum: record['Sum'],
+        Source: record['Source'],
+        Date: date, 
         
       };
     }));
@@ -416,12 +418,12 @@ async getAllSavings(){
 
     return {
       Id: record['id'],
-      Date: record['Date'],
       Description: record['Description'],
-      Pictogram: picUrl,
-      Source: record['Source'],
-      Sum: record['Sum'],
       Type: record['Type'],
+      Pictogram: picUrl,
+      Sum: record['Sum'],
+      Source: record['Source'],
+      Date: record['Date'],
       
     };
   }));
@@ -467,6 +469,11 @@ async getSummarySavings(){
     
     return summaries;
 }
+
+
+  
+
+
 
 
   constructor() { }

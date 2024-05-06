@@ -7,11 +7,14 @@ import { RegistryComponent } from './subComponents/registry/registry.component';
 import { PictogramsComponent } from './subComponents/pictograms/pictograms.component';
 import { SavingsComponent } from './subComponents/savings/savings.component';
 import { StatsComponent } from './subComponents/stats/stats.component';
+import { HelpPageComponent } from './subComponents/help-page/help-page.component';
+import { ExportDialogComponent } from './subComponents/dialogs/export-dialog/export-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-finance',
   standalone: true,
-  imports: [CommonModule,MatSidenavModule,FormsModule,MatIconModule],
+  imports: [CommonModule,MatSidenavModule,FormsModule,MatIconModule,ExportDialogComponent],
   template: `
     <!--
     <div *ngFor="let entry of entries">
@@ -26,10 +29,10 @@ import { StatsComponent } from './subComponents/stats/stats.component';
           <button (click)="createSavingsComponent()"><img [src]="savingsSVG"  alt="Savings"><span>Savings</span></button>
           <button (click)="createStatsCoponent()"><img [src]="statsSVG" alt="stats"><span>Stats</span></button>
           <button (click)="createPictogramsComponent()"><img [src]="pictogramSVG" alt="pics"><span>Icons</span></button>
-          <button><img [src]="exportSVG" alt="export"><span>Export</span></button>
+          <button (click)="createExportDialog()"><img [src]="exportSVG" alt="export"><span>Export</span></button>
           </div>
           <div>
-          <button><img [src]="helpSVG" alt="help"><span>Help</span></button>
+          <button (click)="createHelpComponent()"><img [src]="helpSVG" alt="help"><span>Help</span></button>
           <button class="bottomButton"><img [src]="settingsSVG" alt="settings"><span>Settings</span></button>
           </div>
           
@@ -68,11 +71,13 @@ export class FinanceComponent {
   opened = true;
 
 
+
+
   toggleSidenav(): void {
     this.opened = !this.opened;
   }
   @ViewChild('dynamicComponentContainer', { read: ViewContainerRef }) dynamicComponentContainer!: ViewContainerRef;
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,public dialog:MatDialog) {}
 
   ngAfterViewInit(): void {
     // Now dynamicComponentContainer is guaranteed to be defined
@@ -118,7 +123,33 @@ export class FinanceComponent {
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
 
+  createHelpComponent() : void {
 
+    // Clear existing components in the container
+    this.dynamicComponentContainer.clear();
+
+    // Dynamically create the RegistryComponent
+    const factory = this.componentFactoryResolver.resolveComponentFactory(HelpPageComponent);
+    const componentRef = this.dynamicComponentContainer.createComponent(factory);
+
+  }
+
+
+  createExportDialog(){
+
+    const dialogRef = this.dialog.open(ExportDialogComponent, {
+      width: '500px', // Adjust the width as needed
+      data: {} // Optionally pass data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the result after the dialog is closed
+      console.log('Dialog closed with result:', result);
+      
+
+    });
+    
+  }
 
 
 }
