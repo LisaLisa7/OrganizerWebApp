@@ -6,7 +6,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { RegistryService } from '../../../../../../services/registry.service';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
 import { registryEntry } from '../../../../../../interfaces/registryEntry';
-
+import { saveAs } from 'file-saver';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -23,9 +23,9 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
       <div class="radio-button-container">
         <h3>Type of export
         <span>
-        <input id="tab-1" type="radio" class="pdf-radio" checked="checked" name="tab" />
+        <input id="tab-1" type="radio" class="pdf-radio" checked name="tab" (change)="toggleSelected('pdf')" />
         <label for="tab-1" class="tab">PDF</label>
-        <input id="tab-2" type="radio" class="csv-radio" name="tab" />
+        <input id="tab-2" type="radio" class="csv-radio" name="tab" (change)="toggleSelected('csv')"  />
         <label for="tab-2" class="tab">CSV</label>
         </span></h3>
       </div>
@@ -47,12 +47,19 @@ export class ExportDialogComponent {
   
   fieldNames :any;
 
+  exportType :string = 'pdf';
+
+
   constructor(public dialogRef: MatDialogRef<ExportDialogComponent>,private registryService:RegistryService){
 
     this.currentDate = new Date().toDateString();
     this.loadData();
 
 
+  }
+  toggleSelected(typeE : string)
+  {
+    this.exportType = typeE; 
   }
 
   async loadData(){
@@ -62,8 +69,33 @@ export class ExportDialogComponent {
 
   }
 
+  convertToCSV(data: any[]): string {
+    const header = Object.keys(data[0]).join(',') + '\n';
+    const rows = data.map(entry => Object.values(entry).join(',')).join('\n');
+    return header + rows;
+}
 
-  public export(): void {
+// Function to download CSV file
+  downloadCSV(data: any[], filename: string): void {
+      const filteredEntries = data.map(({ Id, Pictogram, ...rest }) => rest);
+      const csvContent = this.convertToCSV(filteredEntries);
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
+      saveAs(blob, filename);
+  }
+
+  generateCSVAndDownload(): void {
+    this.downloadCSV(this.registryEntries, 'test.csv');
+  }
+
+  export(){
+    if(this.exportType === 'pdf')
+      this.exportPDF();
+    else
+      this.exportCSV();
+  }
+
+
+  public exportPDF(): void {
 
     const filteredEntries = this.registryEntries.map(({ Id, Pictogram, ...rest }) => rest);
     const fieldNames = Object.keys(filteredEntries[0]);
@@ -76,25 +108,54 @@ export class ExportDialogComponent {
     // Define document definition
     const docDefinition: TDocumentDefinitions = {
       content: [
+        {text:this.currentDate},
+        { text: "All entries", style: 'header' },
+            
           {
-              table: {
-                  headerRows: 1,
-                  widths: columnWidths,
-                  body: [
-                      // Header row
-                    fieldNames.map(fieldName => ({
-                      text: fieldName,
-                      bold: true, // Make the header row bold
-                      alignment: 'center' // Center align the header row
-                  })),
-                      ...fieldValues.map(entryValues => entryValues.map(value => String(value)))
-                    ]
-              }
+              columns: [
+                  { width: '*', text: '' },
+                  {
+                      width: 'auto',
+                      layout: 'lightHorizontalLines', 
+                      table: {
+                          headerRows: 1,
+                          widths: columnWidths,
+                          body: [
+                              fieldNames.map(fieldName => ({
+                                  text: fieldName,
+                                  style: 'tableHeader'
+                              })),
+                              ...fieldValues.map(entryValues => entryValues.map(value => String(value)))
+                          ]
+                      }
+                  },
+                  { width: '*', text: '' },
+              ]
           }
-      ]
+      ],
+      styles: {
+          tableHeader: {
+              bold: true,
+              alignment: 'center'
+          },
+          header: {
+            fontSize: 18,
+            bold: true,
+            alignment: 'center',
+            margin: [20, 0, 20, 0] as [number, number, number, number] // [top, right, bottom, left],
+        },
+      },
+      
   };
 
     pdfMake.createPdf(docDefinition).download("test.pdf");
+    
+  }
+
+  exportCSV(){
+
+
+    this.generateCSVAndDownload();
   }
 
 

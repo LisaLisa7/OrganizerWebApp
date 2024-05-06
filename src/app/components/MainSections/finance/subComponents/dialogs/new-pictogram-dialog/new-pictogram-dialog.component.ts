@@ -40,7 +40,7 @@ import { MatInputModule } from '@angular/material/input'; // Import MatInputModu
 
       <div>
         <label>Select Category:</label>
-        <div class = "radioConatiner">
+        <div class = "radioContainer">
           <input type="radio"  id="selectExisting" name="categorySelection" (change)="toggleCategoryInput('existing')" checked >
           <label for="selectExisting">Select Existing</label>
           <input type="radio" id="enterCustom" name="categorySelection" (change)="toggleCategoryInput('custom')">
