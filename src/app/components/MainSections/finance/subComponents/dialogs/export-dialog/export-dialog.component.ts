@@ -84,7 +84,7 @@ export class ExportDialogComponent {
   }
 
   generateCSVAndDownload(): void {
-    this.downloadCSV(this.registryEntries, 'test.csv');
+    this.downloadCSV(this.registryEntries, 'data.csv');
   }
 
   export(){
@@ -103,35 +103,36 @@ export class ExportDialogComponent {
     console.log(fieldValues);
 
     const numColumns = fieldNames.length;
-  const columnWidths = Array(numColumns).fill('auto');
+    const columnWidths = Array(numColumns).fill('auto');
 
     // Define document definition
     const docDefinition: TDocumentDefinitions = {
       content: [
         {text:this.currentDate},
-        { text: "All entries", style: 'header' },
-            
-          {
-              columns: [
-                  { width: '*', text: '' },
-                  {
-                      width: 'auto',
-                      layout: 'lightHorizontalLines', 
-                      table: {
-                          headerRows: 1,
-                          widths: columnWidths,
-                          body: [
-                              fieldNames.map(fieldName => ({
-                                  text: fieldName,
-                                  style: 'tableHeader'
-                              })),
-                              ...fieldValues.map(entryValues => entryValues.map(value => String(value)))
-                          ]
-                      }
-                  },
-                  { width: '*', text: '' },
-              ]
-          }
+        { text: "All entries", style: 'header' },   
+        {
+            columns: [
+                { width: '*', text: '' },
+                {
+                    width: 'auto',
+                    layout: 'lightHorizontalLines', 
+                    table: {
+                        headerRows: 1,
+                        widths: columnWidths,
+                        body: [
+                            fieldNames.map(fieldName => ({
+                                text: fieldName,
+                                style: 'tableHeader'
+                            })),
+                            ...fieldValues.map(entryValues => entryValues.map(value => String(value)))
+                        ]
+                    },
+                    //pageBreak: 'after'
+                },
+                { width: '*', text: '' },
+            ]
+        },
+        
       ],
       styles: {
           tableHeader: {
@@ -142,13 +143,13 @@ export class ExportDialogComponent {
             fontSize: 18,
             bold: true,
             alignment: 'center',
-            margin: [20, 0, 20, 0] as [number, number, number, number] // [top, right, bottom, left],
+            margin: [0, 20, 0, 20] as [number, number, number, number] // [left, top, right, bottom]
         },
       },
       
   };
 
-    pdfMake.createPdf(docDefinition).download("test.pdf");
+    pdfMake.createPdf(docDefinition).download("data.pdf");
     
   }
 

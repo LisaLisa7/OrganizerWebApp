@@ -10,6 +10,7 @@ import { StatsComponent } from './subComponents/stats/stats.component';
 import { HelpPageComponent } from './subComponents/help-page/help-page.component';
 import { ExportDialogComponent } from './subComponents/dialogs/export-dialog/export-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { SettingsDialogComponent } from './subComponents/dialogs/settings-dialog/settings-dialog.component';
 
 @Component({
   selector: 'app-finance',
@@ -29,11 +30,11 @@ import { MatDialog } from '@angular/material/dialog';
           <button (click)="createSavingsComponent()"><img [src]="savingsSVG"  alt="Savings"><span>Savings</span></button>
           <button (click)="createStatsCoponent()"><img [src]="statsSVG" alt="stats"><span>Stats</span></button>
           <button (click)="createPictogramsComponent()"><img [src]="pictogramSVG" alt="pics"><span>Icons</span></button>
-          <button (click)="createExportDialog()"><img [src]="exportSVG" alt="export"><span>Export</span></button>
+          <button (click)="openExportDialog()"><img [src]="exportSVG" alt="export"><span>Export</span></button>
           </div>
           <div>
           <button (click)="createHelpComponent()"><img [src]="helpSVG" alt="help"><span>Help</span></button>
-          <button class="bottomButton"><img [src]="settingsSVG" alt="settings"><span>Settings</span></button>
+          <button (click)="openSettingsDialog()" class="bottomButton"><img [src]="settingsSVG" alt="settings"><span>Settings</span></button>
           </div>
           
         </div>
@@ -135,9 +136,25 @@ export class FinanceComponent {
   }
 
 
-  createExportDialog(){
+  openExportDialog(){
 
     const dialogRef = this.dialog.open(ExportDialogComponent, {
+      width: '500px', // Adjust the width as needed
+      data: {} // Optionally pass data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the result after the dialog is closed
+      console.log('Dialog closed with result:', result);
+      
+
+    });
+    
+  }
+
+  openSettingsDialog(){
+
+    const dialogRef = this.dialog.open(SettingsDialogComponent, {
       width: '500px', // Adjust the width as needed
       data: {} // Optionally pass data to the dialog
     });
