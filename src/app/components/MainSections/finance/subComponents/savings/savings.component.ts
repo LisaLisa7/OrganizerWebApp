@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SavingsEntryComponent } from "../entries/savings-entry/savings-entry.component";
 import { SeeAllDialogComponent } from '../dialogs/see-all-dialog/see-all-dialog.component';
-import { RegistryService } from '../../../../../services/registry.service';
+import { RegistryService } from '../../../../../services/finance-services/registry.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Summary } from '../../../../../interfaces/summary';
+import { Summary } from '../../../../../interfaces/finance-interfaces/summary';
 import { SummaryComponent } from '../summary/summary.component';
 
 

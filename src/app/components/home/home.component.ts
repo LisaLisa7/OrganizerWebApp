@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SectionComponent } from '../sectionHome/section.component';
-import { Section } from '../../interfaces/section';
+import { Section } from '../../interfaces/finance-interfaces/section';
 
 @Component({
   selector: 'app-home',

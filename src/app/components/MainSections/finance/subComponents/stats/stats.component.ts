@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { PieChartComponent } from '../charts/pie-chart/pie-chart.component';
 import { BarChartComponent } from "../charts/bar-chart/bar-chart.component";
-import { registryEntry } from '../../../../../interfaces/registryEntry';
-import { StatsService } from '../../../../../services/stats.service';
-import { PictogramService } from '../../../../../services/pictogram.service';
-import { RegistryService } from '../../../../../services/registry.service';
+import { registryEntry } from '../../../../../interfaces/finance-interfaces/registryEntry';
+import { StatsService } from '../../../../../services/finance-services/stats.service';
+import { PictogramService } from '../../../../../services/finance-services/pictogram.service';
+import { RegistryService } from '../../../../../services/finance-services/registry.service';
 import { GroupedBarChartComponent } from '../charts/grouped-bar-chart/grouped-bar-chart.component';
 
 @Component({

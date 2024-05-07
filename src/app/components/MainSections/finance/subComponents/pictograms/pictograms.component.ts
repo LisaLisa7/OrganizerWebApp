@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { PictogramService } from '../../../../../services/pictogram.service';
+import { PictogramService } from '../../../../../services/finance-services/pictogram.service';
 import { CommonModule } from '@angular/common';
-import { PictogramEntry } from '../../../../../interfaces/pictogram-entry';
+import { PictogramEntry } from '../../../../../interfaces/finance-interfaces/pictogram-entry';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPictogramDialogComponent } from '../dialogs/new-pictogram-dialog/new-pictogram-dialog.component';
 import { Subject, takeUntil } from 'rxjs';

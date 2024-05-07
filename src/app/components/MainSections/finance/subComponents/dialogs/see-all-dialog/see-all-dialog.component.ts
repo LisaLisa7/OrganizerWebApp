@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog,MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
-import { RegistryService } from '../../../../../../services/registry.service';
+import { RegistryService } from '../../../../../../services/finance-services/registry.service';
 import { CommonModule } from '@angular/common';
-import { registryEntry } from '../../../../../../interfaces/registryEntry';
+import { registryEntry } from '../../../../../../interfaces/finance-interfaces/registryEntry';
 import { PictogramDialogComponent } from '../pictogram-dialog/pictogram-dialog.component';
 import { EntryDialogFormComponent } from '../entry-dialog-form/entry-dialog-form.component';
 import { MatInputModule } from '@angular/material/input';

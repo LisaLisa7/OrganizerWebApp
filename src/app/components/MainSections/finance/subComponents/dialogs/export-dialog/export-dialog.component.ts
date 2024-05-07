@@ -3,9 +3,9 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { RegistryService } from '../../../../../../services/registry.service';
+import { RegistryService } from '../../../../../../services/finance-services/registry.service';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
-import { registryEntry } from '../../../../../../interfaces/registryEntry';
+import { registryEntry } from '../../../../../../interfaces/finance-interfaces/registryEntry';
 import { saveAs } from 'file-saver';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 

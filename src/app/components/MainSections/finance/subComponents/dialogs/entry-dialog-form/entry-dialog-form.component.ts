@@ -6,11 +6,11 @@ import { MatInputModule } from '@angular/material/input'; // Import MatInputModu
 import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
 import { MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
-import { RegistryService } from '../../../../../../services/registry.service';
+import { RegistryService } from '../../../../../../services/finance-services/registry.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PictogramDialogComponent } from '../pictogram-dialog/pictogram-dialog.component';
 import { CommonModule } from '@angular/common';
-import { SavingsService } from '../../../../../../services/savings.service';
+import { SavingsService } from '../../../../../../services/finance-services/savings.service';
 
 
 

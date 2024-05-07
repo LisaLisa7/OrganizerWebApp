@@ -1,6 +1,6 @@
 import { Component,Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Section } from '../../interfaces/section';
+import { Section } from '../../interfaces/finance-interfaces/section';
 import { RouterLink,RouterOutlet } from '@angular/router';
 import PocketBase from 'pocketbase'
 

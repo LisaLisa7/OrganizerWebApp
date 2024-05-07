@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import PocketBase, { RecordModel } from 'pocketbase'
-import { registryEntry } from '../interfaces/registryEntry';
+import { registryEntry } from '../../interfaces/finance-interfaces/registryEntry';
 import { BehaviorSubject } from 'rxjs';
-import { PictogramEntry } from '../interfaces/pictogram-entry';
+import { PictogramEntry } from '../../interfaces/finance-interfaces/pictogram-entry';
 
 @Injectable({
   providedIn: 'root'

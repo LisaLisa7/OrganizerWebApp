@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase'
-import { registryEntry } from '../interfaces/registryEntry';
+import { registryEntry } from '../../interfaces/finance-interfaces/registryEntry';
 import { BehaviorSubject } from 'rxjs';
-import { Summary } from '../interfaces/summary';
-import { recurringEntry } from '../interfaces/recurringEntry';
+import { Summary } from '../../interfaces/finance-interfaces/summary';
+import { recurringEntry } from '../../interfaces/finance-interfaces/recurringEntry';
 
 @Injectable({
   providedIn: 'root'

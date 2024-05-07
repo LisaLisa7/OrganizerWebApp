@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PictogramService } from '../../../../../../services/pictogram.service';
-import { PictogramEntry } from '../../../../../../interfaces/pictogram-entry';
+import { PictogramService } from '../../../../../../services/finance-services/pictogram.service';
+import { PictogramEntry } from '../../../../../../interfaces/finance-interfaces/pictogram-entry';
 @Component({
   selector: 'app-pictogram-dialog',
   standalone: true,

@@ -1,5 +1,5 @@
 import { Component,Input } from '@angular/core';
-import { Summary } from '../../../../../interfaces/summary';
+import { Summary } from '../../../../../interfaces/finance-interfaces/summary';
 import { CommonModule } from '@angular/common';
 
 

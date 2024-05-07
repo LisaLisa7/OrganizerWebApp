@@ -3,18 +3,18 @@ import { RegistryEntryComponent } from '../entries/registry-entry/registry-entry
 import { MatDialogModule} from '@angular/material/dialog';
 import { EntryDialogFormComponent } from '../dialogs/entry-dialog-form/entry-dialog-form.component';
 import { MatDialog } from '@angular/material/dialog';
-import { RegistryService } from '../../../../../services/registry.service';
+import { RegistryService } from '../../../../../services/finance-services/registry.service';
 import { SummaryComponent } from '../summary/summary.component';
-import { Summary } from '../../../../../interfaces/summary';
-import { registryEntry } from '../../../../../interfaces/registryEntry';
+import { Summary } from '../../../../../interfaces/finance-interfaces/summary';
+import { registryEntry } from '../../../../../interfaces/finance-interfaces/registryEntry';
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { RecurringEntryDialogComponent } from '../dialogs/recurring-entry-dialog/recurring-entry-dialog.component';
-import { RecurringService } from '../../../../../services/recurring.service';
-import { recurringEntry } from '../../../../../interfaces/recurringEntry';
+import { RecurringService } from '../../../../../services/finance-services/recurring.service';
+import { recurringEntry } from '../../../../../interfaces/finance-interfaces/recurringEntry';
 import { SavingsEntryComponent } from '../entries/savings-entry/savings-entry.component';
-import { SavingsService } from '../../../../../services/savings.service';
+import { SavingsService } from '../../../../../services/finance-services/savings.service';
 import { SeeAllDialogComponent } from '../dialogs/see-all-dialog/see-all-dialog.component';
 @Component({
   selector: 'app-registry',

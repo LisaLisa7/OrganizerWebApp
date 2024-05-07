@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { RegistryService } from '../../../../../../services/registry.service';
+import { RegistryService } from '../../../../../../services/finance-services/registry.service';
 import { CommonModule } from '@angular/common';
-import { registryEntry } from '../../../../../../interfaces/registryEntry';
+import { registryEntry } from '../../../../../../interfaces/finance-interfaces/registryEntry';
 import { DatePipe } from '@angular/common';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { EntryDialogFormComponent } from '../../dialogs/entry-dialog-form/entry-dialog-form.component';
-import { SavingsService } from '../../../../../../services/savings.service';
+import { SavingsService } from '../../../../../../services/finance-services/savings.service';
 
 @Component({
   selector: 'app-savings-entry',

@@ -2,7 +2,7 @@ import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialog,MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PictogramService } from '../../../../../../services/pictogram.service';
+import { PictogramService } from '../../../../../../services/finance-services/pictogram.service';
 import { MatIconModule } from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel

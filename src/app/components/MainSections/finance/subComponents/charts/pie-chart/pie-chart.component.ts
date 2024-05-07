@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { StatsService } from '../../../../../../services/stats.service';
-import { registryEntry } from '../../../../../../interfaces/registryEntry';
+import { StatsService } from '../../../../../../services/finance-services/stats.service';
+import { registryEntry } from '../../../../../../interfaces/finance-interfaces/registryEntry';
 
 @Component({
   selector: 'app-pie-chart',

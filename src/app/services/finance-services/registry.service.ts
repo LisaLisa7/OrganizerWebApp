@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase'
-import { registryEntry } from '../interfaces/registryEntry';
+import { registryEntry } from '../../interfaces/finance-interfaces/registryEntry';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Summary } from '../interfaces/summary';
+import { Summary } from '../../interfaces/finance-interfaces/summary';
 
 
 @Injectable({

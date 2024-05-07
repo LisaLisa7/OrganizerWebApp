@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { GameListComponent } from './sub-components/game-list/game-list.component';
+import { GamesComponent } from './sub-components/games/games.component';
 
 @Component({
   selector: 'app-personal',
@@ -15,10 +17,18 @@ import { MatIconModule } from '@angular/material/icon';
           <div>
           <button ><img [src]="homeSVG" alt="home"><span>Home</span></button>
           <button><img [src]="taskSVG" alt="tasks"><span>Tasks</span></button>
-          <button><img [src]="gameSVG" alt="games"><span>Game List</span></button>
-          <button ><img [src]="movieSVG" alt="movies"><span>Movie List</span></button>
-          <button><img [src]="bookSVG" alt="books"><span>Book List</span></button>
+          <button (click)="toggleSubButtons()"><img [src]="gameSVG" alt="games"><span>Games</span><img [src]="expansSVG" style="float: right; height : 20px; margin-top : 5px;"></button>
+          <div *ngIf="showSubButtons">
+            <button (click) = "createBrowseGamesComponent()" >Browse Games</button>
+            <button (click)="createGameListComponent()">Your Game List</button>
+          </div>
+
+          <button ><img [src]="movieSVG" alt="movies"><span>Movies</span></button>
+          <button><img [src]="bookSVG" alt="books"><span>Books</span></button>
           <button><img [src]="exportSVG" alt="export"><span>Export</span></button>
+          
+
+
           </div>
           <div>
           <button><img [src]="helpSVG" alt="help"><span>Help</span></button>
@@ -56,10 +66,17 @@ export class PersonalComponent {
   gameSVG = "/assets/game.svg";
   movieSVG = "/assets/movie.svg";
   bookSVG = "/assets/book.svg";
+  expansSVG = "/assets/down-arrow.svg";
 
 
   //toggleSVGExpand = "/assets/arrowRight.svg";
   opened = true;
+
+  showSubButtons: boolean = false;
+
+  toggleSubButtons() {
+    this.showSubButtons = !this.showSubButtons;
+  }
 
 
   toggleSidenav(): void {
@@ -71,20 +88,20 @@ export class PersonalComponent {
   ngAfterViewInit(): void {
     // Now dynamicComponentContainer is guaranteed to be defined
   }
-  createSavingsComponent() : void{
+  createGameListComponent() : void{
     this.dynamicComponentContainer.clear();
 
-    //const factory = this.componentFactoryResolver.resolveComponentFactory(SavingsComponent);
-    //const componentRef = this.dynamicComponentContainer.createComponent(factory);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(GameListComponent);
+    const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
 
-  createRegistryComponent(): void {
+  createBrowseGamesComponent(): void {
     // Clear existing components in the container
     this.dynamicComponentContainer.clear();
 
     // Dynamically create the RegistryComponent
-    //const factory = this.componentFactoryResolver.resolveComponentFactory(RegistryComponent);
-    //const componentRef = this.dynamicComponentContainer.createComponent(factory);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(GamesComponent);
+    const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
   createPictogramsComponent(): void {
     // Clear existing components in the container
