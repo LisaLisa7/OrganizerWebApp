@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Game } from '../../../../../interfaces/personal-interfaces/game';
 import { GamesService } from '../../../../../services/personal-services/games.service';
 import { FormsModule } from '@angular/forms';
+import { InsertGameDialogComponent } from '../dialogs/insert-game-dialog/insert-game-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-games',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,InsertGameDialogComponent],
   template: `
     <div class="pageContainer">
 
@@ -23,7 +25,7 @@ import { FormsModule } from '@angular/forms';
 
       <div class="gamesContainer">
 
-            <div *ngFor="let game of gameData" class="card">
+            <div *ngFor="let game of gameData" class="card" (click)="openDialog(game)">
               <h1>{{game.Name}}</h1>
               <img src = {{game.URL}}>
               <p>Studio : {{game.Studio}}</p>
@@ -54,7 +56,7 @@ export class GamesComponent {
     return JSON.parse(jsonString);
   }
 
-  constructor(private gameService:GamesService)
+  constructor(public dialog: MatDialog,private gameService:GamesService)
   {
     this.loadData();
   }
@@ -65,6 +67,25 @@ export class GamesComponent {
 
   async searchByName(name:string){
     this.gameData = await this.gameService.getGameByName(name);
+  }
+
+
+
+  openDialog(game : Game): void {
+
+    //this.registryService.getEntriesByMonth();
+    const dialogRef = this.dialog.open(InsertGameDialogComponent, {
+      width: '500px', // Adjust the width as needed
+      data: {game} // Optionally pass data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the result after the dialog is closed
+      console.log('Dialog closed with result:', result);
+      
+      
+
+    });
   }
 
 }

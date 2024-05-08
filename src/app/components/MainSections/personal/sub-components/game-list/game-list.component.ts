@@ -26,7 +26,6 @@ import { ListGame } from '../../../../../interfaces/personal-interfaces/list-gam
                 <th>Name</th>
                 <th>Status</th>
                 <th>Rating</th>
-                <th>Platform</th>
                 <th>Review</th>
               </tr>
             </thead>
@@ -36,7 +35,6 @@ import { ListGame } from '../../../../../interfaces/personal-interfaces/list-gam
                 <td>{{game.Name}}</td>
                 <td>{{game.Status}}</td>
                 <td>{{game.Rating}}</td>
-                <td>{{game.Platform}}</td>
                 <td>{{game.Review}}</td>
                 
 
@@ -80,15 +78,20 @@ export class GameListComponent {
         this.getAllGames();
         break;
       default:
-        console.log(status);
+        this.getGamesByStatus(status);
 
 
     }
   }
 
   async getAllGames(){
-    //this.gameData = await this.gamesService.getAllGames();
+    this.gameData = await this.gamesService.getAllList();
+  }
 
+  async getGamesByStatus(status:string)
+  {
+    console.log(status);
+    this.gameData = await this.gamesService.getGamesByStatus(status);
   }
 
 }

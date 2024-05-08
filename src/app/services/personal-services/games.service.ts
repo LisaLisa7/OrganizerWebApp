@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase'
 import { Game } from '../../interfaces/personal-interfaces/game';
 import { ListGame } from '../../interfaces/personal-interfaces/list-game';
+import { filter } from 'd3';
 
 @Injectable({
   providedIn: 'root'
@@ -74,6 +75,7 @@ export class GamesService {
 
     const games : Game[] = records.items.map((record: { [key: string]: any }) => {
 
+      
 
       return {
         Id: record['id'],
@@ -90,6 +92,44 @@ export class GamesService {
     
     return games;
 
+
+
+  }
+
+  async insertGameIntoList(data:any)
+  {
+    const rec = await this.pb.collection("GameList").create(data);
+  }
+
+  async getGamesByStatus(status:string)
+  {
+
+    const filterString = `Status = "${status}"`
+    console.log(filterString);
+
+    let name = '';
+
+    const entries = await this.pb.collection("GameList").getFullList({requestKey:null,filter:filterString})
+
+
+    console.log(entries);
+
+    const games : ListGame[] = await Promise.all(entries.map(async (record: { [key: string]: any }) => {
+
+      name = await this.getGameNameById(record['GameId']);
+
+
+      return {
+        Id: record['id'],
+        Name: name,
+        Status: record['Status'],
+        Rating : record['Rating'],
+        Review : record['Review'],
+        Platform : record['Platform']
+      }
+    }));
+
+    return games;
 
 
   }
