@@ -1,6 +1,8 @@
 export interface ListGame {
     Id : string,
+    Name : string,
     Status : string,
     Rating : number,
-    Review : string
+    Review : string,
+    Platform : string
 }

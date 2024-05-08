@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GamesService } from '../../../../../services/personal-services/games.service';
 import { Game } from '../../../../../interfaces/personal-interfaces/game';
+import { ListGame } from '../../../../../interfaces/personal-interfaces/list-game';
 
 @Component({
   selector: 'app-game-list',
@@ -23,20 +24,20 @@ import { Game } from '../../../../../interfaces/personal-interfaces/game';
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Description</th>
-                <th>Studio</th>
-                <th>Platforms</th>
-                <th>Tags</th>
+                <th>Status</th>
+                <th>Rating</th>
+                <th>Platform</th>
+                <th>Review</th>
               </tr>
             </thead>
 
             <tbody>
               <tr *ngFor="let game of gameData">
                 <td>{{game.Name}}</td>
-                <td>{{game.Description}}</td>
-                <td>{{game.Studio}}</td>
-                <td>{{game.Platforms | json}}</td>
-                <td>{{game.Tags | json}}</td>
+                <td>{{game.Status}}</td>
+                <td>{{game.Rating}}</td>
+                <td>{{game.Platform}}</td>
+                <td>{{game.Review}}</td>
                 
 
               </tr>
@@ -57,7 +58,7 @@ export class GameListComponent {
 
   statusArray = ['All','Playing','Finished','Plan to Play','On Hold', 'Dropped'];
 
-  gameData : Game[] = [];
+  gameData : ListGame[] = [];
 
   constructor(private gamesService:GamesService)
   {
@@ -66,7 +67,7 @@ export class GameListComponent {
   }
 
   async loadData(){
-    this.gameData = await this.gamesService.getAllGames();
+    this.gameData = await this.gamesService.getAllList();
     
   }
 
@@ -86,7 +87,7 @@ export class GameListComponent {
   }
 
   async getAllGames(){
-    this.gameData = await this.gamesService.getAllGames();
+    //this.gameData = await this.gamesService.getAllGames();
 
   }
 

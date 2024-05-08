@@ -2,8 +2,10 @@ export interface Game {
 
     Name : string,
     Description : string,
-    Studio : string,
-    Platforms : JSON,
-    Tags : JSON
+    Studio : JSON,
+    Platforms : string,
+    MainCategories: JSON,
+    SecondCategories: JSON,
+    URL : string
 
 }
