@@ -4,8 +4,8 @@ export interface Game {
     Description : string,
     Studio : JSON,
     Platforms : string,
-    MainCategories: JSON,
-    SecondCategories: JSON,
+    Genres: JSON,
+    Tags: JSON,
     URL : string
 
 }
