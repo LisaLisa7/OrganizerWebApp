@@ -50,47 +50,45 @@
     margin-right: 5px;
   }
 
+  .gameContainer{
+  
+
+    display: inline-block;
+    margin-top: 30px;
+    
+
+  }
+
   
   table {
     border-collapse: separate;
-    border-spacing: 0 20px;
-    width: 100%; /* Ensures the table takes up full width of its parent */
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-  
-  }
-
-  .expense-entry {
-    background-color: #f8afaf; /* Adjust the background color for expenses */
-    border-radius: 5px; /* Adjust the radius as needed */
+    border-spacing: 0;
+    width: 82vw; /* Ensures the table takes up full width of its parent */
     font-family: Roboto, "Helvetica Neue", sans-serif;
     
-  }
-  
-  .income-entry {
-    background-color: #cef3c5; /* Adjust the background color for income */
-    border-radius: 5px; /* Adjust the radius as needed */
-    font-family: Roboto, "Helvetica Neue", sans-serif;
     
   }
 
 
-  td{
+  td,th{
 
     text-align: center;
     border-bottom: 1px solid #ccc; /* Adjust the color and style as needed */
-    border-top: 1px solid #ccc;
-    min-width: 70px;
+    /*border-top: 1px solid #ccc;*/
+    /*min-width: 70px;*/
     height: 70px;
     
   }
-  
-  tr td:first-child{
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px; 
+
+  tr{
+    margin: 0;
   }
-  tr td:last-child{
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px; 
+  
+  
+
+  tbody tr:hover{
+    background-color: #ccc;
+    cursor: pointer;
   }
   
   .separator {
@@ -100,4 +98,5 @@
     min-height: 30px; /* Ensure the separator appears even without content */
   
   }
+
 

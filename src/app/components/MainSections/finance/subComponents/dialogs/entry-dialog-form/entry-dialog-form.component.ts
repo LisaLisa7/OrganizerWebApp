@@ -11,6 +11,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PictogramDialogComponent } from '../pictogram-dialog/pictogram-dialog.component';
 import { CommonModule } from '@angular/common';
 import { SavingsService } from '../../../../../../services/finance-services/savings.service';
+import { ErrorDialogComponent } from '../../../../personal/sub-components/dialogs/error-dialog/error-dialog.component';
 
 
 
@@ -25,7 +26,6 @@ import { SavingsService } from '../../../../../../services/finance-services/savi
   template: `
     <h2 mat-dialog-title style="text-align: center;">
       {{ entryData ? 'Edit Entry' : 'Add New Entry!' }}
-      <div *ngIf="showWarning" class="warning-message" style="color: red;">Please complete all fields!</div>
 
     </h2>
     <div mat-dialog-content>
@@ -41,7 +41,7 @@ import { SavingsService } from '../../../../../../services/finance-services/savi
 
         <mat-form-field>
           <mat-label>Sum</mat-label>
-          <input matInput type="number" placeholder="Sum" [ngModel]="entryData ? entryData.Sum : formData.Sum" 
+          <input matInput type="number" placeholder="Sum" [(ngModel)]="entryData ? entryData.Sum : formData.Sum" 
                 (ngModelChange)="formData.Sum = $event" name="Sum" required>
         </mat-form-field>
 
@@ -105,7 +105,6 @@ export class EntryDialogFormComponent {
 
 
   readonly fields = ["Description","Sum","Date","Source","Type"];
-  showWarning = false;
   selectedPic = undefined;
   savingsPlusPattern: RegExp = /^Savings\+$/;
   savingsMinusPattern: RegExp = /^Savings\-$/;
@@ -202,7 +201,7 @@ export class EntryDialogFormComponent {
       console.log("caz doar new entry");
       if(this.dataValidator(this.formData) == false )
       {
-        this.showWarning = true;
+        this.openDialog("Please complete all fields!")
         return;
       }
       else
@@ -216,7 +215,7 @@ export class EntryDialogFormComponent {
       console.log("formData:");
       console.log(this.formData);
       if (this.patchDataValidator(this.formData) == false){
-        this.showWarning = true;
+        this.openDialog("Please complete all fields!")
         return;
       }
       else
@@ -230,6 +229,16 @@ export class EntryDialogFormComponent {
     this.dialogRef.close(this.formData);
     
   }
+
+  openDialog(message:string): void {
+
+    //this.registryService.getEntriesByMonth();
+    const dialogRef = this.dialog.open(ErrorDialogComponent, {
+      width: '500px', // Adjust the width as needed
+      data: {"error":message} // Optionally pass data to the dialog
+    });
+  }
+
 
   openDialogPictogram():void{
     const dialogConfig: MatDialogConfig ={

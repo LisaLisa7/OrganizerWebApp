@@ -31,7 +31,7 @@ import { ListGame } from '../../../../../interfaces/personal-interfaces/list-gam
             </thead>
 
             <tbody>
-              <tr *ngFor="let game of gameData">
+              <tr *ngFor="let game of gameData" (click)="actions(game)">
                 <td>{{game.Name}}</td>
                 <td>{{game.Status}}</td>
                 <td>{{game.Rating}}</td>
@@ -67,6 +67,10 @@ export class GameListComponent {
   async loadData(){
     this.gameData = await this.gamesService.getAllList();
     
+  }
+
+  async actions(game:ListGame){
+    console.log(game);
   }
 
 

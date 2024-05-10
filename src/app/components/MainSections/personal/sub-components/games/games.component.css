@@ -8,32 +8,54 @@
     text-align: center;
   }
 
-.card{
-    background-color: #FFEEDD;
-    padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 2cm;
-    margin-right: 20px;
-    margin-left: 20px;
-    width: auto;
-    float: left;
-    
-  }
 
   .gamesContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust the minmax values as needed */
     grid-gap: 20px; /* Adjust the gap between cards */
+    margin: 30px;
+    
+    
 }
 
-.card:hover {
-    /*-webkit-transform: scale(1.14);*/
-    transform: scale(1.14);
-    cursor: pointer;
+/*****   yoy      *****/
+
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.card {
+
+  border: 3px solid;
+  border-radius: 8px;
+  background-color: #FFF;
+  position: relative;
+  transition: .15s ease;
+  cursor: pointer;
+  padding: 5% 5% 15% 5%;
+  height: 250px;
+  &:hover {			
+    transform: rotate(5deg);
+    
+  }
+  
+}
+
+  .card h3{
+    position: relative;
+    padding-top: 5px;
+  }
+  .card h3::after {
+    content: '';
+  position: absolute;
+  left: 20px; /* Adjust space on the left side */
+  right: 20px; /* Adjust space on the right side */
+  bottom: 0;
+  height: 1px; /* Adjust line thickness as needed */
+  background-color: black; /* Adjust line color as needed */
   }
 
-img{
-  width: 200px;
-  height: 100px;
-}
+    
+    

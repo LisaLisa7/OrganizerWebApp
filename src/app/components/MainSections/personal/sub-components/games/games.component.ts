@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 
         <section>
           <form>
+            <label name="inputName"></label>
             <input type="text" placeholder="Search game" name="inputName" [(ngModel)]="inputName"  >
             <button class="primary" type="button" (click)="searchByName(inputName)">Search</button>
           </form>
@@ -27,14 +28,19 @@ import { MatDialog } from '@angular/material/dialog';
       <h3>Page {{currentPage}}/{{totalPages}}</h3>
 
       <div class="gamesContainer">
-
-            <div *ngFor="let game of gameData" class="card" (click)="openDialog(game)">
-              <h1>{{game.Name}}</h1>
-              <img src = {{game.URL}}>
-              <p>Studio : {{game.Studio}}</p>
-              <p>Genres: {{game.Genres}}</p>
-              <p>Tags: {{game.Tags}}</p>
-              <p>Available on : {{game.Platforms}}</p>
+            
+            <div *ngFor="let game of gameData" class="stack" (click)="openDialog(game)">
+              <div class="circle"></div>
+              <div class="card">
+                <img src = {{game.URL}}>
+                <h3>{{game.Name}}</h3>
+                
+                <p>Studio : {{game.Studio}}</p>
+                <p>Available on : {{game.Platforms}}</p>
+                <button>Details</button>
+                <button>Add</button>
+                
+              </div>
             </div>
       
 

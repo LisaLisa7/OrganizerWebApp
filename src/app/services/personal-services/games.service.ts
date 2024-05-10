@@ -43,6 +43,20 @@ export class GamesService {
     
   }
 
+  async checkIfGameExistsInList(id:string){
+    let filterString = `GameId = '${id}'`
+
+    try{
+      const rec = await this.pb.collection("GameList").getFirstListItem(filterString)
+      console.log("exista")
+      return true
+    }
+    catch(e)
+    {
+      console.log("nu exista in lista");
+      return false
+    }
+  }
 
   async getAllList(){
     const records = await  this.pb.collection("GameList").getFullList({requestKey: null})
@@ -98,7 +112,12 @@ export class GamesService {
 
   async insertGameIntoList(data:any)
   {
-    const rec = await this.pb.collection("GameList").create(data);
+    let exista = await this.checkIfGameExistsInList(data.GameId)
+    let rec
+    if (exista == false)
+      rec = await this.pb.collection("GameList").create(data);
+    else
+      console.log("nu se poate insera")
   }
 
 
