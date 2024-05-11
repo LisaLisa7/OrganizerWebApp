@@ -3,6 +3,7 @@ import PocketBase from 'pocketbase'
 import { Game } from '../../interfaces/personal-interfaces/game';
 import { ListGame } from '../../interfaces/personal-interfaces/list-game';
 import { filter } from 'd3';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,24 @@ export class GamesService {
   pb = new PocketBase('http://127.0.0.1:8090');
 
 
-  constructor() { }
+  private entryDeletedSubject = new BehaviorSubject<void>(undefined);
+  entryDeleted$ = this.entryDeletedSubject.asObservable();
+  private entryModifiedSubject = new BehaviorSubject<void>(undefined);
+  entryModified$ = this.entryModifiedSubject.asObservable();
+  
+
+  modifyEntry():void{
+    this.entryModifiedSubject.next(undefined);
+  }
+
+  deleteEntry():void{
+    this.entryDeletedSubject.next(undefined);
+  }
+
+
+  constructor() { 
+    
+  }
 
 
   async getAllGames(){
@@ -38,7 +56,7 @@ export class GamesService {
   }
 
   async getGameNameById(id: string){
-    const rec = await this.pb.collection("Games").getOne(id,{fields: "Name"});
+    const rec = await this.pb.collection("Games").getOne(id,{fields: "Name",requestKey:null});
     return rec['Name'];
     
   }
@@ -59,10 +77,13 @@ export class GamesService {
   }
 
   async getAllList(){
+    
     const records = await  this.pb.collection("GameList").getFullList({requestKey: null})
     let name = ""
 
     const games : ListGame[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
+      
+      
       
       name = await this.getGameNameById(record['GameId']);
       
@@ -183,7 +204,7 @@ export class GamesService {
     const games : ListGame[] = await Promise.all(entries.map(async (record: { [key: string]: any }) => {
 
       name = await this.getGameNameById(record['GameId']);
-
+      
 
       return {
         Id: record['id'],
@@ -198,6 +219,25 @@ export class GamesService {
     return games;
 
 
+  }
+  async deleteListGame(id : string)
+  {
+    try{
+    const rec = await this.pb.collection("GameList").delete(id);
+    }
+    catch(e){
+      console.log("Delete failed")
+    }
+  }
+
+  async updateListGame(id:string,form:any)
+  {
+    try{
+      const rec = await this.pb.collection("GameList").update(id,form);
+    }
+    catch(e){
+      console.log("Update failed");
+    }
   }
 
 

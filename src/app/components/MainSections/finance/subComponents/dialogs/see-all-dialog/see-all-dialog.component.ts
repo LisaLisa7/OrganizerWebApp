@@ -1,12 +1,11 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog,MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { RegistryService } from '../../../../../../services/finance-services/registry.service';
 import { CommonModule } from '@angular/common';
 import { registryEntry } from '../../../../../../interfaces/finance-interfaces/registryEntry';
 import { PictogramDialogComponent } from '../pictogram-dialog/pictogram-dialog.component';
 import { EntryDialogFormComponent } from '../entry-dialog-form/entry-dialog-form.component';
-import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-see-all-dialog',
@@ -39,9 +38,10 @@ import { MatInputModule } from '@angular/material/input';
           <td class="td">{{item.Source}}</td>
           <td class="td"><div class="separator"></div></td>
           <td class="td">
-            <button (click)="deleteEntry(item)">Delete</button>
-            <button (click)="modifyEntry(item)">Modify</button>
-            
+            <div class="actionButtonsContainer">
+              <button (click)="deleteEntry(item)">Delete</button>
+              <button (click)="modifyEntry(item)">Modify</button>
+            </div>
           </td>
       </tr>
 
@@ -51,9 +51,9 @@ import { MatInputModule } from '@angular/material/input';
       </table>
       <div class = "navigatorContainer">
         <div *ngIf="totalPages > 1">
-            <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+            <button class="arrowButton" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
             <button *ngFor="let page of totalPagesArray()" (click)="changePage(page)" [class.active]="page === currentPage">{{ page }}</button>
-            <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+            <button class="arrowButton"  (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
           </div>
       </div>
 

@@ -56,6 +56,31 @@ img{
   .navigatorContainer{
     text-align: center;
   }
+  
   button{
-    width: 50px;
+    width: 40px;
+  }
+
+  .arrowButton{
+    margin: 10px;
+    width: 60px;
+  }
+
+  .actionButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around
+  }
+  
+  
+  .actionButtonsContainer button{
+    width: 70px;
+    height: 20px;
+    border-radius: 8px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  
+  }
+  .actionButtonsContainer button:hover{
+    cursor: pointer;
+    background-color: #ccc;
   }

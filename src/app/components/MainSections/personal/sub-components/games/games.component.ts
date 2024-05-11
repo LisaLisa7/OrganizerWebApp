@@ -5,6 +5,7 @@ import { GamesService } from '../../../../../services/personal-services/games.se
 import { FormsModule } from '@angular/forms';
 import { InsertGameDialogComponent } from '../dialogs/insert-game-dialog/insert-game-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { GameDetailsDialogComponent } from '../dialogs/game-details-dialog/game-details-dialog.component';
 @Component({
   selector: 'app-games',
   standalone: true,
@@ -24,22 +25,24 @@ import { MatDialog } from '@angular/material/dialog';
 
       </div>
 
-      
-      <h3>Page {{currentPage}}/{{totalPages}}</h3>
+      <br>
+     
 
       <div class="gamesContainer">
             
-            <div *ngFor="let game of gameData" class="stack" (click)="openDialog(game)">
-              <div class="circle"></div>
+            <div *ngFor="let game of gameData" class="stack" >
+              
               <div class="card">
+                
                 <img src = {{game.URL}}>
                 <h3>{{game.Name}}</h3>
                 
                 <p>Studio : {{game.Studio}}</p>
                 <p>Available on : {{game.Platforms}}</p>
-                <button>Details</button>
-                <button>Add</button>
-                
+                <div class="actionButtonsContainer">
+                  <button (click)="openDialogDetails(game)">Details</button>
+                  <button (click)="openDialog(game)">Add</button>
+                </div>
               </div>
             </div>
       
@@ -47,15 +50,17 @@ import { MatDialog } from '@angular/material/dialog';
       </div>
 
       <div class = "navigatorContainer">
+      <h3>Page {{currentPage}}/{{totalPages}}</h3>
         <div *ngIf="totalPages > 1">
-            <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
-            <button *ngFor="let page of pageNumbers" (click)="changePage(page)" [class.active]="page === currentPage">{{ page }}</button>
+            <button class="arrowButton" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+            <button class="pageButton" *ngFor="let page of pageNumbers" (click)="changePage(page)" [class.active]="page === currentPage">{{ page }}</button>
 
-            <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+            <button class="arrowButton"  (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
         </div>
 
-        <input type="number" placeholder="page number" [(ngModel)]="inputPage">
-        <button (click)="changePage(inputPage)">Go</button>
+        <label name="pageNumber"></label>
+        <input type="number" placeholder="page number" name="pageNumber" [(ngModel)]="inputPage">
+        <button class="primary" (click)="changePage(inputPage)">Go</button>
       </div>
 
       
@@ -70,6 +75,7 @@ export class GamesComponent {
   gameData : Game[] = [];
   inputName : string = '';
   inputPage : number = 1;
+  pinPath = "/assets/pin2.svg"
 
   currentPage = 1;
   itemsPerPage = 20;
@@ -83,23 +89,32 @@ export class GamesComponent {
       {
         this.currentPage = pageNumber;
         await this.loadData();
+        this.generatePageNumbers();
       }
   }
 
   generatePageNumbers() {
-    const maxPageButtonsToShow = 5;
-    const middleIndex = Math.floor(maxPageButtonsToShow / 2);
+    const maxButtons= 5;
 
-    // Clear existing page numbers
+    
+    
     this.pageNumbers = [];
+    let startPage,endPage;
 
-    // Calculate starting and ending page numbers
-    let startPage = Math.max(1, this.currentPage - middleIndex);
-    let endPage = Math.min(this.totalPages, startPage + maxPageButtonsToShow - 1);
+   
+    startPage =this.currentPage;
+    endPage = this.currentPage+5;
+    
 
-    if (endPage - startPage < maxPageButtonsToShow - 1) {
-      startPage = Math.max(1, endPage - maxPageButtonsToShow + 1);
-    }
+    
+
+    
+    if(endPage > this.totalPages)
+      {
+        endPage = this.totalPages
+        startPage = endPage -5 
+      }
+
 
     // Generate page numbers
     for (let i = startPage; i <= endPage; i++) {
@@ -118,7 +133,7 @@ export class GamesComponent {
     data = await this.gameService.getPaginated(this.currentPage,this.itemsPerPage,undefined)
     this.gameData = data.items;
     this.totalPages = data.totalPages;
-    this.generatePageNumbers();
+    //this.generatePageNumbers(false);
 
   }
 
@@ -142,19 +157,27 @@ export class GamesComponent {
 
   openDialog(game : Game): void {
 
-    //this.registryService.getEntriesByMonth();
     const dialogRef = this.dialog.open(InsertGameDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {game} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {game} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
+      
       console.log('Dialog closed with result:', result);
       
       
 
     });
   }
+
+  openDialogDetails(game : Game): void {
+
+    const dialogRef = this.dialog.open(GameDetailsDialogComponent, {
+      width: '500px', 
+      data: {game} 
+    });
+  }
+
 
 }

@@ -1,0 +1,22 @@
+mat-dialog-content{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+img{
+    width: 100%;
+ }
+
+ h3{
+    color: #9381FF;
+ }
+
+ span{
+    color:rgb(0, 0, 0);
+ }
+
+h2{
+    text-align: center;
+    color: black;
+ }

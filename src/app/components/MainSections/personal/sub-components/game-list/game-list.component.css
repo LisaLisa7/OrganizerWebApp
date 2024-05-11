@@ -59,6 +59,12 @@
 
   }
 
+  .statusContainer button.active {
+  background-color: #9381FF; /* Change this to whatever color you prefer */
+  color: #fff; /* Change this to the text color you prefer */
+  /* Add any other styles you want to apply to the active button */
+}
+
   
   table {
     border-collapse: separate;
@@ -77,6 +83,7 @@
     /*border-top: 1px solid #ccc;*/
     /*min-width: 70px;*/
     height: 70px;
+    min-width: 70px;
     
   }
 
@@ -87,16 +94,35 @@
   
 
   tbody tr:hover{
-    background-color: #ccc;
+    background-color: #FFEEDD;
     cursor: pointer;
   }
   
   .separator {
     border-left: 2px solid rgb(87, 84, 84); /* Vertical line */
-    height: 100%; /* Full height */
+    height: 70%; /* Full height */
     margin: 0 20px; /* Adjust margin as needed */
     min-height: 30px; /* Ensure the separator appears even without content */
   
   }
+
+.buttonContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+
+.buttonContainer button{
+  width: 70px;
+  height: 20px;
+  border-radius: 8px;
+  margin-right: 20px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+}
+.buttonContainer button:hover{
+  cursor: pointer;
+  background-color: #ccc;
+}
 
 

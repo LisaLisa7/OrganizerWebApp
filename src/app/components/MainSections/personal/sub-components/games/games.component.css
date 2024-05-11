@@ -18,7 +18,14 @@
     
 }
 
-/*****   yoy      *****/
+input[type="text"] {
+  border: solid 1px var(--primary-color);
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 4px;
+  display: inline-block;
+  width: 30%;
+}
 
 
 img {
@@ -33,29 +40,80 @@ img {
   background-color: #FFF;
   position: relative;
   transition: .15s ease;
-  cursor: pointer;
+  
   padding: 5% 5% 15% 5%;
   height: 250px;
   &:hover {			
-    transform: rotate(5deg);
+    transform: scale(1.05);
+    cursor: pointer;
+    background-color: #FFEEDD;
     
   }
   
 }
-
-  .card h3{
-    position: relative;
-    padding-top: 5px;
-  }
-  .card h3::after {
-    content: '';
+.card h3{
+  position: relative;
+  padding-top: 5px;
+}
+.card h3::after {
+  content: '';
   position: absolute;
-  left: 20px; /* Adjust space on the left side */
-  right: 20px; /* Adjust space on the right side */
+  left: 20px; 
+  right: 20px; 
   bottom: 0;
-  height: 1px; /* Adjust line thickness as needed */
-  background-color: black; /* Adjust line color as needed */
-  }
+  height: 1px; 
+  background-color: black; 
+}
 
+.pin{
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  padding-top: 5px;
+}
+.pin img{
+  
+  height: 30px;
+}
     
-    
+.actionButtonsContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around
+}
+
+
+.actionButtonsContainer button{
+  width: 70px;
+  height: 20px;
+  border-radius: 8px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+}
+.actionButtonsContainer button:hover{
+  cursor: pointer;
+  background-color: #ccc;
+}
+
+.arrowButton{
+  margin: 10px;
+  width: 70px;
+}
+button:hover{
+
+  cursor: pointer;
+}
+
+.pageButton{
+  width: 40px;
+}
+
+input[type="number"] {
+  border: solid 1px var(--primary-color);
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 4px;
+  display: inline-block;
+  width: 100px;
+}
+

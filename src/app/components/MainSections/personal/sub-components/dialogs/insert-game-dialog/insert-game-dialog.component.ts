@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { Game } from '../../../../../../interfaces/personal-interfaces/game';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { CommonModule } from '@angular/common';
