@@ -1,7 +1,9 @@
-export interface ListGame {
+export interface ListBook {
     Id : string,
-    Name : string,
+    Title : string,
+    Author : string,
     Status : string,
     Rating : number,
     Review : string
+    
 }

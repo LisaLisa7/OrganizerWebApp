@@ -1,0 +1,48 @@
+
+mat-dialog-content{
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Optional: Centers vertically */
+
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+button{
+    width: 100px;
+    height: 30px;
+    
+    border-radius: 8px;
+}
+
+button:hover{
+
+    cursor: pointer;
+}
+
+.tab
+{
+    margin-right: 70px;
+}
+.pdf-radio
+{
+    margin-left: 30px;
+}
+
+h3{
+    text-align: lefts;
+}
+span{
+    margin-left: 5px;
+}
+
+form
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}

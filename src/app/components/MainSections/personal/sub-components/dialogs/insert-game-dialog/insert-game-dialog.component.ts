@@ -3,8 +3,8 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angu
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material/input'; // Import MatInputModule for input fields
-import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
+import { MatInputModule } from '@angular/material/input'; 
+import { FormsModule } from '@angular/forms'; 
 import { GamesService } from '../../../../../../services/personal-services/games.service';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
@@ -101,8 +101,13 @@ export class InsertGameDialogComponent {
     {
       if (await this.gameService.checkIfGameExistsInList(this.formData.GameId) == false)
       {
-        this.gameService.insertGameIntoList(this.formData);
-        this.dialogRef.close();
+        if(this.formData.Rating && (this.formData.Rating>10 || this.formData.Rating<1))
+          this.openDialog("Rating must be between 1 and 10!");
+        else
+        {
+          this.gameService.insertGameIntoList(this.formData);
+          this.dialogRef.close();
+        }
       }
       else
       {
@@ -118,6 +123,7 @@ export class InsertGameDialogComponent {
 
   onClose(){
     console.log(this.formData);
+    this.dialogRef.close();
   }
   
 }

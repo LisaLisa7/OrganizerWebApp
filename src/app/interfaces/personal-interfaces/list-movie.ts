@@ -1,7 +1,8 @@
-export interface ListGame {
+export interface ListMovie {
     Id : string,
-    Name : string,
+    Title : string,
     Status : string,
     Rating : number,
     Review : string
+
 }

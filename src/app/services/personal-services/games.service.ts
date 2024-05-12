@@ -92,8 +92,7 @@ export class GamesService {
       Name: name,
       Status: record['Status'],
       Rating : record['Rating'],
-      Review : record['Review'],
-      Platform : record['Platform']
+      Review : record['Review']
       };
 
     }));

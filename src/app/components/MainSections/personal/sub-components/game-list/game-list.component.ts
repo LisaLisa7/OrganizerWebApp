@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GamesService } from '../../../../../services/personal-services/games.service';
-import { Game } from '../../../../../interfaces/personal-interfaces/game';
 import { ListGame } from '../../../../../interfaces/personal-interfaces/list-game';
-import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { GameUpdateDialogComponent } from '../dialogs/game-update-dialog/game-update-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -26,7 +25,7 @@ import { MatDialog } from '@angular/material/dialog';
           <table>
             <thead>
               <tr>
-                <th>Name</th>
+                <th (click)="sort('Name')">Name</th>
                 <th>Status</th>
                 <th>Rating</th>
                 <th>Review</th>
@@ -39,7 +38,7 @@ import { MatDialog } from '@angular/material/dialog';
               <tr *ngFor="let game of gameData" (click)="actions(game)">
                 <td>{{game.Name}}</td>
                 <td>{{game.Status}}</td>
-                <td>{{game.Rating}}</td>
+                <td>{{game.Rating}}/10</td>
                 <td>{{game.Review}}</td>
                 <td class="td"><div class="separator"></div></td>
                 <td>
@@ -97,6 +96,14 @@ export class GameListComponent {
     
   }
 
+
+  sort(name:string){
+    console.log(name);
+
+  }
+
+
+
   async loadData(){
     this.gameData = await this.gamesService.getAllList();
     
@@ -121,12 +128,13 @@ export class GameListComponent {
     const dialogRef = this.dialog.open(GameUpdateDialogComponent,{
       width: '500px', // Adjust the width as needed
       data: {entry} // Optionally pass data to the dialog
-  })
-  dialogRef.afterClosed().subscribe((result: any) => {
-    this.gamesService.modifyEntry();
-    //this.loadEntries();
+    })
     
-  });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      this.gamesService.modifyEntry();
+      //this.loadEntries();
+      
+    });
   }
 
 
@@ -155,5 +163,6 @@ export class GameListComponent {
     console.log(status);
     this.gameData = await this.gamesService.getGamesByStatus(status);
   }
+
 
 }

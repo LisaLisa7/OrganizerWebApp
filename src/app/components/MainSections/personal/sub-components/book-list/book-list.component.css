@@ -1,0 +1,151 @@
+.pageContainer{
+    width: 100vw;
+    height: calc(100vh - 70px);
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+    
+    text-align: center;
+  }
+
+  .statusContainer{
+    display: inline-block;
+    margin-right: 10px; /* Adjust as needed for spacing between items */
+    /*background-color: rgb(151, 179, 179);*/
+    
+  }
+
+
+  .statusContainer button:hover {
+    color: #777;
+    
+  }
+
+  .statusContainer button {
+    margin: 12px -8px;
+    
+    transition: all 0.3s;
+    text-align: center;
+    border: none;
+    border-bottom: 0.5pt solid #1d1e22;
+    color: #000000;
+    display: inline-flex;
+    padding: 5pt 10pt;
+    
+    background: #333;
+    box-shadow: 1px 1px 2px 1px #231f20;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 8pt;
+    background: #26292c;
+    margin-bottom: 0.5px;
+    border-radius: 7px 7px 0 0;
+    border-top: 1px solid #3b3d3f;
+    background-color: #B8B8FF;
+    cursor: pointer;
+  }
+
+  .statusContainer button{
+    width: 200px;
+    margin-right: 5px;
+  }
+
+  .gameContainer{
+  
+
+    display: inline-block;
+    margin-top: 30px;
+    
+
+  }
+
+  .statusContainer button.active {
+  background-color: #9381FF; /* Change this to whatever color you prefer */
+  color: #fff; /* Change this to the text color you prefer */
+  /* Add any other styles you want to apply to the active button */
+}
+
+  
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 82vw; /* Ensures the table takes up full width of its parent */
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    
+    
+  }
+
+
+  td,th{
+
+    text-align: center;
+    border-bottom: 1px solid #ccc; /* Adjust the color and style as needed */
+    /*border-top: 1px solid #ccc;*/
+    /*min-width: 70px;*/
+    height: 70px;
+    min-width: 70px;
+    
+  }
+
+  tr{
+    margin: 0;
+  }
+  
+  
+
+  tbody tr:hover{
+    background-color: #FFEEDD;
+    cursor: pointer;
+  }
+  
+  .separator {
+    border-left: 2px solid rgb(87, 84, 84); /* Vertical line */
+    height: 70%; /* Full height */
+    margin: 0 20px; /* Adjust margin as needed */
+    min-height: 30px; /* Ensure the separator appears even without content */
+  
+  }
+
+.buttonContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.buttonContainer button{
+    width: 70px;
+    height: 20px;
+    border-radius: 8px;
+    margin-right: 20px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  
+  }
+  .buttonContainer button:hover{
+    cursor: pointer;
+    background-color: #ccc;
+  }
+
+
+
+.some-buttons-container button{
+    height: 50px;
+    width: 200px;
+    padding-left: 10px;
+    border-radius: 5px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.some-buttons-container button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+
+.some-buttons-container button img{
+    float: left;
+    width: 30px; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+.some-buttons-container button span{
+    display: inline-block;
+    padding-top: 9px;
+    
+}

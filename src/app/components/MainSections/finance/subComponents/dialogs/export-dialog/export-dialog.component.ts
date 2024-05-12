@@ -50,7 +50,9 @@ export class ExportDialogComponent {
   exportType :string = 'pdf';
 
 
-  constructor(public dialogRef: MatDialogRef<ExportDialogComponent>,private registryService:RegistryService){
+  constructor(public dialogRef: MatDialogRef<ExportDialogComponent>,private registryService:RegistryService
+            
+  ){
 
     this.currentDate = new Date().toDateString();
     this.loadData();
