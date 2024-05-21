@@ -3,14 +3,14 @@
     /*background-color:#b8b8ff;*/
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align items to the right (end) */
+    justify-content: flex-start; 
     
-    min-height: 50vh; /* Set a minimum height */
+    min-height: 50vh; 
     width: calc(100vw - 50vw);
     height:500px;
     border-radius: 8px;
     border-style: groove;
-    overflow: auto; /* Add this line for a scrollbar when content exceeds the container's height */
+    overflow: auto; 
     margin-bottom: 20px;
 }
 .topside-container{

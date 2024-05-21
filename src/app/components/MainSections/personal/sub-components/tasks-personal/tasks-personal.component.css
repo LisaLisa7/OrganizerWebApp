@@ -1,0 +1,109 @@
+.menu-container{
+    background-color: aqua;
+    width: 100vw;
+    
+    display: flex;
+    justify-content: center;
+}
+
+mat-form-field{
+    margin-top: 20px;
+        
+}
+
+
+mat-label{
+    display: none;
+}
+
+.button-Container{
+    height: 50px;
+    padding-left: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    
+}
+
+.button-Container button {
+    height: 50px;
+    padding-left: 10px;
+    border-radius: 5px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    width: 200px;
+    
+}
+
+.button-Container button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.button-Container  button span{
+    display: inline-block;
+    padding-top: 9px;
+    padding-right: 30px;
+}
+
+.button-Container  button img {
+    float: left;
+    width: 30px; 
+    height: auto;
+}
+
+.mainContent{
+    /*background-color: brown;*/
+    width: 100vw;
+    height: 100vh;
+}
+
+.columnContainer{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust the minmax values as needed */
+    grid-gap: 20px; /* Adjust the gap between cards */
+    margin-left: 35px;
+}
+
+.column {
+
+    border: 3px solid;
+    border-radius: 8px;
+    background-color: #FFF;
+    position: relative;
+    transition: .15s ease;
+    
+    padding: 5% 5% 15% 5%;
+    height: 250px;
+    &:hover {			
+      transform: scale(1.05);
+      cursor: pointer;
+      background-color: #FFEEDD;
+      
+    }
+    
+  }
+  .column h1{
+    position: relative;
+    padding-top: 5px;
+    text-align: center;
+  }
+  .column h1::after {
+    content: '';
+    position: absolute;
+    left: 20px; 
+    right: 20px; 
+    bottom: 0;
+    height: 1px; 
+    background-color: black; 
+  }
+
+  .newColumnButton{
+    height: 20px;
+  }
+
+  .newColumnButton:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+  

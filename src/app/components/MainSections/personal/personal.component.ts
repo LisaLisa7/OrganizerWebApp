@@ -9,6 +9,8 @@ import { MovieListComponent } from './sub-components/movie-list/movie-list.compo
 import { BookListComponent } from './sub-components/book-list/book-list.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ExportListsDialogComponent } from './sub-components/dialogs/export-lists-dialog/export-lists-dialog.component';
+import { HomePersonalComponent } from './sub-components/home-personal/home-personal.component';
+import { TasksPersonalComponent } from './sub-components/tasks-personal/tasks-personal.component';
 
 @Component({
   selector: 'app-personal',
@@ -19,8 +21,8 @@ import { ExportListsDialogComponent } from './sub-components/dialogs/export-list
       <mat-sidenav [(opened)]="opened">
         <div class="button-container">
           <div>
-          <button ><img [src]="homeSVG" alt="home"><span>Home</span></button>
-          <button><img [src]="taskSVG" alt="tasks"><span>Tasks</span></button>
+          <button (click)="createHomeComponent()"><img [src]="homeSVG" alt="home"><span>Home</span></button>
+          <button (click)="createTasksComponent()" ><img [src]="taskSVG" alt="tasks"><span>Tasks</span></button>
           <button (click)="toggleSubButtons()"><img [src]="gameSVG" alt="games"><span>Games</span><img [src]="expansSVG" style="float: right; height : 20px; margin-top : 5px;"></button>
           <div *ngIf="showSubButtons">
             <button (click) = "createBrowseGamesComponent()" >Browse Games</button>
@@ -90,7 +92,7 @@ export class PersonalComponent {
   constructor(private componentFactoryResolver: ComponentFactoryResolver,public dialog:MatDialog) {}
 
   ngAfterViewInit(): void {
-    // Now dynamicComponentContainer is guaranteed to be defined
+    
   }
   createGameListComponent() : void{
     this.dynamicComponentContainer.clear();
@@ -100,40 +102,54 @@ export class PersonalComponent {
   }
 
   createBrowseGamesComponent(): void {
-    // Clear existing components in the container
     this.dynamicComponentContainer.clear();
 
-    // Dynamically create the RegistryComponent
     const factory = this.componentFactoryResolver.resolveComponentFactory(GamesComponent);
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
   createMovieListComponent(): void {
-    // Clear existing components in the container
+ 
     this.dynamicComponentContainer.clear();
 
-    // Dynamically create the RegistryComponent
     const factory = this.componentFactoryResolver.resolveComponentFactory(MovieListComponent);
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
 
 
   createBookListComponent(): void {
-    // Clear existing components in the container
     this.dynamicComponentContainer.clear();
 
-    // Dynamically create the RegistryComponent
     const factory = this.componentFactoryResolver.resolveComponentFactory(BookListComponent);
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
 
+
+  createHomeComponent():void{
+
+    this.dynamicComponentContainer.clear();
+
+    const factory = this.componentFactoryResolver.resolveComponentFactory(HomePersonalComponent);
+    const componentRef = this.dynamicComponentContainer.createComponent(factory);
+
+  }
+
+  createTasksComponent():void{
+
+    this.dynamicComponentContainer.clear();
+
+    const factory = this.componentFactoryResolver.resolveComponentFactory(TasksPersonalComponent);
+    const componentRef = this.dynamicComponentContainer.createComponent(factory);
+
+  }
+
+
   openExportDialog(){
     const dialogRef = this.dialog.open(ExportListsDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
       console.log('Dialog closed with result:', result);
       
     });

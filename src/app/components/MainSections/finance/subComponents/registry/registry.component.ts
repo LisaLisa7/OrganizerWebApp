@@ -16,6 +16,8 @@ import { recurringEntry } from '../../../../../interfaces/finance-interfaces/rec
 import { SavingsEntryComponent } from '../entries/savings-entry/savings-entry.component';
 import { SavingsService } from '../../../../../services/finance-services/savings.service';
 import { SeeAllDialogComponent } from '../dialogs/see-all-dialog/see-all-dialog.component';
+
+
 @Component({
   selector: 'app-registry',
   standalone: true,
