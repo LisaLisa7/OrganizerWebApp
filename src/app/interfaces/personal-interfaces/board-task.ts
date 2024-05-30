@@ -6,5 +6,6 @@ export interface BoardTask {
     Column_Id : string,
     Due : Date,
     Created : Date,
-    Updated : Date
+    Updated : Date,
+    Done : boolean
 }

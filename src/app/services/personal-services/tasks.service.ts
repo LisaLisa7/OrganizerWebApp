@@ -72,7 +72,8 @@ export class TasksService {
         Column_Id : record['Column_ID'],
         Due : record['DueDate'],
         Created :record['created'],
-        Updated : record['updated']
+        Updated : record['updated'],
+        Done : record['Done']
       }
     });
 
@@ -81,5 +82,18 @@ export class TasksService {
     return tasks;
 
   }
+
+  async insertBoard(formData:any){
+
+    const rec = await this.pb.collection("Boards").create(formData);
+  }
+
+  async insertBoardColumn(formData:any){
+
+    const rec = await this.pb.collection("BoardColumns").create(formData);
+  }
+
+  
+
 
 }

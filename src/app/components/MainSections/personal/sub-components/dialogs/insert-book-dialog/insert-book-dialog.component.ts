@@ -124,6 +124,8 @@ export class InsertBookDialogComponent {
       width: '500px', // Adjust the width as needed
       data: {"error":message} // Optionally pass data to the dialog
     });
+
+    
   }
 
 

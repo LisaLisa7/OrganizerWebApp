@@ -6,6 +6,9 @@ import { TasksService } from '../../../../../services/personal-services/tasks.se
 import { BoardColumn } from '../../../../../interfaces/personal-interfaces/board-column';
 import { BoardTaskComponent } from '../board-task/board-task.component';
 import { BoardTask } from '../../../../../interfaces/personal-interfaces/board-task';
+import { MatDialog } from '@angular/material/dialog';
+import { NewBoardColumnDialogComponent } from '../dialogs/new-board-column-dialog/new-board-column-dialog.component';
+import { NewBoardDialogComponent } from '../dialogs/new-board-dialog/new-board-dialog.component';
 
 @Component({
   selector: 'app-tasks-personal',
@@ -25,7 +28,7 @@ import { BoardTask } from '../../../../../interfaces/personal-interfaces/board-t
       </mat-form-field>
 
       <div class="button-Container">
-        <button>
+        <button (click)="openBoardDialog()">
         <img [src]="plusSVG" alt="home"><span>New board</span>
         </button>
 
@@ -54,7 +57,7 @@ import { BoardTask } from '../../../../../interfaces/personal-interfaces/board-t
               
             </div>
           </div>
-          <button class="newColumnButton">
+          <button (click)="openColumnDialog()" class="newColumnButton">
           Add a new column
           </button>
 
@@ -73,6 +76,7 @@ export class TasksPersonalComponent {
 
   boards : any[] = [];
   selectedBoard =  "";
+  selectedBoardId = "";
 
   selectedBoardColumns : BoardColumn[] = [];
   columnsTasks: { [key: string]: BoardTask[] } = {};
@@ -82,7 +86,7 @@ export class TasksPersonalComponent {
   plusSVG = "/assets/plus.svg"
   filterSVG = "/assets/filter.svg";
 
-  constructor(private tasksService :TasksService)
+  constructor(private tasksService :TasksService,public dialog:MatDialog)
   {
       
   }
@@ -94,6 +98,7 @@ export class TasksPersonalComponent {
     let boardnames = await this.tasksService.getAllBoardsNames();
     this.boards = boardnames.map(option => ({value:option,viewValue:option}));
     this.selectedBoard=this.boards[0].viewValue;
+    this.selectedBoardId = await this.tasksService.getBoardId(this.selectedBoard);
     
     
     
@@ -109,6 +114,8 @@ export class TasksPersonalComponent {
     this.isLoading = true;
     console.log('Selected status:', value);
     this.selectedBoard= value;
+    this.selectedBoardId = await this.tasksService.getBoardId(this.selectedBoard);
+
     console.log(this.selectedBoard)
     //this.selectedBoardColumns = await this.tasksService.getAllColumns(value)
     await this.loadColumnsAndTasks();
@@ -140,6 +147,33 @@ export class TasksPersonalComponent {
     this.columnTasks = await this.tasksService.getTasks(colId,boardId);
     console.log(this.columnTasks);
   }*/
+
+  openBoardDialog(){
+    const dialogRef = this.dialog.open(NewBoardDialogComponent, {
+      width: '500px', // Adjust the width as needed
+      data: {} // Optionally pass data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.test();
+    });
+  }
+
+  openColumnDialog(){
+    const dialogRef = this.dialog.open(NewBoardColumnDialogComponent, {
+      width: '500px', // Adjust the width as needed
+      data: {'id' : this.selectedBoardId} // Optionally pass data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.loadColumnsAndTasks();
+
+    });
+  }
+
+  
 
 
 }
