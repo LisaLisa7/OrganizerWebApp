@@ -38,26 +38,29 @@ import { BoardTask } from '../../../../../interfaces/personal-interfaces/board-t
     </div>
 
     <div class="mainContent">
-      <div class="columnContainer">
-        <div *ngFor="let column of selectedBoardColumns">
+      
+        
+        <div *ngIf="isLoading">Loading...</div>
+        <div *ngIf="!isLoading" class="columnContainer">
+          <div *ngFor="let column of selectedBoardColumns">
             <div class="column">
-              <h1>{{column.Name}}</h1>
-              <p>{{column.Board_Id}}</p>
-              <p>{{column.Id}}</p>
-              <button (click)="tryTasks(column.Id,column.Board_Id)">try</button>
+              <h1>{{ column.Name }}</h1>
 
-
+              <div *ngIf="columnsTasks[column.Id]">
+                <ul>
+                  <li *ngFor="let task of columnsTasks[column.Id]">{{ task.Title }} - {{ task.Description }}</li>
+                </ul>
+              </div>
+              
             </div>
+          </div>
+          <button class="newColumnButton">
+          Add a new column
+          </button>
+
 
         </div>
-
-        <button class="newColumnButton">
-          Add a new column
-        </button>
-
         
-
-      </div>
     </div>
 
     
@@ -72,7 +75,8 @@ export class TasksPersonalComponent {
   selectedBoard =  "";
 
   selectedBoardColumns : BoardColumn[] = [];
-  columnTasks : BoardTask[] = [];
+  columnsTasks: { [key: string]: BoardTask[] } = {};
+  isLoading : boolean = true;
 
 
   plusSVG = "/assets/plus.svg"
@@ -80,25 +84,35 @@ export class TasksPersonalComponent {
 
   constructor(private tasksService :TasksService)
   {
-      this.test();
+      
   }
 
 
   async test(){
-    this.selectedBoardColumns = await this.tasksService.getAllColumns("Default")
+    //this.selectedBoardColumns = await this.tasksService.getAllColumns("Default")
+    
     let boardnames = await this.tasksService.getAllBoardsNames();
     this.boards = boardnames.map(option => ({value:option,viewValue:option}));
     this.selectedBoard=this.boards[0].viewValue;
-
+    
     
     
   }
 
+  async ngOnInit(): Promise<void> {
+    await this.test();
+    await this.loadColumnsAndTasks();
+  }
+
 
   async onBoardChange(value: string){
+    this.isLoading = true;
     console.log('Selected status:', value);
-    this.selectedBoard=this.boards[0].viewValue;
-    this.selectedBoardColumns = await this.tasksService.getAllColumns(value)
+    this.selectedBoard= value;
+    console.log(this.selectedBoard)
+    //this.selectedBoardColumns = await this.tasksService.getAllColumns(value)
+    await this.loadColumnsAndTasks();
+  
   }
 
   async tryTasks(colId:string,boardId:string){
@@ -106,13 +120,26 @@ export class TasksPersonalComponent {
 
   }
 
+  async loadColumnsAndTasks(): Promise<void> {
+    try {
+      this.selectedBoardColumns = await this.tasksService.getAllColumns(this.selectedBoard);
+      for (const column of this.selectedBoardColumns) {
+        this.columnsTasks[column.Id] = await this.tryTasks(column.Id, column.Board_Id);
+      }
+    } catch (error) {
+      console.error('Error loading columns and tasks:', error);
+    } finally {
+      this.isLoading = false;
+    }
+  }
 
 
+  /*
   async loadTasks(colId:string,boardId:string)
   {
     this.columnTasks = await this.tasksService.getTasks(colId,boardId);
     console.log(this.columnTasks);
-  }
+  }*/
 
 
 }

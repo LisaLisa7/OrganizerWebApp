@@ -2,8 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'; // Import MatInputModule for input fields
-import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms'; 
 import { MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { RegistryService } from '../../../../../../services/finance-services/registry.service';
@@ -34,32 +34,32 @@ import { ErrorDialogComponent } from '../../../../personal/sub-components/dialog
         <mat-form-field>
           <mat-label>Description</mat-label>
           
-          <input matInput type="text" placeholder="Description" [(ngModel)]="entryData ? entryData.Description : formData.Description" 
+          <input matInput type="text" placeholder="Description" [ngModel]="entryData ? entryData.Description : formData.Description" 
           (ngModelChange)="formData.Description = $event"  name="Description" required>
 
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Sum</mat-label>
-          <input matInput type="number" placeholder="Sum" [(ngModel)]="entryData ? entryData.Sum : formData.Sum" 
+          <input matInput type="number" placeholder="Sum" [ngModel]="entryData ? entryData.Sum : formData.Sum" 
                 (ngModelChange)="formData.Sum = $event" name="Sum" required>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Date</mat-label>
-          <input matInput type="date" [(ngModel)]="entryData ? this.dateBuff : formData.Date"
+          <input matInput type="date" [ngModel]="entryData ? this.dateBuff : formData.Date"
               (ngModelChange)="dateBuff = $event"  name="Date" required>
         </mat-form-field>
 
         <mat-form-field>
-        <input matInput type="time" placeholder="Time" [(ngModel)]="entryData ? this.timeBuff :timeBuff" 
+        <input matInput type="time" placeholder="Time" [ngModel]="entryData ? this.timeBuff :timeBuff" 
         (ngModelChange)="this.timeBuff = $event" name="time" required>
         </mat-form-field>
 
 
         <mat-form-field>
         <mat-label>Source</mat-label>
-          <mat-select [(ngModel)]="entryData ? entryData.Source: formData.Source"
+          <mat-select [ngModel]="entryData ? entryData.Source: formData.Source"
           (ngModelChange)="formData.Source= $event"  name="Source" required>
             @for (source of sourceOptions; track source){
               <mat-option [value] = "source.value">{{source.viewValue}}</mat-option>
@@ -70,7 +70,7 @@ import { ErrorDialogComponent } from '../../../../personal/sub-components/dialog
         
         <mat-form-field>
           <mat-label>Type</mat-label>
-          <mat-select [(ngModel)]="entryData ? entryData.Type : formData.Type" 
+          <mat-select [ngModel]="entryData ? entryData.Type : formData.Type" 
           (ngModelChange)="formData.Type= $event" name="Type" required>
             @for (type of typeOptions; track type){
               <mat-option [value] = "type.value">{{type.viewValue}}</mat-option>
@@ -109,16 +109,15 @@ export class EntryDialogFormComponent {
   savingsPlusPattern: RegExp = /^Savings\+$/;
   savingsMinusPattern: RegExp = /^Savings\-$/;
 
-  formData: any = {}; // Object to store form data
+  formData: any = {}; 
   entryData: any = {};
   timeBuff : any;
   dateBuff : any;
-  //registryService : RegistryService = inject(RegistryService);
 
   readonly sourceOptions = [
     { value: 'Cash', viewValue: 'Cash' },
     { value: 'Card', viewValue: 'Card' },
-    // Add more options as needed
+    
   ];
 
   readonly repeatOptions = [
@@ -126,7 +125,7 @@ export class EntryDialogFormComponent {
     { value: 'Daily', viewValue: 'Daily' },
     { value: 'Weekly', viewValue: 'Weekly' },
     { value: 'Monthly', viewValue: 'Monthly' }
-    // Add more options as needed
+    
   ];
 
   readonly typeOptions = [
@@ -134,7 +133,7 @@ export class EntryDialogFormComponent {
     { value: 'Income', viewValue: 'Income' },
     { value : 'Savings-', viewValue :'Savings - '},
     { value : 'Savings+', viewValue :'Savings +'},
-    // Add more options as needed
+    
   ];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,public dialog:MatDialog,
@@ -234,8 +233,8 @@ export class EntryDialogFormComponent {
 
     //this.registryService.getEntriesByMonth();
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {"error":message} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {"error":message} 
     });
   }
 
@@ -246,12 +245,12 @@ export class EntryDialogFormComponent {
     }
     
     const dialogRef2 = this.dialog.open(PictogramDialogComponent,{
-      width: '500px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '500px',
+      data: {}
     });
 
     dialogRef2.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
+      
       console.log('Dialog closed with result:', result);
       if (result!=undefined)
       { this.formData.Pictogram_Id = result.picId;
