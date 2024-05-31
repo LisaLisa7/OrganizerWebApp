@@ -88,6 +88,7 @@ export class StatsService {
                               currentMonthName: string, lastMonthName: string
   )
   {
+    
      
     const currentMonthIncome = currentMonthEntries
     .filter(entry => entry.Type === 'Income')

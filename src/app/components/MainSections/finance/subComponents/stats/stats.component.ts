@@ -82,17 +82,20 @@ export class StatsComponent {
       ]
 
   constructor(private statsService:StatsService,private registryService:RegistryService){
-    let currentDate = new Date();
-    this.month_current = new Intl.DateTimeFormat('en', { month: 'long' }).format(currentDate);
-    
-    // pt luna trecuta aucum
+    const currentDate = new Date();
+this.month_current = new Intl.DateTimeFormat('en', { month: 'long' }).format(currentDate);
 
-    const currentMonth = currentDate.getMonth(); // Get the current month index
-    const lastMonth = (currentMonth === 0) ? 11 : currentMonth - 1; // Calculate the index of the last month
-    const lastMonthDate = new Date(); // Create a new Date object
-    lastMonthDate.setMonth(lastMonth); // Set the month to the last month
-    this.month_prev = new Intl.DateTimeFormat('en', { month: 'long' }).format(lastMonthDate); // Get the name of the last month
+// Set the date to the first day of the current month
+currentDate.setDate(1);
 
+const currentMonth = currentDate.getMonth(); // Get the current month index
+const lastMonth = (currentMonth === 0) ? 11 : currentMonth - 1; // Calculate the index of the last month
+const lastMonthDate = new Date(currentDate); // Create a new Date object from currentDate
+lastMonthDate.setMonth(lastMonth); // Set the month to the last month
+this.month_prev = new Intl.DateTimeFormat('en', { month: 'long' }).format(lastMonthDate); // Get the name of the last month
+
+console.log("Current month:", this.month_current); // Should print "May"
+console.log("Last month:", this.month_prev); // Should print "April"
 
     this.loadData();
   }

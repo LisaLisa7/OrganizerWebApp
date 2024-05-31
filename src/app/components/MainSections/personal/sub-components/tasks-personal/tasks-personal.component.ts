@@ -11,6 +11,7 @@ import { NewBoardColumnDialogComponent } from '../dialogs/new-board-column-dialo
 import { NewBoardDialogComponent } from '../dialogs/new-board-dialog/new-board-dialog.component';
 import { NewBoardColumnTaskDialogComponent } from '../dialogs/new-board-column-task-dialog/new-board-column-task-dialog.component';
 import { SeeBoardColumnTaskDialogComponent } from '../dialogs/see-board-column-task-dialog/see-board-column-task-dialog.component';
+import { SeeLabelsDialogComponent } from '../dialogs/see-labels-dialog/see-labels-dialog.component';
 
 @Component({
   selector: 'app-tasks-personal',
@@ -33,7 +34,7 @@ import { SeeBoardColumnTaskDialogComponent } from '../dialogs/see-board-column-t
         <button (click)="openBoardDialog()">
         <img [src]="plusSVG" alt="newBoard"><span>New board</span>
         </button>
-        <button>
+        <button (click)="openLabelsDialog()">
         <img [src]="labelSVG" alt="labels" ><span>Labels</span>
         </button>
         <button>
@@ -201,6 +202,20 @@ export class TasksPersonalComponent {
 
     });
   }
+
+  openLabelsDialog(){
+    const dialogRef = this.dialog.open(SeeLabelsDialogComponent, {
+      width: '500px', // Adjust the width as needed
+      data: {} // Optionally pass data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.loadColumnsAndTasks();
+
+    });
+  }
+
 
   openSeeTaskDialog(task:BoardTask){
     //console.log(task)

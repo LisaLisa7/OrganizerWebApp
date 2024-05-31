@@ -181,12 +181,11 @@ export class RegistryComponent {
 
     //this.registryService.getEntriesByMonth();
     const dialogRef = this.dialog.open(EntryDialogFormComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '500px',
+      data: {} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
       console.log('Dialog closed with result:', result);
       this.registryService.updateEntries();
       this.savingsService.updateEntries();
@@ -198,30 +197,25 @@ export class RegistryComponent {
   openDialogAllEntries() : void{
 
     const dialogRef = this.dialog.open(SeeAllDialogComponent, {
-      width: '800px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '800px', 
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
       console.log('Dialog closed with result:', result);
-      
-      
-
+    
     });
 
   }
 
   openDialogAllEntriesSavings() : void{
     //console.log(await this.registryService.getPaginated(undefined,undefined));
-
     const dialogRef = this.dialog.open(SeeAllDialogComponent, {
-      width: '800px', // Adjust the width as needed
-      data: {"savings":true} // Optionally pass data to the dialog
+      width: '800px', 
+      data: {"savings":true} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
       console.log('Dialog closed with result:', result);
       
       
@@ -237,12 +231,11 @@ export class RegistryComponent {
 
     //this.registryService.getEntriesByMonth();
     const dialogRef = this.dialog.open(RecurringEntryDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
       console.log('Dialog closed with result:', result);
       this.registryService.updateEntries();
 

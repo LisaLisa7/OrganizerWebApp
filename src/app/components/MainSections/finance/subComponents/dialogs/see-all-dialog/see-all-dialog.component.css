@@ -47,7 +47,7 @@ img{
   
   .separator {
     border-left: 2px solid rgb(87, 84, 84); /* Vertical line */
-    height: 100%; /* Full height */
+    height: 50%; /* Full height */
     margin: 0 20px; /* Adjust margin as needed */
     min-height: 30px; /* Ensure the separator appears even without content */
   

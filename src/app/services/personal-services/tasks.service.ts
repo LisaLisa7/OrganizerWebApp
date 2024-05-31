@@ -88,6 +88,21 @@ export class TasksService {
     return labels;
   }
 
+  async getAllLabels(){
+
+    const records = await this.pb.collection("TaskLabel").getFullList();
+    const labels : TaskLabel[] = records.map((record: { [key: string]: any }) => {
+
+      return {
+        Id : record['id'],
+        Name: record['Name'],
+        Color: record['Color']
+      }
+    });
+
+    return labels;
+  }
+
 
   async getTasks(columnId : string,boardId : string){
 
@@ -152,6 +167,16 @@ export class TasksService {
 
   async deleteColumn(id:string){
     const rec = await this.pb.collection("BoardColumns").delete(id);
+  }
+
+  async insertLabel(data:any){
+    const rec = await this.pb.collection("TaskLabel").create(data);
+  }
+
+  async updateLabel(data:any){
+
+    console.log(data);
+    const rec = await this.pb.collection("TaskLabel").update(data.id,data);
   }
 
 
