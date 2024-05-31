@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase'
 import { BoardColumn } from '../../interfaces/personal-interfaces/board-column';
 import { BoardTask } from '../../interfaces/personal-interfaces/board-task';
+import { TaskLabel } from '../../interfaces/personal-interfaces/task-label';
 
 @Injectable({
   providedIn: 'root'
@@ -56,29 +57,64 @@ export class TasksService {
     return columns;
   }
 
+  async getAllColumnsById(id : string){
+    let filterString = `Board_ID = '${id}'`;
+
+    const records = await this.pb.collection("BoardColumns").getFullList({filter:filterString});
+
+    const columns : BoardColumn[] = records.map((record: { [key: string]: any }) => {
+
+      return {
+      Id: record['id'],
+      Board_Id: record['Board_ID'],
+      Name: record['Name'],
+      Position: record['Position'],
+      }
+    });
+
+    //console.log(columns);
+    return columns;
+  }
+
+  async getLabelDetails(labelIds: string[]): Promise<TaskLabel[]> {
+    const labels = await Promise.all(labelIds.map(async (id) => {
+      const record = await this.pb.collection("TaskLabel").getOne(id);
+      return {
+        Id : record['id'],
+        Name: record['Name'],
+        Color: record['Color']
+      };
+    }));
+    return labels;
+  }
+
+
   async getTasks(columnId : string,boardId : string){
 
     let filterString = `Column_ID = '${columnId}' && Board_ID = '${boardId}'`;
     //console.log(filterString)
     const records = await this.pb.collection("BoardTask").getFullList({filter:filterString});
 
+    console.log(records);
     //console.log(records);
-    const tasks : BoardTask[] = records.map((record: { [key: string]: any }) => {
+    const tasks: BoardTask[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
+      const labelIds = record['Labels'];
+      const labels = await this.getLabelDetails(labelIds);
+  
       return {
-        Id : record['id'],
-        Title : record['Title'],
-        Board_Id : record['Board_ID'],
-        Description : record['Description'],
-        Column_Id : record['Column_ID'],
-        Due : record['DueDate'],
-        Created :record['created'],
-        Updated : record['updated'],
-        Done : record['Done']
-      }
-    });
-
-    console.log(tasks);
-
+        Id: record['id'],
+        Title: record['Title'],
+        Board_Id: record['Board_ID'],
+        Description: record['Description'],
+        Column_Id: record['Column_ID'],
+        Due: record['DueDate'],
+        Created: record['created'],
+        Updated: record['updated'],
+        Done: record['Done'],
+        Labels: labels 
+      };
+    }));
+  
     return tasks;
 
   }
@@ -93,7 +129,30 @@ export class TasksService {
     const rec = await this.pb.collection("BoardColumns").create(formData);
   }
 
-  
+  async insertBoardColumnTask(formData:any)
+  {
+    const rec = await this.pb.collection("BoardTask").create(formData);
+
+  }
+
+  async updateTask(formData : any){
+    const rec = await this.pb.collection("BoardTask").update(formData.Id,formData);
+  }
+
+  async deleteTask(id:string)
+  {
+    const rec = await this.pb.collection("BoardTask").delete(id);
+  }
+
+  async deleteBoard(id:string)
+  {
+    const rec = await this.pb.collection("Boards").delete(id);
+    
+  }
+
+  async deleteColumn(id:string){
+    const rec = await this.pb.collection("BoardColumns").delete(id);
+  }
 
 
 }

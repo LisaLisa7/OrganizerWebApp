@@ -3,9 +3,9 @@ import { MoviesService } from '../../../../../services/personal-services/movies.
 import { CommonModule } from '@angular/common';
 import { ListMovie } from '../../../../../interfaces/personal-interfaces/list-movie';
 import { MatDialog } from '@angular/material/dialog';
-import { InsertMovieDialogComponent } from '../dialogs/insert-movie-dialog/insert-movie-dialog.component';
 import { Subject, takeUntil } from 'rxjs';
-import { MovieUpdateDialogComponent } from '../dialogs/movie-update-dialog/movie-update-dialog.component';
+import { InsertMovieDialogComponent } from '../dialogs/lists-dialogs/insert-movie-dialog/insert-movie-dialog.component';
+import { MovieUpdateDialogComponent } from '../dialogs/lists-dialogs/movie-update-dialog/movie-update-dialog.component';
 
 @Component({
   selector: 'app-movie-list',

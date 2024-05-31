@@ -1,12 +1,12 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input'; 
 import { FormsModule } from '@angular/forms'; 
-import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
-import { MoviesService } from '../../../../../../services/personal-services/movies.service';
+import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component';
+import { MoviesService } from '../../../../../../../services/personal-services/movies.service';
 
 @Component({
   selector: 'app-insert-movie-dialog',

@@ -5,8 +5,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input'; 
 import { FormsModule } from '@angular/forms'; 
-import { GamesService } from '../../../../../../services/personal-services/games.service';
-import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component';
+import { GamesService } from '../../../../../../../services/personal-services/games.service';
 
 
 @Component({

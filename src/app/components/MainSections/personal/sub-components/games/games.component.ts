@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Game } from '../../../../../interfaces/personal-interfaces/game';
 import { GamesService } from '../../../../../services/personal-services/games.service';
 import { FormsModule } from '@angular/forms';
-import { InsertGameDialogComponent } from '../dialogs/insert-game-dialog/insert-game-dialog.component';
+import { InsertGameDialogComponent } from '../dialogs/lists-dialogs/insert-game-dialog/insert-game-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { GameDetailsDialogComponent } from '../dialogs/game-details-dialog/game-details-dialog.component';
+import { GameDetailsDialogComponent } from '../dialogs/lists-dialogs/game-details-dialog/game-details-dialog.component';
 @Component({
   selector: 'app-games',
   standalone: true,

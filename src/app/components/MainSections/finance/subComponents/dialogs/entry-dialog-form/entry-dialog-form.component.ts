@@ -52,8 +52,9 @@ import { ErrorDialogComponent } from '../../../../personal/sub-components/dialog
         </mat-form-field>
 
         <mat-form-field>
-        <input matInput type="time" placeholder="Time" [ngModel]="entryData ? this.timeBuff :timeBuff" 
-        (ngModelChange)="this.timeBuff = $event" name="time" required>
+          <mat-label>time</mat-label>
+          <input matInput type="time" placeholder="Time" [ngModel]="entryData ? this.timeBuff :timeBuff" 
+          (ngModelChange)="this.timeBuff = $event" name="time" required>
         </mat-form-field>
 
 
@@ -177,8 +178,11 @@ export class EntryDialogFormComponent {
 
   patchDataValidator(formData:any): boolean{
     for(const key in formData){
-      if(formData[key] == null)
+      const value = formData[key];
+      if (value === null || value === undefined || (typeof value === 'string' && value.trim() === '')) 
         return false;
+          
+        
     }
     return true;
   }

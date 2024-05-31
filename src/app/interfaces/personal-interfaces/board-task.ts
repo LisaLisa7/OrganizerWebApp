@@ -1,3 +1,5 @@
+import { TaskLabel } from "./task-label";
+
 export interface BoardTask {
     Id : string,
     Title : string,
@@ -7,5 +9,6 @@ export interface BoardTask {
     Due : Date,
     Created : Date,
     Updated : Date,
-    Done : boolean
+    Done : boolean,
+    Labels : Array<TaskLabel>
 }

@@ -5,8 +5,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input'; 
 import { FormsModule } from '@angular/forms'; 
-import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
-import { BooksService } from '../../../../../../services/personal-services/books.service';
+import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component';
+import { BooksService } from '../../../../../../../services/personal-services/books.service';
 
 @Component({
   selector: 'app-insert-book-dialog',

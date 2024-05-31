@@ -3,11 +3,10 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angu
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material/input'; // Import MatInputModule for input fields
-import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
-import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
-import { MoviesService } from '../../../../../../services/personal-services/movies.service';
-
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms'; 
+import { MoviesService } from '../../../../../../../services/personal-services/movies.service';
+import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component';
 @Component({
   selector: 'app-movie-update-dialog',
   standalone: true,

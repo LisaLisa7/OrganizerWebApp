@@ -4,9 +4,8 @@ import { ListBook } from '../../../../../interfaces/personal-interfaces/list-boo
 import { Subject, takeUntil } from 'rxjs';
 import { BooksService } from '../../../../../services/personal-services/books.service';
 import { MatDialog } from '@angular/material/dialog';
-import { BookUpdateDialogComponent } from '../dialogs/book-update-dialog/book-update-dialog.component';
-import { InsertBookDialogComponent } from '../dialogs/insert-book-dialog/insert-book-dialog.component';
-
+import { BookUpdateDialogComponent } from '../dialogs/lists-dialogs/book-update-dialog/book-update-dialog.component';
+import { InsertBookDialogComponent } from '../dialogs/lists-dialogs/insert-book-dialog/insert-book-dialog.component';
 @Component({
   selector: 'app-book-list',
   standalone: true,

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GamesService } from '../../../../../services/personal-services/games.service';
 import { ListGame } from '../../../../../interfaces/personal-interfaces/list-game';
 import { Subject, takeUntil } from 'rxjs';
-import { GameUpdateDialogComponent } from '../dialogs/game-update-dialog/game-update-dialog.component';
+import { GameUpdateDialogComponent } from '../dialogs/lists-dialogs/game-update-dialog/game-update-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({

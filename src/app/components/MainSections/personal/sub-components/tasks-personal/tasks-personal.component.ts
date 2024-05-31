@@ -9,6 +9,8 @@ import { BoardTask } from '../../../../../interfaces/personal-interfaces/board-t
 import { MatDialog } from '@angular/material/dialog';
 import { NewBoardColumnDialogComponent } from '../dialogs/new-board-column-dialog/new-board-column-dialog.component';
 import { NewBoardDialogComponent } from '../dialogs/new-board-dialog/new-board-dialog.component';
+import { NewBoardColumnTaskDialogComponent } from '../dialogs/new-board-column-task-dialog/new-board-column-task-dialog.component';
+import { SeeBoardColumnTaskDialogComponent } from '../dialogs/see-board-column-task-dialog/see-board-column-task-dialog.component';
 
 @Component({
   selector: 'app-tasks-personal',
@@ -29,11 +31,16 @@ import { NewBoardDialogComponent } from '../dialogs/new-board-dialog/new-board-d
 
       <div class="button-Container">
         <button (click)="openBoardDialog()">
-        <img [src]="plusSVG" alt="home"><span>New board</span>
+        <img [src]="plusSVG" alt="newBoard"><span>New board</span>
         </button>
-
         <button>
-        <img [src]="filterSVG" alt="home" ><span>Filter</span>
+        <img [src]="labelSVG" alt="labels" ><span>Labels</span>
+        </button>
+        <button>
+        <img [src]="filterSVG" alt="filter" ><span>Filter</span>
+        </button>
+        <button (click)="deleteBoard()">
+        <img [src]="deleteSVG" alt="delete" ><span>Delete Board</span>
         </button>
       </div>
       
@@ -41,27 +48,33 @@ import { NewBoardDialogComponent } from '../dialogs/new-board-dialog/new-board-d
     </div>
 
     <div class="mainContent">
-      
-        
         <div *ngIf="isLoading">Loading...</div>
         <div *ngIf="!isLoading" class="columnContainer">
           <div *ngFor="let column of selectedBoardColumns">
             <div class="column">
+              <button (click)="deleteColumn(column.Id)" class="deleteColButton"><span><img class="deleteColImg" [src]="deleteSVG"></span></button>
               <h1>{{ column.Name }}</h1>
 
               <div *ngIf="columnsTasks[column.Id]">
                 <ul>
-                  <li *ngFor="let task of columnsTasks[column.Id]">{{ task.Title }} - {{ task.Description }}</li>
+                  <li (click)="openSeeTaskDialog(task)" *ngFor="let task of columnsTasks[column.Id]" [ngClass]="{ 'crossed-out': task.Done }" >
+                  {{ task.Title }}
+                  <div class="labels">
+                  <span *ngFor="let label of task.Labels" [style.backgroundColor]="label.Color" class="label">
+                    {{ label.Name }} 
+                  </span>
+                </div>
+                  </li>
                 </ul>
               </div>
-              
+              <div class="buttonContainer2">
+                <button class="newTaskButton" (click)="openTaskDialog(column.Id)"><span><img class = "newTaskImg" [src]="plusSVG"></span></button> 
+              </div>
             </div>
           </div>
           <button (click)="openColumnDialog()" class="newColumnButton">
           Add a new column
           </button>
-
-
         </div>
         
     </div>
@@ -85,6 +98,8 @@ export class TasksPersonalComponent {
 
   plusSVG = "/assets/plus.svg"
   filterSVG = "/assets/filter.svg";
+  deleteSVG = "/assets/delete.svg";
+  labelSVG = "/assets/label.svg"
 
   constructor(private tasksService :TasksService,public dialog:MatDialog)
   {
@@ -96,6 +111,7 @@ export class TasksPersonalComponent {
     //this.selectedBoardColumns = await this.tasksService.getAllColumns("Default")
     
     let boardnames = await this.tasksService.getAllBoardsNames();
+    //this.boards = [];
     this.boards = boardnames.map(option => ({value:option,viewValue:option}));
     this.selectedBoard=this.boards[0].viewValue;
     this.selectedBoardId = await this.tasksService.getBoardId(this.selectedBoard);
@@ -173,7 +189,55 @@ export class TasksPersonalComponent {
     });
   }
 
-  
+  openTaskDialog(columnId : string){
+    const dialogRef = this.dialog.open(NewBoardColumnTaskDialogComponent, {
+      width: '500px', // Adjust the width as needed
+      data: {'id_board' : this.selectedBoardId, 'id_col' : columnId} // Optionally pass data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.loadColumnsAndTasks();
+
+    });
+  }
+
+  openSeeTaskDialog(task:BoardTask){
+    //console.log(task)
+    const dialogRef = this.dialog.open(SeeBoardColumnTaskDialogComponent, {
+      width: '500px', // Adjust the width as needed
+      data:  task  // Optionally pass data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.loadColumnsAndTasks();
+
+    });
+
+  }
+
+  async deleteTask(data:any){
+
+    console.log(data);
+  }
+
+  async deleteBoard(){
+    await this.tasksService.deleteBoard(this.selectedBoardId);
+    
+    await this.test();
+    await this.loadColumnsAndTasks();
+
+  }
+
+  async deleteColumn(id:string){
+    
+    
+    await this.tasksService.deleteColumn(id);
+
+    await this.loadColumnsAndTasks();
+
+  }
 
 
 }

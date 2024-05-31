@@ -1,16 +1,16 @@
 .menu-container{
-    background-color: aqua;
+    background-color: var(--primary-color);
     width: 100vw;
     
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 mat-form-field{
     margin-top: 20px;
+    margin-left: 20px;
         
 }
-
 
 mat-label{
     display: none;
@@ -18,7 +18,8 @@ mat-label{
 
 .button-Container{
     height: 50px;
-    padding-left: 10px;
+    /*padding-left: 10px;*/
+    margin-right: 20px;
     margin-top: 20px;
     border-radius: 5px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -45,14 +46,14 @@ mat-label{
     padding-right: 30px;
 }
 
-.button-Container  button img {
+.button-Container  button img{
     float: left;
     width: 30px; 
     height: auto;
 }
 
 .mainContent{
-    /*background-color: brown;*/
+    background-color: #F8F7FF;
     width: 100vw;
     height: 100vh;
 }
@@ -60,50 +61,119 @@ mat-label{
 .columnContainer{
     margin-top: 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust the minmax values as needed */
-    grid-gap: 20px; /* Adjust the gap between cards */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    grid-gap: 20px; 
     margin-left: 35px;
 }
 
 .column {
 
-    border: 3px solid;
-    border-radius: 8px;
-    background-color: #FFF;
-    position: relative;
-    transition: .15s ease;
-    
-    padding: 5% 5% 15% 5%;
-    height: 250px;
-    &:hover {			
-      transform: scale(1.05);
-      cursor: pointer;
-      background-color: #FFEEDD;
-      
-    }
-    
-  }
-  .column h1{
-    position: relative;
-    padding-top: 5px;
-    text-align: center;
-  }
-  .column h1::after {
-    content: '';
-    position: absolute;
-    left: 20px; 
-    right: 20px; 
-    bottom: 0;
-    height: 1px; 
-    background-color: black; 
-  }
-
-  .newColumnButton{
-    height: 20px;
-  }
-
-  .newColumnButton:hover{
-    cursor: pointer;
-    transform: scale(1.05);
-  }
+  border: 3px solid;
+  border-radius: 8px;
+  background-color: #FFF;
+  position: relative;
+  transition: .15s ease;
   
+  padding: 5% 5% 15% 5%;
+  min-height: 250px;
+  height: auto;
+  
+  
+
+  &:hover {			
+    transform: scale(1.05);
+    cursor: pointer;
+    background-color: #FFEEDD;
+    
+  }
+    
+    
+}
+.column h1{
+  position: relative;
+  padding-top: 5px;
+  text-align: center;
+}
+.column h1::after {
+  content: '';
+  position: absolute;
+  left: 20px; 
+  right: 20px; 
+  bottom: 0;
+  height: 1px; 
+  background-color: black; 
+}
+
+.newColumnButton{
+  height: 20px;
+}
+
+.newColumnButton:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.buttonContainer2{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.newTaskImg {
+  width: 30px;
+  height: 25px;
+
+}
+.newTaskButton{
+  margin-top: 5px;
+}
+
+ul{
+  margin-left: 10px;
+}
+
+li{
+  font-size: 1.5em; 
+
+}
+
+li:hover{
+  color: #9381FF;
+}
+
+.crossed-out {
+  text-decoration: line-through;
+}
+
+.deleteColImg{
+  width: 20px;
+  height: 20px;
+}
+.deleteColImg:hover{
+  cursor: pointer;
+}
+
+.deleteColButton{
+  display: none;
+  position: absolute;
+}
+
+.column:hover .deleteColButton{
+  display:contents;
+}
+
+.labels {
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.label {
+  display: inline-block;
+  padding: 2px 5px;
+  margin-right: 5px;
+  border-radius: 3px;
+  color: white;
+  font-size: 0.8em;
+}
