@@ -25,18 +25,8 @@ import { NgxColorsModule } from 'ngx-colors';
           [ngModel]="passedData ? passedData.Name : formData.Name"name="Name"
           (ngModelChange)="formData.Name = $event" required>
         </mat-form-field>
-
-        <mat-form-field>
-        <mat-label>Color</mat-label>
-        <input matInput type="text" placeholder="Color" 
-        [ngModel]="passedData ? passedData.Color : formData.Color" 
-        (ngModelChange)="formData.Color = $event"
-        name="Color" >
-        </mat-form-field>        
-        
-        
        
-
+        
       </form>
       <ngx-colors
         ngx-colors-trigger

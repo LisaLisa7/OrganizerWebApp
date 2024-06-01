@@ -12,6 +12,7 @@ import { NewBoardDialogComponent } from '../dialogs/new-board-dialog/new-board-d
 import { NewBoardColumnTaskDialogComponent } from '../dialogs/new-board-column-task-dialog/new-board-column-task-dialog.component';
 import { SeeBoardColumnTaskDialogComponent } from '../dialogs/see-board-column-task-dialog/see-board-column-task-dialog.component';
 import { SeeLabelsDialogComponent } from '../dialogs/see-labels-dialog/see-labels-dialog.component';
+import { ConfirmDialogComponent } from '../../../../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-tasks-personal',
@@ -232,27 +233,38 @@ export class TasksPersonalComponent {
 
   }
 
-  async deleteTask(data:any){
-
-    console.log(data);
-  }
 
   async deleteBoard(){
-    await this.tasksService.deleteBoard(this.selectedBoardId);
+
     
-    await this.test();
-    await this.loadColumnsAndTasks();
+    const dialogRef = this.tasksService.openConfirmDialog("Are you sure you want to delete this board?");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+      await this.tasksService.deleteBoard(this.selectedBoardId);
+      
+      await this.test();
+      await this.loadColumnsAndTasks();
+    
+    }
 
   }
 
   async deleteColumn(id:string){
     
+    const dialogRef = this.tasksService.openConfirmDialog("Are you sure you want to delete this column?");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
     
     await this.tasksService.deleteColumn(id);
 
     await this.loadColumnsAndTasks();
 
+    }
   }
+
+  
 
 
 }

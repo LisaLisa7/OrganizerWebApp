@@ -13,7 +13,7 @@ import { TasksService } from '../../../../../../services/personal-services/tasks
   standalone: true,
   imports: [MatFormFieldModule,MatDialogModule,MatSelectModule,CommonModule,MatInputModule,FormsModule],
   template: `
-    <h2 mat-dialog-title style="text-align: center;">New column</h2>
+    <h2 mat-dialog-title style="text-align: center;">New task</h2>
     <div mat-dialog-content>
       <form>
         <mat-form-field>

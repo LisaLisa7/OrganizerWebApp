@@ -3,6 +3,8 @@ import PocketBase from 'pocketbase'
 import { BoardColumn } from '../../interfaces/personal-interfaces/board-column';
 import { BoardTask } from '../../interfaces/personal-interfaces/board-task';
 import { TaskLabel } from '../../interfaces/personal-interfaces/task-label';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class TasksService {
   pb = new PocketBase('http://127.0.0.1:8090');
 
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   async getBoardId(boardName : string){
 
@@ -165,6 +167,12 @@ export class TasksService {
     
   }
 
+  async deleteLabel(id:string)
+  {
+    const rec = await this.pb.collection("TaskLabel").delete(id);
+    
+  }
+
   async deleteColumn(id:string){
     const rec = await this.pb.collection("BoardColumns").delete(id);
   }
@@ -179,5 +187,11 @@ export class TasksService {
     const rec = await this.pb.collection("TaskLabel").update(data.id,data);
   }
 
+  openConfirmDialog(message: string) {
+    return this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      data: { message }
+    });
+  }
 
 }

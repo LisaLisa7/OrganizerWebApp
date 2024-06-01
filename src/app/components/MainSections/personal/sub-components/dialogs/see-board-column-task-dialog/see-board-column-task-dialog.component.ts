@@ -8,11 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { BoardColumn } from '../../../../../../interfaces/personal-interfaces/board-column';
-
+import { CommonModule } from '@angular/common';
+import { TaskLabel } from '../../../../../../interfaces/personal-interfaces/task-label';
 @Component({
   selector: 'app-see-board-column-task-dialog',
   standalone: true,
-  imports: [MatFormFieldModule,MatDialogModule,MatSelectModule,MatInputModule,FormsModule,MatCheckboxModule],
+  imports: [CommonModule,MatFormFieldModule,MatDialogModule,MatSelectModule,MatInputModule,FormsModule,MatCheckboxModule],
   template: `
     <h2 mat-dialog-title style="text-align: center;">{{this.passedData.Title}}</h2>
     <div mat-dialog-content>
@@ -55,6 +56,26 @@ import { BoardColumn } from '../../../../../../interfaces/personal-interfaces/bo
           </mat-select>
         </mat-form-field>
 
+        <p>Labels</p>
+        <ul>
+        <li *ngFor="let label of this.passedData.Labels">
+          {{ label.Name }}
+          <span [style.backgroundColor]="label.Color">_</span>
+          <button class="buttonRemoveLabel" (click)="removeLabelFromTask(label)"><span><img [src] = "deleteSVG"></span></button>
+        </li>
+        </ul>
+        <p>Add a new label?</p>
+
+        <mat-form-field>
+          <mat-label>Label</mat-label>
+          <mat-select [(ngModel)]="this.selectedLabel"
+          name="Label" required>
+            @for (label of labelOptions; track label){
+              <mat-option [value] = "label.value">{{label.viewValue}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        
       </form>
 
 
@@ -74,7 +95,10 @@ export class SeeBoardColumnTaskDialogComponent {
   passedData : any = {};
   timeBuff : any;
   dateBuff : any;
-  columns : BoardColumn[] = [] ;
+  columns : BoardColumn[] = [];
+  selectedLabel : string = "";
+  newLabels : any = [];
+  allLabels: TaskLabel[] = [];
   deleteSVG = "/assets/delete.svg";
 
   statusOptions = [
@@ -82,6 +106,8 @@ export class SeeBoardColumnTaskDialogComponent {
     { value: 'Watched', viewValue: 'Watched' },
     { value: 'Dropped', viewValue: 'Dropped' }
   ];
+
+  labelOptions : any = [];
 
   fields = [];
 
@@ -93,6 +119,7 @@ export class SeeBoardColumnTaskDialogComponent {
     [this.dateBuff,this.timeBuff] = this.passedData.Due.split(' ');
     this.timeBuff = this.timeBuff.slice(0, 5);
     this.formData.Id = this.passedData.Id;
+    
     
     
   }
@@ -109,13 +136,50 @@ export class SeeBoardColumnTaskDialogComponent {
       value: column.Id,
       viewValue: column.Name
     }));
+
+    this.allLabels = await this.taskService.getAllLabels();
+    this.labelOptions = this.allLabels.map( (label:TaskLabel) => ({
+        value : label.Id,
+        viewValue : label.Name
+    }) );
+
+    console.log(this.labelOptions);
+
+
+    
   }
 
 
+
+  async removeLabelFromTask(label : any)
+  {
+    console.log(label);
+    this.passedData.Labels = this.passedData.Labels.filter( (l:any) => l.Id !== label.Id);
+    console.log(this.passedData.Labels);
+  }
+
+  addLabel(labelId: string) {
+    if (!this.newLabels.includes(labelId)) {
+      this.newLabels.push(labelId);
+    }
+    this.formData.Labels = this.newLabels;
+  }
+  
+  updateLabels(){
+    this.newLabels = this.passedData.Labels.map( (label : TaskLabel )=> label.Id);
+    console.log("finally?");
+    console.log(this.newLabels);
+  }
+
   async onDelete(){
 
-    this.taskService.deleteTask(this.formData.Id);
-    this.dialogRef.close();
+    const dialogRef = this.taskService.openConfirmDialog("Are you sure you want to delete this board?");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+      this.taskService.deleteTask(this.formData.Id);
+      this.dialogRef.close();
+    }
   }
 
   onClose(){
@@ -155,6 +219,10 @@ export class SeeBoardColumnTaskDialogComponent {
 
     if(this.formData.DueDate && this.patchDataValidator(this.formData) == true){
 
+      this.updateLabels();
+      this.addLabel(this.selectedLabel);
+      
+      console.log(this.newLabels);
       this.taskService.updateTask(this.formData);
       this.dialogRef.close();
 

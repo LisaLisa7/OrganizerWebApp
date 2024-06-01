@@ -27,7 +27,7 @@ import { TaskLabel } from '../../../../../../interfaces/personal-interfaces/task
             <td class="td"><div class="separator"></div></td>
             <td class="td">
               <div class="actionButtonsContainer">
-                <button >Delete</button>
+                <button (click)="deleteLabel(item)">Delete</button>
                 <button (click)="openModifyLabelDialog(item)" >Modify</button>
               </div>
             </td>
@@ -62,10 +62,21 @@ export class SeeLabelsDialogComponent {
 
   }
 
+  async deleteLabel(label:TaskLabel){
+    await this.taskService.deleteLabel(label.Id);
+    this.loadData();
+  }
+
   openNewLabelDialog(){
     const dialogRef = this.dialog.open(InsertLabelDialogComponent, {
       width: '500px',
       data: {} 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //console.log('The dialog was closed');
+      this.loadData();
+
     });
   }
 
@@ -74,6 +85,13 @@ export class SeeLabelsDialogComponent {
       width: '500px',
       data: label 
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //console.log('The dialog was closed');
+      this.loadData();
+
+    });
+    
   }
 
   openDialog(message:string): void {
