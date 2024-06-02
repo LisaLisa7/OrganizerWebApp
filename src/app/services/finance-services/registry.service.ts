@@ -47,10 +47,9 @@ export class RegistryService {
     const currentDate = new Date();
     //console.log(currentDate)
     const day = currentDate.getDate().toString().padStart(2, '0');
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 because getMonth() returns zero-based index
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
     const year = currentDate.getFullYear();
     const formattedDate = day + '-' + month + '-' + year;
-    //console.log(formattedDate); // Output: day-month-year
 
     return formattedDate;
   }

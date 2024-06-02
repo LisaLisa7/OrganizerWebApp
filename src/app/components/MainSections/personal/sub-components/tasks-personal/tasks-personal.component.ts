@@ -221,8 +221,8 @@ export class TasksPersonalComponent {
   openSeeTaskDialog(task:BoardTask){
     //console.log(task)
     const dialogRef = this.dialog.open(SeeBoardColumnTaskDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data:  task  // Optionally pass data to the dialog
+      width: '500px', 
+      data:  task  
     });
 
     dialogRef.afterClosed().subscribe(result => {

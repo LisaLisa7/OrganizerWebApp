@@ -150,8 +150,8 @@
 
 .some-buttons-container button img{
     float: left;
-    width: 30px; /* Adjust as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 30px; 
+    height: auto; 
 }
 .some-buttons-container button span{
     display: inline-block;
@@ -180,7 +180,7 @@
 table {
     border-collapse: separate;
     border-spacing: 0 20px;
-    width: 100%; /* Ensures the table takes up full width of its parent */
+    width: 100%; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
   
   }
@@ -189,7 +189,7 @@ table {
   
 td {
     text-align: center;
-    border-bottom: 1px solid #ccc; /* Adjust the color and style as needed */
+    border-bottom: 1px solid #ccc; 
     border-top: 1px solid #ccc;
     min-width: 70px;
     
@@ -205,9 +205,9 @@ tr td:last-child{
 }
   
 .separator {
-    border-left: 2px solid rgb(87, 84, 84); /* Vertical line */
-    height: 100%; /* Full height */
-    margin: 0 20px; /* Adjust margin as needed */
-    min-height: 30px; /* Ensure the separator appears even without content */
+    border-left: 2px solid rgb(87, 84, 84); 
+    height: 100%; 
+    margin: 0 20px; 
+    min-height: 30px; 
 
 }

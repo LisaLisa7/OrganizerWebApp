@@ -9,12 +9,13 @@
 
 .container-left{
 
-
+    margin-left: 32px;
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
     width: 50%;
-    background-color: black;
+    /*background-color: black;*/
+    
 
 }
 
@@ -22,9 +23,10 @@
 .container-right{
     flex-grow: 1; 
     display: flex;
+    margin-left: 20px;
     flex-direction: column;
     width: 50%;
-    background-color: aqua;
+    /*background-color: aqua;*/
 }
 
 .container-left-1{
@@ -33,7 +35,7 @@
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
-    background-color: rgb(12, 149, 26);
+    /*background-color: rgb(12, 149, 26);*/
 
 }
 
@@ -43,7 +45,7 @@
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
-    background-color: rgb(96, 30, 30);
+    /*background-color: rgb(96, 30, 30);*/
 
 }
 
@@ -54,7 +56,12 @@
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
-    background-color: rgb(19, 10, 87);
+    background-color: var(--accent-color);
+    border-color: black;
+    border: solid;
+    border-radius: 8px;
+    
+
 
 }
 
@@ -64,8 +71,60 @@
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
-    background-color: rgb(40, 182, 207);
+    background-color: var(--accent-color);
+    border-color: black;
+    border: solid;
+    border-radius: 8px;
+    margin-top: 5px;
+
 
 }
+.container-right-3{
+
+
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    background-color: var(--accent-color);
+    border-color: black;
+    border: solid;
+    border-radius: 8px;
+    margin-top: 5px;
+
+
+
+}
+.h1_title{
+    text-align: center;
+}
+
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    width: 100%; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  
+  }
+
+
+  
+td {
+    text-align: center;
+    border-bottom: 1px solid #ccc; 
+    border-top: 1px solid #ccc;
+    min-width: 70px;
+    
+}
+  
+tr td:first-child{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px; 
+}
+tr td:last-child{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px; 
+}
+
 
 

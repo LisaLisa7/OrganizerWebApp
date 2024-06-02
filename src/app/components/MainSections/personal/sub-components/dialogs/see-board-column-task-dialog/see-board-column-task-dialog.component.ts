@@ -173,7 +173,7 @@ export class SeeBoardColumnTaskDialogComponent {
 
   async onDelete(){
 
-    const dialogRef = this.taskService.openConfirmDialog("Are you sure you want to delete this board?");
+    const dialogRef = this.taskService.openConfirmDialog("Are you sure you want to delete this task?");
 
     const result = await dialogRef.afterClosed().toPromise();
     if(result){

@@ -105,7 +105,6 @@ export class TasksService {
     return labels;
   }
 
-
   async getTasks(columnId : string,boardId : string){
 
     let filterString = `Column_ID = '${columnId}' && Board_ID = '${boardId}'`;
@@ -135,6 +134,125 @@ export class TasksService {
     return tasks;
 
   }
+
+  formatData(date:any){
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+
+  async getBoardNameById(id:string){
+
+    //console.log("Aici moare?");
+    //console.log(id)
+    const records = await this.pb.collection("Boards").getOne(id,{requestKey: null });
+    console.log(records);
+    if (records && Object.keys(records).length > 0 && records['Title']) {
+      //console.log("O intrat aici???");
+      return records['Title'];
+    } else {
+      return ''; 
+    }
+  }
+
+  calculateOverdueDays(dateString:string){
+
+    const givenDate = new Date(dateString);
+    const currentDate = new Date();
+
+    // Convert both dates to UTC to avoid timezone issues
+    const utcGivenDate = Date.UTC(givenDate.getFullYear(), givenDate.getMonth(), givenDate.getDate());
+    const utcCurrentDate = Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+
+    // Calculate the difference in milliseconds
+    const differenceInMilliseconds = utcCurrentDate - utcGivenDate;
+
+    // Convert milliseconds to days
+    const millisecondsPerDay = 24 * 60 * 60 * 1000;
+    const differenceInDays = Math.floor(differenceInMilliseconds / millisecondsPerDay);
+
+    console.log(differenceInDays);
+    return differenceInDays;
+  }
+
+
+  async getTasksForToday(){
+
+    const currentDate = new Date();
+    const today = this.formatData(currentDate);
+    let filterString = `DueDate >= "${today}" && DueDate <= "${today} 23:59:59 " && Done = False`;
+    //console.log(filterString);
+
+
+    const records = await this.pb.collection("BoardTask").getFullList({filter:filterString});
+
+    //console.log(records);
+    //console.log(records);
+    
+    const tasks: BoardTask[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
+      const labelIds = record['Labels'];
+      const labels = await this.getLabelDetails(labelIds);
+      const board = await this.getBoardNameById(record['Board_ID']);
+
+      return {
+        Id: record['id'],
+        Title: record['Title'],
+        Board_Id: board,
+        Description: record['Description'],
+        Column_Id: record['Column_ID'],
+        Due: record['DueDate'],
+        Created: record['created'],
+        Updated: record['updated'],
+        Done: record['Done'],
+        Labels: labels 
+      };
+    }));
+  
+    return tasks;
+    
+
+  }
+
+  async getTasksOverdue(){
+
+    const currentDate = new Date();
+    const today = this.formatData(currentDate);
+    let filterString = `DueDate < "${today}"  && Done = False`;
+    //console.log(filterString);
+
+
+    const records = await this.pb.collection("BoardTask").getFullList({filter:filterString});
+
+    //console.log(records);
+    //console.log(records);
+    const tasks: BoardTask[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
+      const labelIds = record['Labels'];
+      const labels = await this.getLabelDetails(labelIds);
+      const board = await this.getBoardNameById(record['Board_ID']);
+      const intarziere = this.calculateOverdueDays(record['DueDate']);
+
+      //console.log(board);
+  
+      return {
+        Id: record['id'],
+        Title: record['Title'],
+        Board_Id: board,
+        Description: record['Description'],
+        Column_Id: intarziere.toString(),
+        Due: record['DueDate'],
+        Created: record['created'],
+        Updated: record['updated'],
+        Done: record['Done'],
+        Labels: labels 
+      };
+    }));
+  
+    return tasks;
+
+  }
+
 
   async insertBoard(formData:any){
 
