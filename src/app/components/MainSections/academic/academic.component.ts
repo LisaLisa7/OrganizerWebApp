@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { HomeAcademicComponent } from './subComponents/home-academic/home-academic.component';
+import { ScheduleComponent } from './subComponents/schedule/schedule.component';
+import { ProjectComponent } from './subComponents/project/project.component';
+import { TasksAcademicComponent } from './subComponents/tasks-academic/tasks-academic.component';
 @Component({
   selector: 'app-academic',
   standalone: true,
@@ -12,10 +16,10 @@ import { MatIconModule } from '@angular/material/icon';
       <mat-sidenav [(opened)]="opened">
         <div class="button-container">
           <div>
-          <button ><img [src]="homeSVG" alt="home"><span>Home</span></button>
-          <button><img [src]="classSVG" alt="classes"><span>Classes</span></button>
-          <button><img [src]="projectSVG" alt="projects"><span>Projects</span></button>
-          <button><img [src]="taskSVG" alt="tasks"><span>Tasks</span></button>
+          <button (click)="createHomeComponent()"><img [src]="homeSVG" alt="home"><span>Home</span></button>
+          <button (click)="createSheduleComponent()"><img [src]="classSVG" alt="classes"><span>Schedule</span></button>
+          <button (click)="createProjectsComponent()"><img [src]="projectSVG" alt="projects"><span>Projects</span></button>
+          <button (click)="createTasksComponent()"><img [src]="taskSVG" alt="tasks"><span>Tasks</span></button>
           
           </div>
           <div>
@@ -65,29 +69,35 @@ export class AcademicComponent {
   ngAfterViewInit(): void {
     // Now dynamicComponentContainer is guaranteed to be defined
   }
-  createSavingsComponent() : void{
+  createHomeComponent() : void{
     this.dynamicComponentContainer.clear();
 
-    //const factory = this.componentFactoryResolver.resolveComponentFactory(SavingsComponent);
-    //const componentRef = this.dynamicComponentContainer.createComponent(factory);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(HomeAcademicComponent);
+    const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
 
-  createRegistryComponent(): void {
-    // Clear existing components in the container
+  createSheduleComponent(): void {
     this.dynamicComponentContainer.clear();
 
-    // Dynamically create the RegistryComponent
-    //const factory = this.componentFactoryResolver.resolveComponentFactory(RegistryComponent);
-    //const componentRef = this.dynamicComponentContainer.createComponent(factory);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(ScheduleComponent);
+    const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
-  createPictogramsComponent(): void {
-    // Clear existing components in the container
+  createProjectsComponent(): void {
     this.dynamicComponentContainer.clear();
 
-    // Dynamically create the RegistryComponent
-    //const factory = this.componentFactoryResolver.resolveComponentFactory(PictogramsComponent);
-    //const componentRef = this.dynamicComponentContainer.createComponent(factory);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(ProjectComponent);
+    const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
+
+  createTasksComponent():void{
+    this.dynamicComponentContainer.clear();
+
+    const factory = this.componentFactoryResolver.resolveComponentFactory(TasksAcademicComponent);
+    const componentRef = this.dynamicComponentContainer.createComponent(factory);
+
+  }
+
+
 
 
 }

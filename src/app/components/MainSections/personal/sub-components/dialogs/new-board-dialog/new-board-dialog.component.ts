@@ -64,8 +64,8 @@ export class NewBoardDialogComponent {
 
   openDialog(message:string): void {
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {"error":message} // Optionally pass data to the dialog
+      width: '500px',
+      data: {"error":message} 
     });
   }
 

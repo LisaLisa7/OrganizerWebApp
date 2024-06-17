@@ -55,13 +55,15 @@ mat-label{
     height: auto;
 }
 
+/* */
+
 .mainContent{
     background-color: #F8F7FF;
     width: 100vw;
     height: 100vh;
 }
 
-.columnContainer{
+.projectsContainer{
     margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
@@ -69,7 +71,7 @@ mat-label{
     margin-left: 35px;
 }
 
-.column {
+.project {
 
   border: 3px solid;
   border-radius: 8px;
@@ -92,12 +94,12 @@ mat-label{
     
     
 }
-.column h1{
+.project h1{
   position: relative;
   padding-top: 5px;
   text-align: center;
 }
-.column h1::after {
+.project h1::after {
   content: '';
   position: absolute;
   left: 20px; 
@@ -107,78 +109,3 @@ mat-label{
   background-color: black; 
 }
 
-.newColumnButton{
-  height: 20px;
-}
-
-.newColumnButton:hover{
-  cursor: pointer;
-  transform: scale(1.05);
-}
-
-.buttonContainer2{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.newTaskImg {
-  width: 30px;
-  height: 25px;
-
-}
-.newTaskButton{
-  margin-top: 5px;
-}
-
-ul{
-  margin-left: 10px;
-}
-
-li{
-  font-size: 1.5em; 
-
-}
-
-li:hover{
-  color: #9381FF;
-}
-
-.crossed-out {
-  text-decoration: line-through;
-}
-
-.deleteColImg{
-  width: 20px;
-  height: 20px;
-  
-}
-.deleteColImg:hover{
-  cursor: pointer;
-  transform: scale(1.25);
-}
-
-.deleteColButton{
-  display: none;
-  position: absolute;
-}
-
-.column:hover .deleteColButton{
-  display:contents;
-}
-
-.labels {
-  margin-top: 5px;
-  display: inline-block;
-}
-
-.label {
-  display: inline-block;
-  padding: 2px 5px;
-  margin-right: 5px;
-  border-radius: 3px;
-  color: white;
-  font-size: 0.8em;
-}

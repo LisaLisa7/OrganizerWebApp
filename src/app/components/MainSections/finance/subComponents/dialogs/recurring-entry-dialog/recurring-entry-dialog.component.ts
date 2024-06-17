@@ -32,14 +32,14 @@ import { CommonModule } from '@angular/common';
         <mat-form-field>
           <mat-label>Description</mat-label>
           
-          <input matInput type="text" placeholder="Description" [(ngModel)]="entryData ? entryData.Description : formData.Description" 
+          <input matInput type="text" placeholder="Description" [ngModel]="entryData ? entryData.Description : formData.Description" 
           (ngModelChange)="formData.Description = $event"  name="Description" required>
 
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Type</mat-label>
-          <mat-select [(ngModel)]="entryData ? entryData.Type : formData.Type" 
+          <mat-select [ngModel]="entryData ? entryData.Type : formData.Type" 
           (ngModelChange)="formData.Type= $event" name="Type" required>
             @for (type of typeOptions; track type){
               <mat-option [value] = "type.value">{{type.viewValue}}</mat-option>
@@ -56,12 +56,12 @@ import { CommonModule } from '@angular/common';
 
         <mat-form-field>
           <mat-label>Date</mat-label>
-          <input matInput type="date" [(ngModel)]="entryData ? this.dateBuff : formData.Date"
+          <input matInput type="date" [ngModel]="entryData ? this.dateBuff : formData.Date"
               (ngModelChange)="dateBuff = $event"  name="Date" required>
         </mat-form-field>
 
         <mat-form-field>
-        <input matInput type="time" placeholder="Time" [(ngModel)]="entryData ? this.timeBuff :timeBuff" 
+        <input matInput type="time" placeholder="Time" [ngModel]="entryData ? this.timeBuff :timeBuff" 
         (ngModelChange)="this.timeBuff = $event" name="time" required>
         </mat-form-field>
 
@@ -74,7 +74,7 @@ import { CommonModule } from '@angular/common';
 
         <mat-form-field>
           <mat-label>Repeat</mat-label>
-          <mat-select [(ngModel)]="entryData ? entryData.Repeat : formData.Repeat" 
+          <mat-select [ngModel]="entryData ? entryData.Repeat : formData.Repeat" 
           (ngModelChange)="formData.Repeat= $event" name="Repeat" required>
             @for (repeat of repeatOptions; track repeat){
               <mat-option [value] = "repeat.value">{{repeat.viewValue}}</mat-option>

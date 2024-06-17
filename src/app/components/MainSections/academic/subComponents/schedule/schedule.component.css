@@ -1,0 +1,100 @@
+.contentContainer{
+    width: 100vw;
+    height: calc(100vh - 70px);
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.containerUp{
+  margin-top: 20px;
+  justify-content: center;
+  display: flex;
+  flex : 1/2;
+}
+
+.containerUp button 
+{
+    width: 200px;
+    margin: 20px;
+    background-color: white;
+    color: var(--primary-color);
+    border-color:var(--primary-color);
+    border-radius: 8px;
+}
+
+.containerUp button:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.scheduleContainer{
+  flex:1;
+  margin-left: 35px;
+  margin-right: 35px;
+}
+
+
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* For Monday to Friday */
+    gap: 1em;
+  }
+  
+  .day-column {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 1em;
+    border-radius: 5px;
+  }
+  
+  .day-column h3 {
+    margin-top: 0;
+    text-align: center;
+  }
+  
+  .class-item {
+    background-color: #e9e9e9;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 5px;
+  }
+  
+  .class-item h4 {
+    margin: 0;
+  }
+  
+  .class-item p {
+    margin: 0.5em 0;
+  }
+
+  .class-item:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+
+  .classImg{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    float: right;
+
+  }
+  .classImg:hover{
+    cursor: pointer;
+    transform: scale(1.25);
+  }
+  
+  .classButton{
+    display: none;
+    position: absolute;
+    
+    
+    
+  }
+  
+  .class-item:hover .classButton{
+    display:contents;
+    
+  }

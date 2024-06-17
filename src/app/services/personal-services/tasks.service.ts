@@ -15,7 +15,9 @@ export class TasksService {
   pb = new PocketBase('http://127.0.0.1:8090');
 
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) {
+
+  }
 
   async getBoardId(boardName : string){
 
