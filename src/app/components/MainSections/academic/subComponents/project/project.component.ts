@@ -12,6 +12,7 @@ import { Project } from '../../../../../interfaces/academic-interfaces/project';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NewProjectDialogComponent } from '../dialogs/new-project-dialog/new-project-dialog.component';
 import { UpdateProjectDialogComponent } from '../dialogs/update-project-dialog/update-project-dialog.component';
+import { ConfirmationDialogService } from '../../../../../services/confirmation-dialog.service';
 
 @Component({
   selector: 'app-project',
@@ -109,7 +110,7 @@ export class ProjectComponent {
   updateSVG = "/assets/settings.svg";
 
 
-  constructor(private classService:ClassesService,private projectService:ProjectsService,private taskService:ClassTasksService,public dialog:MatDialog){
+  constructor(private classService:ClassesService,private projectService:ProjectsService,private taskService:ClassTasksService,private confirmService:ConfirmationDialogService,public dialog:MatDialog){
 
   }
 
@@ -183,6 +184,17 @@ export class ProjectComponent {
   }
 
   async deleteProject(id:string){
+
+    const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this project?\nAll its tasks will also be deleted");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+    
+    await this.projectService.deleteProject(id);
+
+    await this.loadProjectsAndTasks();
+
+    }
 
   }
 

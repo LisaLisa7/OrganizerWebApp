@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewClassDialogComponent } from '../dialogs/new-class-dialog/new-class-dialog.component';
 import { UpdateClassDialogComponent } from '../dialogs/update-class-dialog/update-class-dialog.component';
 import { ImportScheduleDialogComponent } from '../dialogs/import-schedule-dialog/import-schedule-dialog.component';
-
+import { ConfirmationDialogService } from '../../../../../services/confirmation-dialog.service';
 @Component({
   selector: 'app-schedule',
   standalone: true,
@@ -54,7 +54,7 @@ export class ScheduleComponent {
   deleteSVG = "/assets/delete.svg";
   updateSVG = "/assets/settings.svg";
 
-  constructor(private classesService:ClassesService,public dialog: MatDialog)
+  constructor(private classesService:ClassesService,private confirmService:ConfirmationDialogService,public dialog: MatDialog)
   {
     this.loadData();
   }
@@ -101,7 +101,16 @@ export class ScheduleComponent {
 
   async deleteClass(id:string){
 
-    await this.classesService.deleteClass(id);
+    const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this class?\nAll it's projects and tasks will also be deleted");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+    
+      await this.classesService.deleteClass(id);
+      await this.loadData();
+
+    }
+    
 
   }
 

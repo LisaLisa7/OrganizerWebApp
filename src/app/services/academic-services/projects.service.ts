@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase'
 import { Project } from '../../interfaces/academic-interfaces/project';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,9 @@ export class ProjectsService {
 
   pb = new PocketBase('http://127.0.0.1:8090');
 
-  constructor() { }
+  constructor() {
+
+  }
 
 
   async getProjectId(projectName : string)
@@ -81,6 +84,10 @@ export class ProjectsService {
 
   async updateProject(id:string, data:any){
     const rec = await this.pb.collection("Projects").update(id,data);
+  }
+
+  async deleteProject(id:string){
+    const rec = await this.pb.collection("Projects").delete(id);
   }
 
 

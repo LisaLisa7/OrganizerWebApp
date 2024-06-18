@@ -26,9 +26,7 @@ export class ClassTasksService {
         description : record['Description'],
         startDate : record['StartDate'],
         finishDate : record['FinishDate'],
-        class : record['Class'],
         completion : record['Completion_Percentage'],
-        subTasks : record['SubTasks'],
         parentTask : record['ParentTask']
       };
     }));
@@ -56,7 +54,33 @@ export class ClassTasksService {
         startDate : record['StartDate'],
         finishDate : record['FinishDate'],
         completion : record['Completion_Percentage'],
-        subTasks : record['SubTasks'],
+        parentTask : record['ParentTask']
+      };
+    }));
+  
+    console.log(classes)
+    return classes;
+  }
+
+  async getAllParentTasksByProject(project_id : string){
+
+    let filterString = `Project_Id = '${project_id}' && ParentTask= ''`;
+
+
+    const records = await this.pb.collection("Tasks").getFullList({filter:filterString});
+
+    console.log(records);
+    //console.log(records);
+    const classes: ClassTask[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
+  
+      return {
+        id : record['id'],
+        project_id : record['Project_Id'],
+        title : record['Title'],
+        description : record['Description'],
+        startDate : record['StartDate'],
+        finishDate : record['FinishDate'],
+        completion : record['Completion_Percentage'],
         parentTask : record['ParentTask']
       };
     }));

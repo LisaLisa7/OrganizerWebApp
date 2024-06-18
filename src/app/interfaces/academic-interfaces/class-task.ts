@@ -7,7 +7,6 @@ export interface ClassTask {
     startDate : string,
     finishDate : string,
     completion : number,
-    subTasks : ClassTask[],
-    parentTask : ClassTask
+    parentTask : string
 
 }

@@ -1,0 +1,178 @@
+.menu-container{
+    background-color: var(--primary-color);
+    width: 100vw;
+    height: auto;
+    
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+}
+
+mat-form-field{
+    margin-top: 20px;
+    margin-left: 20px;
+        
+}
+
+mat-label{
+    display: none;
+}
+
+.button-Container{
+    height: auto; 
+    margin-right: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    display: flex; 
+    flex-wrap: wrap; 
+}
+
+.button-Container button {
+    height: 50px;
+    padding-left: 10px;
+    border-radius: 5px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    width: 200px;
+    
+}
+
+.button-Container button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.button-Container  button span{
+    display: inline-block;
+    padding-top: 9px;
+    padding-right: 30px;
+}
+
+.button-Container  button img{
+    float: left;
+    width: 30px; 
+    height: auto;
+}
+
+/* */
+
+.mainContent{
+    background-color: #F8F7FF;
+    width: 100vw;
+    height: 100vh;
+}
+
+.projectsContainer{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    grid-gap: 20px; 
+    margin-left: 35px;
+}
+
+.project {
+
+  border: 3px solid;
+  border-radius: 8px;
+  background-color: #FFF;
+  position: relative;
+  transition: .15s ease;
+  
+  padding: 5% 5% 15% 5%;
+  min-height: 150px;
+  height: auto;
+  
+  
+  
+
+  &:hover {			
+    transform: scale(1.05);
+    cursor: pointer;
+    background-color: #FFEEDD;
+    
+  }
+    
+    
+}
+.project h1{
+  position: relative;
+  padding-top: 5px;
+  text-align: center;
+  margin-top: 20px;
+}
+.project h1::after {
+  content: '';
+  position: absolute;
+  left: 20px; 
+  right: 20px; 
+  bottom: 0;
+  height: 1px; 
+  background-color: black; 
+}
+
+.progress-container {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .progress-text {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+
+  table {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  td {
+    text-align: center;
+  }
+
+  .project-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+
+  
+  .projectImg{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    float: right;
+
+  }
+  .projectImg:hover{
+    cursor: pointer;
+    transform: scale(1.25);
+  }
+  
+  .projectButton{
+    display: none;
+    position: absolute;
+    
+    
+    
+  }
+  
+  .project:hover .projectButton{
+    display:contents;
+    
+  }
+
