@@ -9,11 +9,14 @@ import { NewClassDialogComponent } from '../dialogs/new-class-dialog/new-class-d
 import { ProjectsService } from '../../../../../services/academic-services/projects.service';
 import { ClassTasksService } from '../../../../../services/academic-services/class-tasks.service';
 import { Project } from '../../../../../interfaces/academic-interfaces/project';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { NewProjectDialogComponent } from '../dialogs/new-project-dialog/new-project-dialog.component';
+import { UpdateProjectDialogComponent } from '../dialogs/update-project-dialog/update-project-dialog.component';
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [MatSelectModule,CommonModule,FormsModule],
+  imports: [MatSelectModule,CommonModule,FormsModule,MatProgressBarModule],
   template: `
     <div class="menu-container">
 
@@ -37,9 +40,7 @@ import { Project } from '../../../../../interfaces/academic-interfaces/project';
         <button>
         <img [src]="filterSVG" alt="filter" ><span>Filter</span>
         </button>
-        <button (click)="deleteProject()">
-        <img [src]="deleteSVG" alt="delete" ><span>Delete Project</span>
-        </button>
+        
       </div>
 
 
@@ -51,10 +52,34 @@ import { Project } from '../../../../../interfaces/academic-interfaces/project';
 
           <div *ngFor="let p of selectedClassProjects">
             <div class="project">
-              <h1>{{p.title}}</h1>
-              <h3>{{p.startDate}}</h3>
-              <h3>{{p.finishDate}}</h3>
               
+              <button (click)="openUpdateProjectDialog(p)" class="projectButton"><span><img class="projectImg" [src]="updateSVG"></span></button>
+              <button (click)="deleteProject(p.id)" class="projectButton"><span><img class="projectImg" [src]="deleteSVG"></span></button>
+              <h1>{{p.title}}</h1>
+              <div class="project-content">
+              
+                <div *ngIf="projectTasks[p.id]" class="progress-container">
+                  <div class="progress-text">
+                    {{ getCompletionPercentage(projectTasks[p.id]).toFixed(0) }}%
+                  </div>
+                  <mat-progress-bar mode="determinate" [value]="getCompletionPercentage(projectTasks[p.id])"></mat-progress-bar>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Started</th>
+                      <th>Due</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ p.startDate | date:'dd/MM/yyyy' }}</td>
+                      <td>{{ p.finishDate | date:'dd/MM/yyyy' }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
             </div>
 
@@ -80,7 +105,9 @@ export class ProjectComponent {
   plusSVG = "/assets/plus.svg"
   filterSVG = "/assets/filter.svg";
   deleteSVG = "/assets/delete.svg";
-  labelSVG = "/assets/label.svg"
+  labelSVG = "/assets/label.svg";
+  updateSVG = "/assets/settings.svg";
+
 
   constructor(private classService:ClassesService,private projectService:ProjectsService,private taskService:ClassTasksService,public dialog:MatDialog){
 
@@ -108,6 +135,7 @@ export class ProjectComponent {
       this.selectedClassProjects = await this.projectService.getAllProjectsByClass(this.selectedClassId);
       for (const project of this.selectedClassProjects) {
         this.projectTasks[project.id] = await this.tryTasks(project.id);
+        console.log(this.projectTasks);
       }
     } catch (error) {
       console.error('Error loading tasks:', error);
@@ -132,14 +160,14 @@ export class ProjectComponent {
   }
 
   openProjectDialog(){
-    const dialogRef = this.dialog.open(NewClassDialogComponent, {
+    const dialogRef = this.dialog.open(NewProjectDialogComponent, {
       width: '500px', 
-      data: {} 
+      data: {class_id : this.selectedClassId} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      //this.test();
+      this.loadProjectsAndTasks();
     });
   }
   openLabelsDialog(){
@@ -154,7 +182,31 @@ export class ProjectComponent {
     });
   }
 
-  async deleteProject(){
+  async deleteProject(id:string){
+
+  }
+
+  getCompletionPercentage(tasks: ClassTask[]): number {
+    if(tasks.length === 0)
+    {
+      return 0;
+    }
+    const totalPercentage = tasks.reduce((sum, task) => sum + task.completion, 0);
+    return totalPercentage / tasks.length;
+  }
+
+  openUpdateProjectDialog(p:Project){
+    console.log(p);
+    p.class_id = this.selectedClassId;
+    const dialogRef = this.dialog.open(UpdateProjectDialogComponent, {
+      width: '500px',
+      data : p
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.loadProjectsAndTasks();
+    });
 
   }
 

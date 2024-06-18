@@ -42,10 +42,8 @@ export class ProjectsService {
         id: record['id'],
         title: record['Title'],
         class_id: record['Class_I'],
-        Description: record['Description'],
         startDate: record['StartDate'],
-        finishDate: record['FinishDate'],
-        completion : record['CompletionPercentage']
+        finishDate: record['FinishDate']
       };
     }));
   
@@ -67,15 +65,22 @@ export class ProjectsService {
         id: record['id'],
         title: record['Title'],
         class_id: record['Class_I'],
-        Description: record['Description'],
         startDate: record['StartDate'],
-        finishDate: record['FinishDate'],
-        completion : record['CompletionPercentage']
+        finishDate: record['FinishDate']
       };
     }));
   
     console.log(projects)
     return projects;
+  }
+
+  async createProject(data:any){
+
+    const rec = await this.pb.collection("Projects").create(data);
+  }
+
+  async updateProject(id:string, data:any){
+    const rec = await this.pb.collection("Projects").update(id,data);
   }
 
 

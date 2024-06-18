@@ -3,7 +3,6 @@ export interface Project {
     title : string,
     class_id : string,
     startDate : Date,
-    finishDate : Date,
-    completion : number
+    finishDate : Date
 
 }

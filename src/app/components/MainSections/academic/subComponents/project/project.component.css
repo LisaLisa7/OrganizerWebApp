@@ -80,8 +80,9 @@ mat-label{
   transition: .15s ease;
   
   padding: 5% 5% 15% 5%;
-  min-height: 250px;
+  min-height: 150px;
   height: auto;
+  
   
   
 
@@ -98,6 +99,7 @@ mat-label{
   position: relative;
   padding-top: 5px;
   text-align: center;
+  margin-top: 20px;
 }
 .project h1::after {
   content: '';
@@ -108,4 +110,69 @@ mat-label{
   height: 1px; 
   background-color: black; 
 }
+
+.progress-container {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .progress-text {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+
+  table {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  td {
+    text-align: center;
+  }
+
+  .project-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+
+  
+  .projectImg{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    float: right;
+
+  }
+  .projectImg:hover{
+    cursor: pointer;
+    transform: scale(1.25);
+  }
+  
+  .projectButton{
+    display: none;
+    position: absolute;
+    
+    
+    
+  }
+  
+  .project:hover .projectButton{
+    display:contents;
+    
+  }
 
