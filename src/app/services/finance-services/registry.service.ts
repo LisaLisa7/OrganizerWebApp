@@ -60,11 +60,10 @@ export class RegistryService {
     dayBefore.setDate(currentDate.getDate() - 1);
 
     const day = dayBefore.getDate().toString().padStart(2, '0');
-    const month = (dayBefore.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 because getMonth() returns zero-based index
+    const month = (dayBefore.getMonth() + 1).toString().padStart(2, '0'); 
     const year = dayBefore.getFullYear();
 
     const formattedDate = day + '-' + month + '-' + year;
-    //console.log(formattedDate); // Output: day-month-year
 
     return formattedDate;
   }
@@ -80,17 +79,10 @@ export class RegistryService {
     let picUrl = "";
 
     const entries: registryEntry[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
-      
-      //console.log(this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'}));
-      //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
-      //const firstFilename = record['Pic']; // Assuming 'Pic' is an array of filenames
-      //const url = this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'})
-      
+            
       
     if(record['Pictogram_Id'] != "")
       { picUrl = await this.getPicById(record['Pictogram_Id']);
-        console.log("BOMBAAAAAAAAAAAAAAA");
       }
       
       let date = record['Date'];
@@ -165,24 +157,13 @@ export class RegistryService {
     const today = this.formatData(currentDate);
 
     const filterString = `Date >= "${today}" && Date <= "${today} 23:59:59 " && Type != "Savings-" && Type != "Savings+"`
-    console.log(filterString)
-    //console.log(filterString);
-
     const resultList = await this.pb.collection('Registry').getList(1, 4, {sort: '-Date',
       filter: filterString,requestKey: null 
   });
-  console.log(resultList)
   const entries: registryEntry[] = await Promise.all(resultList.items.map(async (record: { [key: string]: any }) => {
-      
-    //console.log(this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'}));
-    //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
-    //const firstFilename = record['Pic']; // Assuming 'Pic' is an array of filenames
-    //const url = this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'})
-    
+          
     if(record['Pictogram_Id'] != "")
     { picUrl = await this.getPicById(record['Pictogram_Id']);
-      console.log("BOMBAAAAAAAAAAAAAAA");
     }
     
 
@@ -198,7 +179,7 @@ export class RegistryService {
     };
   }));
 
-    console.log(entries)
+    //console.log(entries)
     return entries;
     
   }
@@ -213,7 +194,7 @@ export class RegistryService {
 
     
     const filterString = `Date >= "${yesterday} 00:00:00" && Date < "${yesterday} 23:59:59"`
-    console.log(filterString);
+    //console.log(filterString);
     const resultList = await this.pb.collection('Registry').getList(1, 4, {
       filter: filterString,requestKey: null 
   });
@@ -227,7 +208,6 @@ export class RegistryService {
    
     if(record['Pictogram_Id'] != "")
       { picUrl = await this.getPicById(record['Pictogram_Id']);
-        console.log("BOMBAAAAAAAAAAAAAAA");
       }
 
     return {
@@ -264,7 +244,7 @@ export class RegistryService {
     }
 
 
-    console.log(resultList)
+    //console.log(resultList)
 
     const entries: registryEntry[] = await Promise.all(resultList.items.map(async (record: { [key: string]: any }) => {
       
@@ -276,7 +256,6 @@ export class RegistryService {
       
     if(record['Pictogram_Id'] != "")
       { picUrl = await this.getPicById(record['Pictogram_Id']);
-        console.log("BOMBAAAAAAAAAAAAAAA");
       }
       
 
@@ -307,7 +286,7 @@ export class RegistryService {
   async getEntriesByMonth():Promise<registryEntry[]>{
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth() + 1; // January is 0, so we add 1
+    const currentMonth = currentDate.getMonth() + 1; 
     
     const lastDayOfMonth = new Date(currentYear, currentMonth, 0).getDate() +1;
     //console.log(lastDayOfMonth);
@@ -322,7 +301,6 @@ export class RegistryService {
     });
     
 
-    // Assuming records is an array of objects with the structure defined in registryEntry
     const entries: registryEntry[] = records.map((record: { [key: string]: any }) => ({
       Id: record['id'],
       Date: record['Date'],
@@ -362,7 +340,6 @@ export class RegistryService {
     });
     
 
-    // Assuming records is an array of objects with the structure defined in registryEntry
     const entries: registryEntry[] = records.map((record: { [key: string]: any }) => ({
       Id: record['id'],
       Date: record['Date'],
@@ -403,15 +380,9 @@ async getAllSavings(){
 
   const entries: registryEntry[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
     
-    //console.log(this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'}));
-    //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
-    //const firstFilename = record['Pic']; // Assuming 'Pic' is an array of filenames
-    //const url = this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'})
     
     if(record['Pictogram_Id'] != "")
       { picUrl = await this.getPicById(record['Pictogram_Id']);
-        console.log("BOMBAAAAAAAAAAAAAAA");
       }
 
 

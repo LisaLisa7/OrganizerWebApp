@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase'
-import { registryEntry } from '../../interfaces/finance-interfaces/registryEntry';
 import { BehaviorSubject } from 'rxjs';
-import { Summary } from '../../interfaces/finance-interfaces/summary';
 import { recurringEntry } from '../../interfaces/finance-interfaces/recurringEntry';
 
 @Injectable({
@@ -47,10 +45,10 @@ export class RecurringService {
     const currentDate = new Date();
     //console.log(currentDate)
     const day = currentDate.getDate().toString().padStart(2, '0');
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 because getMonth() returns zero-based index
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); 
     const year = currentDate.getFullYear();
     const formattedDate = day + '-' + month + '-' + year;
-    //console.log(formattedDate); // Output: day-month-year
+    //console.log(formattedDate); 
 
     return formattedDate;
   }
@@ -59,15 +57,15 @@ export class RecurringService {
   async getEntriesByMonth():Promise<recurringEntry[]>{
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth() + 1; // January is 0, so we add 1
+    const currentMonth = currentDate.getMonth() + 1; 
     const currentDay = currentDate.getDate() ;
 
     
     const lastDayOfMonth = new Date(currentYear, currentMonth, 0).getDate();
-    console.log(lastDayOfMonth);
+    //console.log(lastDayOfMonth);
 
 
-    const filterString = `Date >= "${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')} 00:00:00" && Date <= "${currentYear}-${currentMonth.toString().padStart(2, '0')}-${lastDayOfMonth} 23:59:59"`
+    const filterString = `StartDate >= "${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')} 00:00:00" && StartDate <= "${currentYear}-${currentMonth.toString().padStart(2, '0')}-${lastDayOfMonth} 23:59:59"`
     //filter: `Date >= "${currentYear}-${currentDay.toString().padStart(2, '0')}-${currentMonth.toString().padStart(2, '0')} 00:00:00" && Date <= "${currentYear}-${lastDayOfMonth}-${currentMonth.toString().padStart(2, '0')} 23:59:59"`
     
     const records = await this.pb.collection('RecurringEntries').getFullList({
@@ -81,20 +79,21 @@ export class RecurringService {
     
     
     
-    console.log("aici ar trebui i guess");
-    console.log('-------------------')
-    console.log(currentDay)
+    //console.log("aici ar trebui i guess");
+    //console.log('-------------------')
+    //console.log(currentDay)
     //console.log(`Date >= "${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}" && Date <= "${currentYear}-${currentMonth.toString().padStart(2, '0')}-${lastDayOfMonth}"`)
     //console.log(`Date >= "${currentYear}-${currentDay.toString().padStart(2, '0')}-${currentMonth.toString().padStart(2, '0')}" && Date <= "${currentYear}-${lastDayOfMonth}-${currentMonth.toString().padStart(2, '0')}"`)
-    console.log(filterString)
-    console.log(records)
-    console.log('-------------------')
+    //console.log(filterString)
+    //console.log(records)
+    //console.log('-------------------')
 
-    // Assuming records is an array of objects with the structure defined in registryEntry
     const entries: recurringEntry[] = records.map((record: { [key: string]: any }) => ({
         Id: record['id'],
         Description: record['Description'],
-        Date : record['Date'],
+        StartDate : record['StartDate'],
+        EndDate : record['EndDate'],
+        LastExecuted : record['LastExecuted'],
         Pictogram: record['Pictogram_Id'],
         Sum: record['Sum'],
         Type: record['Type'],
@@ -104,9 +103,9 @@ export class RecurringService {
 
     }));
 
-    console.log("AICIIIIIIIIIIIIIII")
-    console.log(entries);
-    console.log("AICIIIIIIIIIIIIIII")
+    //console.log("AICIIIIIIIIIIIIIII")
+    //console.log(entries);
+    //console.log("AICIIIIIIIIIIIIIII")
 
     for (let i = 0; i < entries.length; i++) {
       const entry = entries[i];
@@ -128,7 +127,7 @@ export class RecurringService {
       }
 
 
-      console.log(entry);
+      //console.log(entry);
     }
 
 
@@ -168,8 +167,10 @@ export class RecurringService {
       return {
         Id: record['id'],
         Description: record['Description'],
-        Pictogram: picUrl,
-        Date : record['Date'],
+        StartDate : record['StartDate'],
+        EndDate : record['EndDate'],
+        LastExecuted : record['LastExecuted'],
+        Pictogram: record['Pictogram_Id'],
         Sum: record['Sum'],
         Type: record['Type'],
         Repeat: record['Repeat'],
@@ -191,6 +192,83 @@ export class RecurringService {
   }
   
 
+  async handleRecurringEvents(entries:recurringEntry[]){
+
+    const currentDay = new Date();
+
+    entries.forEach( (entry :any) => {
+
+            let shouldTakePlace = false;
+            if(entry.Repeat ===`Daily`)
+            {
+              console.log("Daily la handle")
+              console.log(this.isSameDay(currentDay,entry.LastExecuted));
+              shouldTakePlace = !this.isSameDay(currentDay,entry.LastExecuted);
+              
+            } else if(entry.Repeat ===`Weekly`){
+
+              console.log("Weekly la handle")
+
+            } else if(entry.Repeat ===`Monthly`){
+
+
+              console.log("Monthly la handle")
+
+              const lastExecutedDate = new Date(entry.LastExecuted);
+
+            }
+            if(shouldTakePlace)
+            {
+              this.executeRecurring(entry);
+              this.updateLastExecuted(entry.Id,currentDay);
+              
+            }
+            
+          });
+  }
+
+executeRecurring(entry:any){
+
+  
+  console.log("ok")
+}
+
+async updateLastExecuted(id:string,entry:any){
+
+  console.log("cum o ajuns aici ");
+  let formatedDate = this.formatData(new Date())
+
+  let updateBody = {"LastExecuted" : formatedDate};
+  console.log(updateBody);
+  await this.pb.collection("RecurringEntries").update(id,updateBody);
+
+}
+
+isSameDay(date2:any,date1:any):boolean{
+
+  //console.log(date1);
+  let date = new Date(date1.toString());
+  return date.getFullYear() === date2.getFullYear() &&
+           date.getMonth() === date2.getMonth() &&
+           date.getDate() === date2.getDate();
+
+}
+
+private subDays(date: Date, days: number): Date {
+  const result = new Date(date);
+  result.setDate(result.getDate() - days);
+  return result;
+}
+
+private subWeeks(date: Date, weeks: number): Date {
+  return this.subDays(date, weeks * 7);
+}
+
+private subMonths(date: Date, months: number): Date {
+  const result = new Date(date);
+  result.setMonth(result.getMonth() - months);
+  return result;
+}
 
 async createRecord(data:any){
   

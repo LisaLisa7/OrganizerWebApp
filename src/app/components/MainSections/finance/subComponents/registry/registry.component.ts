@@ -17,7 +17,6 @@ import { SavingsEntryComponent } from '../entries/savings-entry/savings-entry.co
 import { SavingsService } from '../../../../../services/finance-services/savings.service';
 import { SeeAllDialogComponent } from '../dialogs/see-all-dialog/see-all-dialog.component';
 
-
 @Component({
   selector: 'app-registry',
   standalone: true,
@@ -63,7 +62,7 @@ import { SeeAllDialogComponent } from '../dialogs/see-all-dialog/see-all-dialog.
               <tr *ngFor="let r of recurringEntries">
                 <td>{{r.Description}}</td>
                 <td>{{r.Sum}}</td>
-                <td>{{r.Date}}</td>
+                <td>{{r.StartDate}}</td>
 
 
 
@@ -139,7 +138,8 @@ export class RegistryComponent {
 
   async loadRecurring(){
     try {
-      this.recurringEntries = await this.recurringService.getEntriesByMonth();
+      this.recurringEntries = await this.recurringService.getAllEntries();
+      await this.recurringService.handleRecurringEvents(this.recurringEntries);
       
       //console.log(this.recurringEntries);
       //console.log(this.entries2)

@@ -15,6 +15,8 @@ import { RecurringService } from '../../../../../../services/finance-services/re
   standalone: true,
   imports: [CommonModule,DatePipe],
   template: `
+    <div *ngIf="this.entriesToday.length!=0; else noEntriesTodayTemplate">
+      
       <table>
         <thead>
         <tr>
@@ -26,22 +28,29 @@ import { RecurringService } from '../../../../../../services/finance-services/re
           <th></th>
         </tr>
         </thead>
-      <tbody>
-        <tr *ngFor="let entry of entriesToday" [ngClass]="{'expense-entry': entry.Type === 'Expenses', 'income-entry': entry.Type === 'Income'}">
-          <td class="td"><img *ngIf="entry.Pictogram" [src]="entry.Pictogram"></td>
-          
-          <td class="td">{{ entry.Description}}</td>
-          <td class="td" >{{ entry.Type === 'Expenses' ? '-' : '+' }}{{ entry.Sum }}</td>
-          <td class="td">{{entry.Date | date:' HH:mm':'UTC'}}</td>
-          <td class="td"><div class="separator"></div></td>
-          <td class="td">
-            <button (click)="deleteEntry(entry)">Delete</button>
-            <button (click)="modifyEntry(entry)">Modify</button>
-            <button>Details</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody>
+          <tr *ngFor="let entry of entriesToday" [ngClass]="{'expense-entry': entry.Type === 'Expenses', 'income-entry': entry.Type === 'Income'}">
+            <td class="td"><img *ngIf="entry.Pictogram" [src]="entry.Pictogram"></td>
+            
+            <td class="td">{{ entry.Description}}</td>
+            <td class="td" >{{ entry.Type === 'Expenses' ? '-' : '+' }}{{ entry.Sum }}</td>
+            <td class="td">{{entry.Date | date:' HH:mm':'UTC'}}</td>
+            <td class="td"><div class="separator"></div></td>
+            <td class="td">
+              <button (click)="deleteEntry(entry)">Delete</button>
+              <button (click)="modifyEntry(entry)">Modify</button>
+              <button>Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noEntriesTodayTemplate>
+        <div>
+          <h1>No entries for today!</h1>
+        </div>
+    </ng-template>
     
   `,
   styleUrl: './registry-entry.component.css'

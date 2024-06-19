@@ -108,16 +108,16 @@
 
 .container-up
 {
-    flex: 1;
+    flex: 1/2;
     /*border: 1px solid #000; /* */
 }
 
 .container-down{
-    flex: 1/2;
+    flex: 1;
    /*border: 1px solid #000; /*  */
     display: flex;
     flex-direction: row;
-    /*align-items:flex-start /* Align items vertically center */
+    /*align-items:flex-start  */
 }
 
 .container-down-left{
@@ -128,6 +128,7 @@
 
 .container-down-right{
     flex : 1 ;
+    
     
     /*border: 1px solid #000; /**/
 

@@ -37,36 +37,16 @@ import { SummaryComponent } from '../summary/summary.component';
 
       </div>
 
-      <div class="container-right">
-      <h1>Envelope challange</h1>
-      <div class="envelope-container">
-
-      <img *ngFor="let envelope of envelopes; let i = index" [src]="envelope.pic" class="envelope-image" (click)="changePic(i)">
-      </div>
-
-      </div>
     </div>
   `,
     styleUrl: './savings.component.css',
     imports: [CommonModule, SavingsEntryComponent,SummaryComponent]
 })
 export class SavingsComponent {
-
-  readonly envelopeOpenPic = "/assets/env.svg";
-  readonly envelopeClosedPic = "/assets/env2.svg";
-  nrEnvelope = 100;
-  envelopes: any[] = [];
-  envelopeIndices: number[] = Array.from({ length: this.nrEnvelope }, (_, index) => index);
-
+  
   summaryList : Summary[] = [];
 
-
-  changePic(index: number): void {
-    this.envelopes[index].pic = this.envelopeOpenPic;
-  }
-
   constructor(public dialog: MatDialog, private registryService: RegistryService){
-    this.envelopes = Array.from({ length: this.nrEnvelope }, () => ({ pic: this.envelopeClosedPic }));
     this.loadData();
 
   }
