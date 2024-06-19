@@ -7,6 +7,15 @@
     flex-wrap: wrap;
 
     justify-content: space-between;
+    flex : 1/2;
+}
+
+.contentContainer{
+  width: 100vw;
+  height: calc(100vh - 70px);
+  
+  display: flex;
+  flex-direction: column;
 }
 
 mat-form-field{
@@ -59,16 +68,17 @@ mat-label{
 
 .mainContent{
     background-color: #F8F7FF;
-    width: 100vw;
-    height: 100vh;
+    margin-left: 35px;
+    flex:1;
+    
 }
 
-.projectsContainer{
+.tasksContainer{
     margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
     grid-gap: 20px; 
-    margin-left: 35px;
+    
 }
 
 .project {
@@ -149,30 +159,4 @@ mat-label{
     justify-content: space-between;
   }
 
-
-  
-  .projectImg{
-    width: 20px;
-    height: 20px;
-    margin-left: 5px;
-    float: right;
-
-  }
-  .projectImg:hover{
-    cursor: pointer;
-    transform: scale(1.25);
-  }
-  
-  .projectButton{
-    display: none;
-    position: absolute;
-    
-    
-    
-  }
-  
-  .project:hover .projectButton{
-    display:contents;
-    
-  }
 

@@ -6,7 +6,7 @@ export interface ClassTask {
     description : string,
     startDate : string,
     finishDate : string,
-    completion : number,
+    done : boolean,
     parentTask : string
 
 }

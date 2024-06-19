@@ -203,8 +203,11 @@ export class ProjectComponent {
     {
       return 0;
     }
-    const totalPercentage = tasks.reduce((sum, task) => sum + task.completion, 0);
-    return totalPercentage / tasks.length;
+    const totalPercentage = tasks.reduce((sum, task) => sum + (task.done ? 1 : 0), 0);
+    
+    console.log(totalPercentage + " " + tasks.length);
+    return totalPercentage / tasks.length * 100;
+    //return 0;
   }
 
   openUpdateProjectDialog(p:Project){

@@ -18,14 +18,14 @@ export class ProjectsService {
   async getProjectId(projectName : string)
   {
     let filterString = `Title = '${projectName}'`;
-    const record = await this.pb.collection("Projects").getFirstListItem(filterString)
+    const record = await this.pb.collection("Projects").getFirstListItem(filterString,{requestKey:null})
     return record.id;
 
   }
 
   async getAllProjectsNames(){
 
-    const records = await this.pb.collection("Projects").getFullList({fields:"Title"});
+    const records = await this.pb.collection("Projects").getFullList({fields:"Title",requestKey:null});
     //console.log(records);
     return records.map((record: { [key: string]: any }) => {
 

@@ -10,47 +10,51 @@ import { ClassTasksService } from '../../../../../services/academic-services/cla
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ConfirmationDialogService } from '../../../../../services/confirmation-dialog.service';
 import { ParentTaskComponent } from '../parent-task/parent-task.component';
+import { NewTaskDialogComponent } from '../dialogs/new-task-dialog/new-task-dialog.component';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-tasks-academic',
   standalone: true,
   imports: [MatSelectModule,CommonModule,FormsModule,MatProgressBarModule,ParentTaskComponent],
   template: `
-    <div class="menu-container">
+    <div class="contentContainer">
+      <div class="menu-container">
 
-      <mat-form-field>
-        <mat-label >Selected Project</mat-label>
-        <mat-select [(ngModel)]="selectedProject" (selectionChange)="onProjectChange($event.value)"
-        name="Status" >
-          @for (p of projects; track p){
-            <mat-option [value] = "p.value">{{p.viewValue}}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label >Selected Project</mat-label>
+          <mat-select [(ngModel)]="selectedProject" (selectionChange)="onProjectChange($event.value)"
+          name="Status" >
+            @for (p of projects; track p){
+              <mat-option [value] = "p.value">{{p.viewValue}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
 
-      <div class="button-Container">
-        <button >
-        <img [src]="plusSVG" alt="newBoard"><span>New Project</span>
-        </button>
-        <button >
-        <img [src]="labelSVG" alt="labels" ><span>Labels</span>
-        </button>
-        <button>
-        <img [src]="filterSVG" alt="filter" ><span>Filter</span>
-        </button>
+        <div class="button-Container">
+          <button (click)="openNewTaskDialog()" >
+          <img [src]="plusSVG" alt="newBoard"><span>New Task</span>
+          </button>
+          <button >
+          <img [src]="labelSVG" alt="labels" ><span>Labels</span>
+          </button>
+          <button>
+          <img [src]="filterSVG" alt="filter" ><span>Filter</span>
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="mainContent">
+      <div class="mainContent">
 
-      <div *ngIf="isLoading">Loading...</div>
-      <div *ngIf="!isLoading" class="projectsContainer">
-        <div *ngFor="let t of projectParentTasks">
-          <div class="task">
-            <app-parent-task [task]="t" [tasks]="projectTasks"></app-parent-task>
+        <div *ngIf="isLoading">Loading...</div>
+        <div *ngIf="!isLoading" class="projectsContainer">
+          <div *ngFor="let t of projectParentTasks">
+            <div class="tasks-container">
+              <app-parent-task [task]="t" [tasks]="projectTasks"></app-parent-task>
+            </div>
+
           </div>
 
         </div>
-
       </div>
     </div>
   `,
@@ -72,11 +76,45 @@ export class TasksAcademicComponent {
   deleteSVG = "/assets/delete.svg";
   labelSVG = "/assets/label.svg";
   updateSVG = "/assets/settings.svg";
+  
+  private unsubscribe$ = new Subject<void>();
 
 
   constructor(private classService:ClassesService,private projectService:ProjectsService,private taskService:ClassTasksService,private confirmService:ConfirmationDialogService,public dialog:MatDialog){
 
+    this.subscribeToEntryEvents();
   }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  subscribeToEntryEvents() {
+    this.taskService.entryAdded$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(() => {
+      this.loadData();
+      this.loadTasks();
+    });
+
+    this.taskService.entryDeleted$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(() => {
+      this.loadData();
+      this.loadTasks();
+    });
+
+    this.taskService.entryModified$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(() => {
+      this.loadData();
+      this.loadTasks();
+    });
+
+
+  }
+
 
   async ngOnInit(): Promise<void> {
     await this.loadData();
@@ -118,6 +156,20 @@ export class TasksAcademicComponent {
 
   getParentTasks(): ClassTask[] {
     return this.selectedProject ? this.projectTasks.filter(task => !task.parentTask) : [];
+  }
+
+  async openNewTaskDialog(){
+    const dialogRef = this.dialog.open(NewTaskDialogComponent, {
+      width: '500px', 
+      data: {project_id : this.selectedProjectId,
+             parent_task : undefined
+      } 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.loadTasks();
+    });
   }
 
   /*

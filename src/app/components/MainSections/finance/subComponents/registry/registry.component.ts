@@ -94,13 +94,7 @@ import { SeeAllDialogComponent } from '../dialogs/see-all-dialog/see-all-dialog.
 export class RegistryComponent {
 
   readonly entryButtonPath = "/assets/plus.svg";
-  /*
-  idk : Summary = {
-    "month" : "martie",
-    "sum" : 20
-  };
-  */
-
+  
   entriesCurrentMonth :registryEntry[] = [];
   idk : Summary[] = [];
   recurringEntries: recurringEntry[] = [];

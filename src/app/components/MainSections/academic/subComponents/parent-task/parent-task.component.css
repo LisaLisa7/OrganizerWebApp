@@ -4,13 +4,53 @@
     padding: 10px;
     border-radius: 5px;
   }
+
+  
   
   .task-header {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
   }
+
   
   .task-body {
     padding-left: 20px;
   }
+
+
+  
+  
+  .projectImg{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    float: left;
+
+  }
+  .projectImg:hover{
+    cursor: pointer;
+    transform: scale(1.25);
+  }
+  
+  .projectButton{
+    display: none;
+    position: absolute;
+    
+  }
+  
+  .task-body .projectButton{
+    display: none;
+    position: absolute;
+    
+  }
+  
+  .task-body:hover  > .projectButton{
+    display: contents;
+  }
+
+  .crossed-out {
+    text-decoration: line-through;
+  }
+
