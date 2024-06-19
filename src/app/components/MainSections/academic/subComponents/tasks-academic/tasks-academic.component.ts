@@ -46,13 +46,22 @@ import { Subject, takeUntil } from 'rxjs';
       <div class="mainContent">
 
         <div *ngIf="isLoading">Loading...</div>
-        <div *ngIf="!isLoading" class="projectsContainer">
-          <div *ngFor="let t of projectParentTasks">
-            <div class="tasks-container">
-              <app-parent-task [task]="t" [tasks]="projectTasks"></app-parent-task>
-            </div>
+        <div *ngIf="!isLoading" >
+          <div *ngIf="projectParentTasks.length>0; else noTasksTemplate" class="projectsContainer">
 
+            <div *ngFor="let t of projectParentTasks">
+              <div class="tasks-container">
+                <app-parent-task [task]="t" [tasks]="projectTasks"></app-parent-task>
+              </div>
+
+            </div>
           </div>
+
+          <ng-template #noTasksTemplate>
+          <div class="no-projects-message">
+            No tasks for this project yet.
+          </div>
+        </ng-template>
 
         </div>
       </div>

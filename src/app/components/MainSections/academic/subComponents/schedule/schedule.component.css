@@ -7,7 +7,7 @@
 }
 
 .containerUp{
-  margin-top: 20px;
+  margin-bottom: 30px;
   justify-content: center;
   display: flex;
   flex : 1/2;
@@ -15,12 +15,12 @@
 
 .containerUp button 
 {
+    height: 50px;
+    padding-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
     width: 200px;
-    margin: 20px;
-    background-color: white;
-    color: var(--primary-color);
-    border-color:var(--primary-color);
-    border-radius: 8px;
 }
 
 .containerUp button:hover{
@@ -28,8 +28,21 @@
   transform: scale(1.05);
 }
 
+.containerUp  button span{
+  display: inline-block;
+  padding-top: 9px;
+  padding-right: 30px;
+}
+
+.containerUp  button img{
+  float: left;
+  width: 30px; 
+  height: auto;
+}
+
 .scheduleContainer{
   flex:1;
+  
   margin-left: 35px;
   margin-right: 35px;
 }

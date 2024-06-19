@@ -49,8 +49,10 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
     <div class="mainContent">
 
       <div *ngIf="isLoading">Loading...</div>
-      <div *ngIf="!isLoading" class="projectsContainer">
+      <div *ngIf="!isLoading" >
+        
 
+        <div *ngIf="selectedClassProjects.length>0; else noProjectsTemplate" class="projectsContainer">
           <div *ngFor="let p of selectedClassProjects">
             <div class="project">
               
@@ -85,6 +87,13 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
             </div>
 
           </div>
+        </div>
+
+        <ng-template #noProjectsTemplate>
+          <div class="no-projects-message">
+            No projects for this class yet.
+          </div>
+        </ng-template>
 
       </div>
 

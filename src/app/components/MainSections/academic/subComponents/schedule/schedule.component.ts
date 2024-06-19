@@ -14,11 +14,11 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
   template: `
     <div class="contentContainer">
 
-    <h1>Data curenta // punem si saptamana maybe?</h1>
+    <h1 style="margin-top: 5px;">{{currentDay | date : "EEEE, MMMM d "}}</h1>
       <div class="containerUp">
         
-        <button (click)="openImportDialog()">Import Schedule</button>
-        <button (click)="openNewClassDialog()">New Class</button>
+        <button (click)="openImportDialog()"><img [src]="exportSVG" alt="newBoard"><span>Import Schedule</span></button>
+        <button (click)="openNewClassDialog()"><img [src]="plusSVG" alt="newBoard"><span>New Class</span></button>
       </div>
 
       <div class="scheduleContainer">
@@ -53,14 +53,19 @@ export class ScheduleComponent {
   classes : Class[] = [];
   deleteSVG = "/assets/delete.svg";
   updateSVG = "/assets/settings.svg";
+  plusSVG = "/assets/plus.svg"
+  exportSVG = "/assets/export.svg";
+  currentDay : Date;
 
   constructor(private classesService:ClassesService,private confirmService:ConfirmationDialogService,public dialog: MatDialog)
   {
+    this.currentDay = new Date();
     this.loadData();
   }
 
 
   async loadData(){
+    
     this.classes = await this.classesService.getAllClasses();
 
   }
@@ -82,6 +87,10 @@ export class ScheduleComponent {
       width: '500px',
       data : cls
     });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.loadData();
+    });
 
   }
 
@@ -89,6 +98,10 @@ export class ScheduleComponent {
 
     const dialogRef = this.dialog.open(NewClassDialogComponent, {
       width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.loadData();
     });
 
   }
