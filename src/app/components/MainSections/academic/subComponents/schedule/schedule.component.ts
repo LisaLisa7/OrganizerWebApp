@@ -19,6 +19,8 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
         
         <button (click)="openImportDialog()"><img [src]="exportSVG" alt="newBoard"><span>Import Schedule</span></button>
         <button (click)="openNewClassDialog()"><img [src]="plusSVG" alt="newBoard"><span>New Class</span></button>
+        <button (click)="clearSchedule()"><img [src]="deleteSVG" alt="newBoard"><span>Clear Schedule</span></button>
+
       </div>
 
       <div class="scheduleContainer">
@@ -30,6 +32,7 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
               
               <button (click)="openUpdateClassDialog(cls)" class="classButton"><span><img class="classImg" [src]="updateSVG"></span></button>
               <button (click)="deleteClass(cls.id)" class="classButton"><span><img class="classImg" [src]="deleteSVG"></span></button>
+              
 
               <h4>{{ cls.ClassName }}</h4>
               <p>Time: {{ cls.TimeInterval }}</p>
@@ -110,6 +113,17 @@ export class ScheduleComponent {
     const dialogRef = this.dialog.open(ImportScheduleDialogComponent, {
       width: '500px'
     });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.loadData();
+    });
+  }
+
+  async clearSchedule(){
+
+    await this.classesService.deleteAll(this.classes);
+    this.loadData();
+
   }
 
   async deleteClass(id:string){
@@ -126,6 +140,8 @@ export class ScheduleComponent {
     
 
   }
+
+  
 
 
 }

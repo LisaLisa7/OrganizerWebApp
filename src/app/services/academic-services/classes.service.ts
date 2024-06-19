@@ -20,7 +20,7 @@ export class ClassesService {
 
   async getAllClassesNames(){
 
-    const records = await this.pb.collection("Classes").getFullList({fields:"ClassName"});
+    const records = await this.pb.collection("Classes").getFullList({fields:"ClassName",filter:`Type != 'Course'`});
     //console.log(records);
     return records.map((record: { [key: string]: any }) => {
 
@@ -62,6 +62,14 @@ export class ClassesService {
 
   async deleteClass(id:string){
     await this.pb.collection('Classes').delete(id);
+  }
+
+  async deleteAll(classes : any){
+
+    for(const c of classes)
+    {
+      await this.deleteClass(c.id);
+    }
   }
   
 

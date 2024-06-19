@@ -157,9 +157,11 @@ export class TasksAcademicComponent {
 
     let projectNames = await this.projectService.getAllProjectsNames();
 
-    this.projects = projectNames.map(option => ({value:option,viewValue:option}));
-    this.selectedProject = this.projects[0].viewValue;
-    this.selectedProjectId = await this.projectService.getProjectId(this.selectedProject);
+    if(projectNames.length!=0){
+      this.projects = projectNames.map(option => ({value:option,viewValue:option}));
+      this.selectedProject = this.projects[0].viewValue;
+      this.selectedProjectId = await this.projectService.getProjectId(this.selectedProject);
+    }
 
   }
 

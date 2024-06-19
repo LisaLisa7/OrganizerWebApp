@@ -163,9 +163,12 @@ export class ProjectComponent {
 
     let classesNames = await this.classService.getAllClassesNames();
 
-    this.classes = classesNames.map(option => ({value:option,viewValue:option}));
-    this.selectedClass = this.classes[0].viewValue;
-    this.selectedClassId = await this.classService.getClassId(this.selectedClass);
+    if(classesNames.length !=0 )
+    {
+      this.classes = classesNames.map(option => ({value:option,viewValue:option}));
+      this.selectedClass = this.classes[0].viewValue;
+      this.selectedClassId = await this.classService.getClassId(this.selectedClass);
+    }
 
   }
 
