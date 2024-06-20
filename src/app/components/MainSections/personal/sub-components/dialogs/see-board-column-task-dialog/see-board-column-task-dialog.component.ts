@@ -143,6 +143,8 @@ export class SeeBoardColumnTaskDialogComponent {
         viewValue : label.Name
     }) );
 
+    
+
     console.log(this.labelOptions);
 
 

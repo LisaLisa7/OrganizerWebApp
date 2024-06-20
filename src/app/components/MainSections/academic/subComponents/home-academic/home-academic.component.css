@@ -1,0 +1,57 @@
+.pageContainer{
+
+    width: 100vw;
+    height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: row
+    
+}
+.container-1{
+
+    margin-left: 32px;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: rgb(207, 110, 110);
+    
+
+}
+
+.container-1-1{
+    flex-grow: 1;
+    background-color: rgb(184, 207, 32);
+
+}
+.container-1-2{
+    flex-grow: 1;
+    background-color: rgb(32, 172, 142);
+}
+
+
+.container-2{
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: aqua;
+}
+
+.container-2-1{
+    flex-grow: 1;
+    background-color: rgb(233, 156, 156);
+}
+
+.container-2-2{
+    flex-grow: 1;
+    background-color: rgb(63, 82, 52);
+}
+
+
+.container-3{
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: rgb(59, 12, 120);
+}

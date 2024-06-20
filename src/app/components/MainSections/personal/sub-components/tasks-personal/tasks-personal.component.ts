@@ -110,10 +110,8 @@ export class TasksPersonalComponent {
 
 
   async test(){
-    //this.selectedBoardColumns = await this.tasksService.getAllColumns("Default")
     
     let boardnames = await this.tasksService.getAllBoardsNames();
-    //this.boards = [];
     this.boards = boardnames.map(option => ({value:option,viewValue:option}));
     this.selectedBoard=this.boards[0].viewValue;
     this.selectedBoardId = await this.tasksService.getBoardId(this.selectedBoard);
@@ -141,6 +139,7 @@ export class TasksPersonalComponent {
   }
 
   async tryTasks(colId:string,boardId:string){
+    console.log("here");
     return await this.tasksService.getTasks(colId,boardId);
 
   }
@@ -148,8 +147,13 @@ export class TasksPersonalComponent {
   async loadColumnsAndTasks(): Promise<void> {
     try {
       this.selectedBoardColumns = await this.tasksService.getAllColumns(this.selectedBoard);
+      //console.log(this.selectedBoardColumns);
       for (const column of this.selectedBoardColumns) {
+        console.log(column);
         this.columnsTasks[column.Id] = await this.tryTasks(column.Id, column.Board_Id);
+
+        
+        console.log(this.columnsTasks[column.Id])
       }
     } catch (error) {
       console.error('Error loading columns and tasks:', error);

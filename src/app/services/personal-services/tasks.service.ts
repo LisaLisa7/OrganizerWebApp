@@ -81,14 +81,16 @@ export class TasksService {
   }
 
   async getLabelDetails(labelIds: string[]): Promise<TaskLabel[]> {
+    console.log(labelIds);
     const labels = await Promise.all(labelIds.map(async (id) => {
-      const record = await this.pb.collection("TaskLabel").getOne(id);
+      const record = await this.pb.collection("TaskLabel").getOne(id,{requestKey:null});
       return {
         Id : record['id'],
         Name: record['Name'],
         Color: record['Color']
       };
     }));
+    console.log(labels);
     return labels;
   }
 
@@ -113,7 +115,7 @@ export class TasksService {
     //console.log(filterString)
     const records = await this.pb.collection("BoardTask").getFullList({filter:filterString});
 
-    console.log(records);
+    //console.log(records);
     //console.log(records);
     const tasks: BoardTask[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
       const labelIds = record['Labels'];
@@ -164,14 +166,11 @@ export class TasksService {
     const givenDate = new Date(dateString);
     const currentDate = new Date();
 
-    // Convert both dates to UTC to avoid timezone issues
     const utcGivenDate = Date.UTC(givenDate.getFullYear(), givenDate.getMonth(), givenDate.getDate());
     const utcCurrentDate = Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
 
-    // Calculate the difference in milliseconds
     const differenceInMilliseconds = utcCurrentDate - utcGivenDate;
 
-    // Convert milliseconds to days
     const millisecondsPerDay = 24 * 60 * 60 * 1000;
     const differenceInDays = Math.floor(differenceInMilliseconds / millisecondsPerDay);
 
@@ -188,7 +187,7 @@ export class TasksService {
     //console.log(filterString);
 
 
-    const records = await this.pb.collection("BoardTask").getFullList({filter:filterString});
+    const records = await this.pb.collection("BoardTask").getFullList({filter:filterString,requestKey:null});
 
     //console.log(records);
     //console.log(records);
@@ -225,16 +224,19 @@ export class TasksService {
     //console.log(filterString);
 
 
-    const records = await this.pb.collection("BoardTask").getFullList({filter:filterString});
+    const records = await this.pb.collection("BoardTask").getFullList({filter:filterString,requestKey:null});
+
+    //console.log(records);
 
     //console.log(records);
     //console.log(records);
     const tasks: BoardTask[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
+      
       const labelIds = record['Labels'];
       const labels = await this.getLabelDetails(labelIds);
       const board = await this.getBoardNameById(record['Board_ID']);
       const intarziere = this.calculateOverdueDays(record['DueDate']);
-
+      
       //console.log(board);
   
       return {
@@ -247,7 +249,7 @@ export class TasksService {
         Created: record['created'],
         Updated: record['updated'],
         Done: record['Done'],
-        Labels: labels 
+        Labels: labels
       };
     }));
   

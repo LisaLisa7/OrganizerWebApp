@@ -33,8 +33,33 @@ export class ClassesService {
   async getAllClasses(){
     const records = await this.pb.collection("Classes").getFullList();
 
-    console.log(records);
     //console.log(records);
+    //console.log(records);
+    const classes: Class[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
+  
+      return {
+        id : record['id'],
+        ClassName : record['ClassName'],
+        TimeInterval : record['TimeInterval'],
+        Day : record['Day'],
+        Type : record['Type'],
+        Repeat : record['Repeat'],
+        Location : record['Location']
+      };
+    }));
+  
+    //console.log(classes)
+    return classes;
+  }
+
+  async getAllClassesToday(){
+
+    const dayName = new Date().toLocaleDateString('en-US',{weekday:'long'});
+
+    const filterString = `Day = '${dayName}'`
+    console.log(filterString);
+
+    const records = await this.pb.collection("Classes").getFullList({filter:filterString,requestKey:null});
     const classes: Class[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
   
       return {
@@ -50,7 +75,47 @@ export class ClassesService {
   
     console.log(classes)
     return classes;
+
+
   }
+
+  async getAllRemainingClasses(){
+
+    const dayName = new Date().toLocaleDateString('en-US',{weekday:'long'});
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+    const currentDayIndex = new Date().getDay()-1;
+
+    const filterString = `Day != '${dayName}'`
+    console.log(filterString);
+
+    const records = await this.pb.collection("Classes").getFullList({filter:filterString,requestKey:null});
+    const classes: Class[] = await Promise.all(records.map(async (record: { [key: string]: any }) => {
+      return {
+        id : record['id'],
+        ClassName : record['ClassName'],
+        TimeInterval : record['TimeInterval'],
+        Day : record['Day'],
+        Type : record['Type'],
+        Repeat : record['Repeat'],
+        Location : record['Location']
+      };
+    }));
+
+    const filteredClasses = classes.filter(c => {
+      const index = days.indexOf(c['Day'])
+      console.log(index + " > " +currentDayIndex )
+      return index>currentDayIndex;
+
+    })
+  
+    console.log(filteredClasses)
+    return filteredClasses;
+
+
+  }
+
+
 
   async createClass(data:any){
     await this.pb.collection('Classes').create(data);
