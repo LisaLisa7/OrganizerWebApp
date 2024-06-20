@@ -47,14 +47,14 @@ import { SeeAllDialogComponent } from '../dialogs/see-all-dialog/see-all-dialog.
 
         <div class="container-down-left">
 
-          <h1>Planned this month<span><button class="seeAllButton" style="display: none;">See all</button></span></h1>
-          <h3></h3>
+          <h1>Recurring events</h1>
+          
           <table>
             <thead>
               <tr>
                 <th>Title</th>
                 <th>Sum</th>
-                <th>Time remaining</th>
+                <th>Repeat</th>
 
               </tr>
             </thead>
@@ -62,7 +62,9 @@ import { SeeAllDialogComponent } from '../dialogs/see-all-dialog/see-all-dialog.
               <tr *ngFor="let r of recurringEntries">
                 <td>{{r.Description}}</td>
                 <td>{{r.Sum}}</td>
-                <td>{{r.StartDate}}</td>
+                <td>{{r.Repeat}}
+                  <span *ngIf="r.Repeat == 'Monthly'"> on {{ r.MonthDay }}</span>
+                </td>
 
 
 
@@ -77,8 +79,8 @@ import { SeeAllDialogComponent } from '../dialogs/see-all-dialog/see-all-dialog.
         </div>
 
         <div class="container-down-right">
-          <h1>Recent transactions<span><button class="seeAllButton" (click)="openDialogAllEntries()">See all</button></span></h1> 
-          <h3>Today (<span>{{today}}</span>)  </h3>
+          <h1>Recent transactions</h1> 
+          <h3>Today (<span>{{today}}</span>)<span><button class="seeAllButton" (click)="openDialogAllEntries()">See all</button></span>  </h3>
           <app-registry-entry ></app-registry-entry> 
 
         </div>
@@ -218,9 +220,6 @@ export class RegistryComponent {
 
   }
 
-
-
-  
   openDialogRecurringEntry(): void {
 
     //this.registryService.getEntriesByMonth();
@@ -232,6 +231,7 @@ export class RegistryComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed with result:', result);
       this.registryService.updateEntries();
+      this.loadRecurring();
 
     });
   }

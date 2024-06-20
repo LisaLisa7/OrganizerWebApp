@@ -23,6 +23,14 @@ export class ProjectsService {
 
   }
 
+  async getProjectName(id:string)
+  {
+    const rec = await this.pb.collection("Projects").getOne(id,{requestKey:null});
+    //console.log("???")
+    //console.log(rec['Title']);
+    return rec['Title'];
+  }
+
   async getAllProjectsNames(){
 
     const records = await this.pb.collection("Projects").getFullList({fields:"Title",requestKey:null});
@@ -77,6 +85,47 @@ export class ProjectsService {
     return projects;
   }
 
+  getCurrentDate(){
+    const currentDate = new Date();
+    //console.log(currentDate)
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); 
+    const year = currentDate.getFullYear();
+    const formattedDate = year +'-' + month + '-'+day;
+    //console.log(formattedDate); 
+
+    return formattedDate;
+  }
+
+
+  async getDueProjects(){
+
+
+    const date = this.getCurrentDate()
+    let filterString = `FinishDate > '${date}' `;
+
+    const records = await this.pb.collection("Projects").getList(1, 4,{filter:filterString,requestKey:null});
+
+    console.log(records);
+    //console.log(records);
+    const projects: Project[] = await Promise.all(records.items.map(async (record: { [key: string]: any }) => {
+  
+      return {
+        id: record['id'],
+        title: record['Title'],
+        class_id: record['Class_I'],
+        startDate: record['StartDate'],
+        finishDate: record['FinishDate']
+      };
+    }));
+
+
+  
+    console.log(projects)
+    return projects;
+
+  }
+
   async createProject(data:any){
 
     const rec = await this.pb.collection("Projects").create(data);
@@ -89,6 +138,9 @@ export class ProjectsService {
   async deleteProject(id:string){
     const rec = await this.pb.collection("Projects").delete(id);
   }
+
+
+
 
 
 

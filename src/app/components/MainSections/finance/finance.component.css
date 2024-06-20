@@ -19,18 +19,18 @@ mat-sidenav{
 }
 
 .toggle-button{
-    opacity: 0.2; /* Adjust opacity as needed */
+    opacity: 0.2; 
 }
 
 .toggle-button:hover{
-    opacity: 1; /* Adjust opacity as needed */
+    opacity: 1; 
     cursor: pointer;
 }
 
 .button-container button {
     width: 100%;
     display: block;
-    padding: 16px; /* Adjust the padding as needed */
+    padding: 16px; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
     
 }
@@ -42,8 +42,8 @@ mat-sidenav{
 
 .button-container button img {
     float: left;
-    width: 30px; /* Adjust as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 30px; 
+    height: auto; 
 }
 
 

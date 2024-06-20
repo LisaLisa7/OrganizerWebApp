@@ -54,23 +54,6 @@ import { CommonModule } from '@angular/common';
                 (ngModelChange)="formData.Sum = $event" name="Sum" required>
         </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Date</mat-label>
-          <input matInput type="date" [ngModel]="entryData ? this.dateBuff : formData.Date"
-              (ngModelChange)="dateBuff = $event"  name="Date" required>
-        </mat-form-field>
-
-        <mat-form-field>
-        <input matInput type="time" placeholder="Time" [ngModel]="entryData ? this.timeBuff :timeBuff" 
-        (ngModelChange)="this.timeBuff = $event" name="time" required>
-        </mat-form-field>
-
-
-        <mat-form-field>
-          <mat-label>Every</mat-label>
-          <input matInput type="number" placeholder="Every" [ngModel]="entryData ? entryData.Every : formData.Every" 
-                (ngModelChange)="formData.Every = $event" name="Every" required>
-        </mat-form-field>
 
         <mat-form-field>
           <mat-label>Repeat</mat-label>
@@ -82,18 +65,8 @@ import { CommonModule } from '@angular/common';
           </mat-select>
         </mat-form-field>
 
-          <!-- Day input field for weekly -->
-        <mat-form-field *ngIf="formData.Repeat === 'Weeks'">
-          <mat-label for="weekday">Day of the Week</mat-label>
-          <mat-select id="weekday" name="weekday" [(ngModel)]="formData.Weekday" required>
-            <mat-option value="Monday">Monday</mat-option>
-            <mat-option value="Tuesday">Tuesday</mat-option>
-            <!-- Add other options for weekdays -->
-          </mat-select>
-        </mat-form-field>
-
-        <!-- Day input field for monthly -->
-        <mat-form-field *ngIf="formData.Repeat === 'Months'">
+        
+        <mat-form-field *ngIf="formData.Repeat === 'Monthly'">
           <mat-label for="monthday">Day of the Month</mat-label>
           <input matInput type="number" id="monthday" name="monthday" [(ngModel)]="formData.MonthDay" required>
         </mat-form-field>
@@ -101,11 +74,11 @@ import { CommonModule } from '@angular/common';
 
 
         
-        <mat-label [class.selected-label]="formData.Pictogram">
+        <mat-label [class.selected-label]="formData.Pictogram_Id">
           {{ (selectedPic )? 'Pictogram selected!' : 'Select a pictogram!' }}
         </mat-label>
-        <div *ngIf="selectedPic || (entryData ?  entryData.Pictogram : null)">
-        <img [src]="selectedPic ? selectedPic : entryData.Pictogram" alt="Selected Pictogram" class="selectedImg">
+        <div *ngIf="selectedPic || (entryData ?  entryData.Pictogram_Id : null)">
+        <img [src]="selectedPic ? selectedPic : entryData.Pictogram_Id" alt="Selected Pictogram" class="selectedImg">
         </div>
         
       </form>
@@ -120,26 +93,22 @@ import { CommonModule } from '@angular/common';
 })
 export class RecurringEntryDialogComponent {
 
-  readonly fields = ["Description","Sum","Date","Type","Every","Repeat"];
+  readonly fields = ["Description","Sum","Type","Repeat"];
   showWarning = false;
   selectedPic = undefined;
 
-  formData: any = {}; // Object to store form data
+  formData: any = {}; 
   entryData: any = {};
-  timeBuff : any;
-  dateBuff : any;
+
 
   readonly repeatOptions = [
-    { value: 'Days', viewValue: 'Days' },
-    { value: 'Weeks', viewValue: 'Weeks' },
-    { value: 'Months', viewValue: 'Months' }
-    // Add more options as needed
+    { value: 'Daily', viewValue: 'Daily' },
+    { value: 'Monthly', viewValue: 'Monthly' }
   ];
 
   readonly typeOptions = [
     { value: 'Expenses', viewValue: 'Expenses' },
     { value: 'Income', viewValue: 'Income' },
-    // Add more options as needed
   ];
 
 
@@ -154,10 +123,7 @@ export class RecurringEntryDialogComponent {
     console.log(data);
     if(this.entryData != null)
     {
-      [this.dateBuff,this.timeBuff] = this.entryData.Date.split(' ');
-      console.log(this.dateBuff);
-      this.timeBuff = this.timeBuff.slice(0, 5);
-      console.log(this.timeBuff);
+     
       console.log(this.entryData);
       this.formData.id = this.entryData.Id;
     }
@@ -195,12 +161,6 @@ export class RecurringEntryDialogComponent {
     console.log("!!!!!!!!!!!!!!!!!!!!!11")
     console.log(this.formData);
     
-    if(this.dateBuff && this.timeBuff)
-    {
-      const combinedDateTime = this.dateBuff + ' ' + this.timeBuff + ':00.000Z';
-      this.formData.Date = combinedDateTime;
-    }
-  
     
     if (this.entryData == null)
     {
@@ -211,7 +171,10 @@ export class RecurringEntryDialogComponent {
         return;
       }
       else
+      {
+        console.log(this.formData);
         this.recurringService.createRecord(this.formData);
+      }
         
     }
     else

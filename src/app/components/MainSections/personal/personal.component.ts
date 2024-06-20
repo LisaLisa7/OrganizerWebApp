@@ -45,7 +45,7 @@ import { TasksPersonalComponent } from './sub-components/tasks-personal/tasks-pe
       </mat-sidenav>
       <mat-sidenav-content [style.marginLeft]="opened ? '200px' : '0' ">
         <div class = "toggle-button-container">
-          <button mat-button (click)="toggleSidenav()">
+          <button class="toggle-button" mat-button (click)="toggleSidenav()">
             <img class = "buttonTogglePic" [src]="toggleSVGCollapse">
           </button>
         </div>

@@ -2,56 +2,101 @@
 
     width: 100vw;
     height: calc(100vh - 70px);
-    display: flex;
-    flex-direction: row
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
     
 }
-.container-1{
 
-    margin-left: 32px;
-    flex-grow: 1; 
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    background-color: rgb(207, 110, 110);
-    
-
-}
 
 .container-1-1{
-    flex-grow: 1;
-    background-color: rgb(184, 207, 32);
+    grid-column: 1;
+  grid-row: 1;
+  
 
 }
 .container-1-2{
-    flex-grow: 1;
-    background-color: rgb(32, 172, 142);
-}
-
-
-.container-2{
-    flex-grow: 1; 
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    background-color: aqua;
+    grid-column: 1;
+  grid-row: 2;
 }
 
 .container-2-1{
-    flex-grow: 1;
-    background-color: rgb(233, 156, 156);
+    grid-column: 2;
+  grid-row: 1;
+    
 }
 
 .container-2-2{
-    flex-grow: 1;
-    background-color: rgb(63, 82, 52);
+    grid-column: 2;
+  grid-row: 2;
 }
 
 
-.container-3{
-    flex-grow: 1; 
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    background-color: rgb(59, 12, 120);
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px; 
 }
+
+.class, .task {
+  width: 98%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  align-items: start;
+  margin-bottom: 3px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.class > h3 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.class > h4 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.class > p {
+  grid-column: 2;
+  grid-row: 1/span 2;
+  align-self: center; 
+  justify-self: right; 
+  margin-right: 3px;
+}
+
+.classItem{
+  padding: 10px;
+  border: 1px solid #ccc;
+  /*background-color: #660909;*/
+
+}
+
+h4 > span{
+  color: #9381FF;
+}
+
+.task > h3 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.task > h4 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.task> p {
+  grid-column: 2;
+  grid-row: 1/span 2;
+  align-self: center; 
+  justify-self: right; 
+  margin-right: 3px;
+}
+
+
+  

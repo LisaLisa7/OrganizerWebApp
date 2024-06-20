@@ -39,7 +39,6 @@ import { RecurringService } from '../../../../../../services/finance-services/re
             <td class="td">
               <button (click)="deleteEntry(entry)">Delete</button>
               <button (click)="modifyEntry(entry)">Modify</button>
-              <button>Details</button>
             </td>
           </tr>
         </tbody>

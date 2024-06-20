@@ -357,7 +357,7 @@ export class RegistryService {
 
 async createRecord(data:any){
   
-  const record = await this.pb.collection('Registry').create(data);
+  const record = await this.pb.collection('Registry').create(data,{requestKey:null});
   
 }
 

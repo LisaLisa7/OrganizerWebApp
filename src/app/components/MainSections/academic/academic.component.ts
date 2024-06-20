@@ -31,7 +31,7 @@ import { TasksAcademicComponent } from './subComponents/tasks-academic/tasks-aca
       </mat-sidenav>
       <mat-sidenav-content [style.marginLeft]="opened ? '200px' : '0' ">
         <div class = "toggle-button-container">
-          <button mat-button (click)="toggleSidenav()">
+          <button class="toggle-button"  mat-button (click)="toggleSidenav()">
             <img class = "buttonTogglePic" [src]="toggleSVGCollapse">
           </button>
         </div>

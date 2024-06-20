@@ -108,26 +108,29 @@
 
 .container-up
 {
-    flex: 1/2;
+    flex: 1;
     /*border: 1px solid #000; /* */
 }
 
 .container-down{
     flex: 1;
    /*border: 1px solid #000; /*  */
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
     /*align-items:flex-start  */
 }
 
 .container-down-left{
 
-    flex : 1 ;
+    grid-column: 1;
+    grid-row: 1;
     /*border: 1px solid #000; /*  */
 }
 
 .container-down-right{
-    flex : 1 ;
+    grid-column: 2;
+    grid-row: 1;
     
     
     /*border: 1px solid #000; /**/
