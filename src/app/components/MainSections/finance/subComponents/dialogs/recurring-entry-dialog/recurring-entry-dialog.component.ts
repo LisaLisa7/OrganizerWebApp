@@ -186,8 +186,8 @@ export class RecurringEntryDialogComponent {
         this.showWarning = true;
         return;
       }
-      //else
-        //this.recurringService.updateRecord(this.formData);  
+      else
+        this.recurringService.updateRecord(this.formData);  
     }
     
     this.dialogRef.close(this.formData);

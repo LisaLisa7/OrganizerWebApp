@@ -16,6 +16,7 @@ import { recurringEntry } from '../../../../../interfaces/finance-interfaces/rec
 import { SavingsEntryComponent } from '../entries/savings-entry/savings-entry.component';
 import { SavingsService } from '../../../../../services/finance-services/savings.service';
 import { SeeAllDialogComponent } from '../dialogs/see-all-dialog/see-all-dialog.component';
+import { ManageRecurringDialogComponent } from '../dialogs/manage-recurring-dialog/manage-recurring-dialog.component';
 
 @Component({
   selector: 'app-registry',
@@ -37,7 +38,7 @@ import { SeeAllDialogComponent } from '../dialogs/see-all-dialog/see-all-dialog.
               <img class ="entryButtonPic" [src]="entryButtonPath"><span>Add new entry</span>
             </button>
             <button (click)="openDialogRecurringEntry()"><img src="/assets/revenue.svg"><span>Add Recurring Entry</span></button>
-            <button (click)="openDialogRecurringEntry()"><img src="/assets/revenue.svg"><span>Modify Recurring Events</span></button>
+            <button (click)="openModifyRecurringEntry()"><img src="/assets/revenue.svg"><span>Modify Recurring Events</span></button>
 
         </div>
         
@@ -230,10 +231,25 @@ export class RegistryComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed with result:', result);
-      this.registryService.updateEntries();
+      //this.registryService.updateEntries();
       this.loadRecurring();
 
     });
+  }
+
+  openModifyRecurringEntry():void{
+
+    const dialogRef = this.dialog.open(ManageRecurringDialogComponent, {
+      width: '800px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed with result:', result);
+      //this.registryService.updateEntries();
+      this.loadRecurring();
+
+    });
+
   }
 
 }

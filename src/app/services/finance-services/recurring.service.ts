@@ -234,6 +234,44 @@ export class RecurringService {
   }
 
 
+  async getPaginated(pageNumber:any,itemsPerPage:any){
+    
+    let resultList
+    let picUrl = "";
+    
+    resultList = await this.pb.collection('RecurringEntries').getList(pageNumber, itemsPerPage, {
+      filter: '',sort: '+MonthDay',requestKey: null});
+    
+    const entries: recurringEntry[] = await Promise.all(resultList.items.map(async (record: { [key: string]: any }) => {
+      
+      
+    if(record['Pictogram_Id'] != "")
+      { picUrl = await this.getPicById(record['Pictogram_Id']);
+      }
+      
+
+      return {
+        Id: record['id'],
+        Description: record['Description'],
+        Pictogram: picUrl,
+        Sum: record['Sum'],
+        Type: record['Type'],
+        Repeat : record['Repeat'],
+        LastExecuted : record['LastExecuted'],
+        MonthDay : record['MonthDay']
+        
+      };
+    }));
+
+
+    return {
+      items : entries,
+      currentPage : resultList.page,
+      totalPages : resultList.totalPages
+    };
+  }
+
+
   async createRecord(data:any){
     
     const record = await this.pb.collection('RecurringEntries').create(data);
@@ -241,13 +279,11 @@ export class RecurringService {
   }
 
   async updateRecord(data:any){
-    const record = await this.pb.collection('Registry').update(data.id, data);
+    const record = await this.pb.collection('RecurringEntries').update(data.id, data);
   }
 
   async deleteRecord(id:string){
-    const ok = await this.pb.collection('Registry').delete(id);
-    //this.entryDeletedSubject.next(undefined);
-    //console.log(ok)
+    const ok = await this.pb.collection('RecurringEntries').delete(id);
   }
 
     constructor(private registryService:RegistryService) { }

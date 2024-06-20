@@ -1,14 +1,14 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
-import { RegistryService } from '../../../../../../services/finance-services/registry.service';
 import { CommonModule } from '@angular/common';
 import { registryEntry } from '../../../../../../interfaces/finance-interfaces/registryEntry';
 import { PictogramDialogComponent } from '../pictogram-dialog/pictogram-dialog.component';
-import { EntryDialogFormComponent } from '../entry-dialog-form/entry-dialog-form.component';
-
+import { RecurringEntryDialogComponent } from '../recurring-entry-dialog/recurring-entry-dialog.component';
+import { RecurringService } from '../../../../../../services/finance-services/recurring.service';
+import { recurringEntry } from '../../../../../../interfaces/finance-interfaces/recurringEntry';
 @Component({
-  selector: 'app-see-all-dialog',
+  selector: 'app-manage-recurring-dialog',
   standalone: true,
   imports: [MatDialogModule,CommonModule],
   template: `
@@ -58,11 +58,10 @@ import { EntryDialogFormComponent } from '../entry-dialog-form/entry-dialog-form
       </div>
 
     </div>
-
   `,
-  styleUrl: './see-all-dialog.component.css'
+  styleUrl: './manage-recurring-dialog.component.css'
 })
-export class SeeAllDialogComponent {
+export class ManageRecurringDialogComponent {
 
   items : any[] = [];
   currentPage = 1;
@@ -77,16 +76,20 @@ export class SeeAllDialogComponent {
     this.savings = false
   }
 
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any,public recurringService : RecurringService,
+  public dialog:MatDialog,
+  public dialogRef2: MatDialogRef<PictogramDialogComponent>,
+  public dialogRef: MatDialogRef<ManageRecurringDialogComponent>){
+
+    this.loadData();
+
+  }
+
   async loadData() {
     let data
-    if(this.savings == true)
-    {
-      let filterString = "Type = 'Savings+' || Type = 'Savings-'"
-      data = await this.registryService.getPaginated(this.currentPage,this.itemsPerPage,filterString)
-    }  
-    else{
-      data = await this.registryService.getPaginated(this.currentPage,this.itemsPerPage,undefined)
-    }
+    
+    data = await this.recurringService.getPaginated(this.currentPage,this.itemsPerPage)
+    
     this.items = data.items;
     this.totalPages = data.totalPages;
     console.log(this.items)
@@ -101,48 +104,32 @@ export class SeeAllDialogComponent {
       }
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data:any,public registryService : RegistryService,
-  public dialog:MatDialog)
-  {
-
-    console.log(data)
-    if(Object.keys(data).length === 0 )
-      this.savings = false
-    else
-      this.savings = true
-    console.log(this.savings)
-    this.loadData();
-  }
-
-  
   totalPagesArray(): number[] {
     return Array(this.totalPages).fill(0).map((x, i) => i + 1);
   }
 
-  async deleteEntry(entry: registryEntry){
+  async deleteEntry(entry:recurringEntry){
     console.log(entry);
-    await this.registryService.deleteRecord(entry.Id)
-    this.registryService.deleteEntry();
+    await this.recurringService.deleteRecord(entry.Id)
+    this.recurringService.deleteEntry();
     this.loadData()
     
     //this.loadEntries();
   }
 
-  async modifyEntry(entry:registryEntry){
+  async modifyEntry(entry:recurringEntry){
     console.log("ok")
-    const dialogRef = this.dialog.open(EntryDialogFormComponent,{
-      width: '500px', // Adjust the width as needed
-      data: {entry} // Optionally pass data to the dialog
+    const dialogRef = this.dialog.open(RecurringEntryDialogComponent,{
+      width: '500px',
+      data: {entry} 
   });
   dialogRef.afterClosed().subscribe((result: any) => {
-    this.registryService.modifyEntry();
+    this.recurringService.modifyEntry();
     this.loadData();
     //this.loadEntries();
   });
   
 
   }
-
-  
 
 }
