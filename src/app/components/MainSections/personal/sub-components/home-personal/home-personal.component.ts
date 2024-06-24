@@ -49,7 +49,6 @@ import { CommonModule } from '@angular/common';
             <thead>
               <tr>
                 <th>Title</th>
-                <th>Description</th>
                 <th>Board</th>
                 <th>Overdue Days</th>
               </tr>
@@ -57,7 +56,6 @@ import { CommonModule } from '@angular/common';
             <tbody>
               <tr *ngFor="let r of overdueTasks">
                 <td>{{r.Title}}</td>
-                <td>{{r.Description}}</td>
                 <td>{{r.Board_Id}}</td>
                 <td>{{r.Column_Id}}</td>
               </tr>
@@ -73,23 +71,7 @@ import { CommonModule } from '@angular/common';
     </div>
 
     <div class="container-right">
-      <h1 class="h1_title">Suggestions for your lists</h1>
-
-      <div class="container-right-1">
-        <h1>Movies</h1>
-        <p>In works...</p>
-      </div>
-
-      <div class="container-right-2">
-        <h1>Games</h1>
-        <p>In works...</p>
-
-      </div>
-      <div class="container-right-3">
-        <h1>Books</h1>
-        <p>In works...</p>
-
-      </div>
+      <h1 class="h1_title"></h1>
 
     </div>
 
