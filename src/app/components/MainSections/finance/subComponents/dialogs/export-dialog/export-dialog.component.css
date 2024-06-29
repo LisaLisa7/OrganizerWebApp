@@ -6,16 +6,27 @@ mat-dialog-content{
 
 }
 
+.dialog{
+    background-color: var(--accent-color);
+}
+
+.dialogTitle{
+    text-align: center;
+    color: var(--text-color);
+}
+
 .buttonContainer{
     display: flex;
     justify-content: center;
     margin-bottom: 5px;
+    
 }
 
 button{
     width: 100px;
     height: 30px;
-    
+    background-color: var(--button-color);
+    color: var(--text-color);
     border-radius: 8px;
 }
 

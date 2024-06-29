@@ -16,26 +16,26 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   standalone: true,
   imports: [FormsModule],
   template: `
-    <h2 mat-dialog-title style="text-align: center;">Export</h2>
-    <div mat-dialog-content>
+  <div class="dialog">
+    <div mat-dialog-title class="dialogTitle">
+      <div mat-dialog-content>
 
-      
-      <div class="radio-button-container">
-        <h3>Type of export
-        <span>
-        <input id="tab-1" type="radio" class="pdf-radio" checked name="tab" (change)="toggleSelected('pdf')" />
-        <label for="tab-1" class="tab">PDF</label>
-        <input id="tab-2" type="radio" class="csv-radio" name="tab" (change)="toggleSelected('csv')"  />
-        <label for="tab-2" class="tab">CSV</label>
-        </span></h3>
+        <div class="radio-button-container">
+          <h3>Type of export
+          <span>
+          <input id="tab-1" type="radio" class="pdf-radio" checked name="tab" (change)="toggleSelected('pdf')" />
+          <label for="tab-1" class="tab">PDF</label>
+          <input id="tab-2" type="radio" class="csv-radio" name="tab" (change)="toggleSelected('csv')"  />
+          <label for="tab-2" class="tab">CSV</label>
+          </span></h3>
+        </div>
+        
       </div>
-      
-    </div>
 
     <div mat-dialog-actions class="buttonContainer">
       <button mat-button (click)="export()">export</button>
     </div>
-
+  </div>
 
   `,
   styleUrl: './export-dialog.component.css'

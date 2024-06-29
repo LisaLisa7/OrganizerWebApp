@@ -101,12 +101,11 @@ export class SeeAllDialogComponent {
   public dialog:MatDialog)
   {
 
-    console.log(data)
-    if(Object.keys(data).length === 0 )
-      this.savings = false
-    else
+    //console.log(data)
+    console.log(Object.keys(data).length === 0)
+    if(Object.keys(data).length !== 0 )
       this.savings = true
-    console.log(this.savings)
+    //console.log(this.savings)
     this.loadData();
   }
 

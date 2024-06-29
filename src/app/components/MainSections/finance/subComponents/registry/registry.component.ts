@@ -47,16 +47,13 @@ import { ManageRecurringDialogComponent } from '../dialogs/manage-recurring-dial
       <div class="container-down">
 
         <div class="container-down-left">
-
           <h1>Recurring events</h1>
-          
           <table>
             <thead>
               <tr>
                 <th>Title</th>
                 <th>Sum</th>
                 <th>Repeat</th>
-
               </tr>
             </thead>
             <tbody>
@@ -66,9 +63,6 @@ import { ManageRecurringDialogComponent } from '../dialogs/manage-recurring-dial
                 <td>{{r.Repeat}}
                   <span *ngIf="r.Repeat == 'Monthly'"> on {{ r.MonthDay }}</span>
                 </td>
-
-
-
               </tr>
             </tbody>
 
@@ -120,17 +114,12 @@ export class RegistryComponent {
   async loadData() {
     try{
       this.entriesCurrentMonth = await this.registryService.getEntriesByMonth();
-      //console.log(this.entriesCurrentMonth);
       this.idk = await this.registryService.getTotalSumByMonth(this.entriesCurrentMonth);
-      //console.log(this.idk)
-
+ 
     }catch(error){
       console.error("Error loading entries by month", error);
     }
-    //const entriesCurrentMonth = await this.registryService.getEntriesByMonth();
-    //console.log(entriesCurrentMonth);
-    //
-    //console.log(idk);
+    
   }
 
   async loadRecurring(){
@@ -138,8 +127,6 @@ export class RegistryComponent {
       this.recurringEntries = await this.recurringService.getAllEntries();
       await this.recurringService.handleRecurringEvents(this.recurringEntries);
       
-      //console.log(this.recurringEntries);
-      //console.log(this.entries2)
     } catch (error) {
       console.error('Error loading entries:', error);
     }

@@ -4,7 +4,7 @@
   
     border-radius: 8px;
     overflow: hidden;
-    color: white;
+    color: var(--text-color);
     background-color: var(--primary-color);
     margin: 20px;
     text-align: center;

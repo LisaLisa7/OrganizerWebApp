@@ -235,7 +235,7 @@ export class RegistryService {
     if(filter == undefined)
     {
       resultList = await this.pb.collection('Registry').getList(pageNumber, itemsPerPage, {
-        filter: '',sort: '-Date',requestKey: null});
+        filter: "Type = 'Income' || Type = 'Expenses'",sort: '-Date',requestKey: null});
     }
     else
     {

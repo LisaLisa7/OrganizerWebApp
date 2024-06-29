@@ -168,6 +168,8 @@
     margin: 20px;
     height: 30px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: var(--button-color);
+    color:var(--text-color);
 }
 
 .seeAllButton:hover{
