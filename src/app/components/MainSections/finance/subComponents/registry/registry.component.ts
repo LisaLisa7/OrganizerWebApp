@@ -173,7 +173,7 @@ export class RegistryComponent {
     //this.registryService.getEntriesByMonth();
     const dialogRef = this.dialog.open(EntryDialogFormComponent, {
       width: '500px',
-      data: {} 
+      data: {} ,
     });
 
     dialogRef.afterClosed().subscribe(result => {

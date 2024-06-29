@@ -1,5 +1,7 @@
 mat-sidenav-container{
     height: calc(100vh - 70px);
+    background-color: var(--accent-color);
+    
     
 
 }
@@ -32,6 +34,8 @@ mat-sidenav{
     display: block;
     padding: 16px; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: var(--text-color);
+    background-color: var(--button-color);
     
 }
 .button-container button span{

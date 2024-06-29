@@ -10,7 +10,8 @@ import { EntryDialogFormComponent } from '../entry-dialog-form/entry-dialog-form
   standalone: true,
   imports: [MatDialogModule,CommonModule],
   template: `
-    <h2 mat-dialog-title style="text-align: center;">All entries</h2>
+  <div class="dialog">
+    <div mat-dialog-title class="dialogTitle">All entries</div>
     <div mat-dialog-content>
     
       <table>
@@ -27,7 +28,7 @@ import { EntryDialogFormComponent } from '../entry-dialog-form/entry-dialog-form
         <tbody>
       
 
-      <tr *ngFor="let item of items">
+      <tr *ngFor="let item of items" [ngClass]="{'expense-entry': item.Type === 'Expenses', 'income-entry': item.Type === 'Income'}">
 
       <td class="td"><img [src]="item.Pictogram"></td>
           <td class="td">{{ item.Description}}</td>
@@ -56,7 +57,7 @@ import { EntryDialogFormComponent } from '../entry-dialog-form/entry-dialog-form
       </div>
 
     </div>
-
+</div>
   `,
   styleUrl: './see-all-dialog.component.css'
 })

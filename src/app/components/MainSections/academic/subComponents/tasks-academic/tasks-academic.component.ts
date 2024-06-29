@@ -35,9 +35,7 @@ import { Subject, takeUntil } from 'rxjs';
           <button (click)="openNewTaskDialog()" >
           <img [src]="plusSVG" alt="newBoard"><span>New Task</span>
           </button>
-          <button >
-          <img [src]="labelSVG" alt="labels" ><span>Labels</span>
-          </button>
+          
           <button>
           <img [src]="filterSVG" alt="filter" ><span>Filter</span>
           </button>
@@ -83,7 +81,6 @@ export class TasksAcademicComponent {
   plusSVG = "/assets/plus.svg"
   filterSVG = "/assets/filter.svg";
   deleteSVG = "/assets/delete.svg";
-  labelSVG = "/assets/label.svg";
   updateSVG = "/assets/settings.svg";
   
   private unsubscribe$ = new Subject<void>();
@@ -138,7 +135,6 @@ export class TasksAcademicComponent {
     this.selectedProjectId = await this.projectService.getProjectId(this.selectedProject);
 
     console.log(this.selectedProject)
-    //this.selectedBoardColumns = await this.tasksService.getAllColumns(value)
     await this.loadTasks();
   }
 
@@ -183,67 +179,6 @@ export class TasksAcademicComponent {
     });
   }
 
-  /*
-  openProjectDialog(){
-    const dialogRef = this.dialog.open(NewProjectDialogComponent, {
-      width: '500px', 
-      data: {class_id : this.selectedClassId} 
-    });
+  
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.loadProjectsAndTasks();
-    });
-  }
-  openLabelsDialog(){
-    const dialogRef = this.dialog.open(NewClassDialogComponent, {
-      width: '500px', 
-      data: {} 
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //this.test();
-    });
-  }
-
-  async deleteProject(id:string){
-
-    const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this project?\nAll its tasks will also be deleted");
-
-    const result = await dialogRef.afterClosed().toPromise();
-    if(result){
-    
-    await this.projectService.deleteProject(id);
-
-    await this.loadProjectsAndTasks();
-
-    }
-
-  }
-
-  getCompletionPercentage(tasks: ClassTask[]): number {
-    if(tasks.length === 0)
-    {
-      return 0;
-    }
-    const totalPercentage = tasks.reduce((sum, task) => sum + task.completion, 0);
-    return totalPercentage / tasks.length;
-  }
-
-  openUpdateProjectDialog(p:Project){
-    console.log(p);
-    p.class_id = this.selectedClassId;
-    const dialogRef = this.dialog.open(UpdateProjectDialogComponent, {
-      width: '500px',
-      data : p
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.loadProjectsAndTasks();
-    });
-
-  }
-    */
 }

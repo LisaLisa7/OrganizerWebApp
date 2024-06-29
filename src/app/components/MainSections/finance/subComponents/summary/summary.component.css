@@ -2,7 +2,7 @@
     
     width: 300px;
     /*background-color: #FFEEDD;*/
-    background-color: #cef3c5;
+    background-color: var(--income-color);
     /*background-color: black;
     color: #f8f7ff;*/
     border-radius: 8px;
@@ -12,7 +12,7 @@
     
     width: 300px;
     /*background-color: #FFEEDD;*/
-    background-color: #f8afaf;
+    background-color: var(--expense-color);
     /*background-color: black;
     color: #f8f7ff;*/
     margin-right: 10px;

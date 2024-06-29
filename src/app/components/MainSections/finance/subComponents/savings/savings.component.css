@@ -23,6 +23,8 @@ img:hover{
     /*background-image: url(/assets/moneyBG.png);*/
     display: flex;
     flex-direction: row;
+    background-color: var(--accent-color);
+    color:var(--text-color);
     
 }
 

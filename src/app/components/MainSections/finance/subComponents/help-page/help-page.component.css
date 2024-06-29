@@ -13,7 +13,7 @@
     padding: 50px 0px 25px 0;
     font-size: 44px;
     
-    color: #21222c;
+    color: var(--text-color);
   }
   
   
@@ -47,7 +47,7 @@
   }
   
   .tabs input + label:hover {
-    color: #777;
+    color: var(--text-color);
     
   }
 
@@ -78,7 +78,7 @@
     text-align: center;
     border: none;
     border-bottom: 0.5pt solid #1d1e22;
-    color: #000000;
+    color: var(--text-color);
     display: inline-flex;
     padding: 5pt 10pt;
     
@@ -91,7 +91,7 @@
     margin-bottom: 0.5px;
     border-radius: 7px 7px 0 0;
     border-top: 1px solid #3b3d3f;
-    background-color: #B8B8FF;
+    background-color: var(--primary-color);
     cursor: pointer;
   }
   
@@ -104,7 +104,8 @@
     box-shadow: 0 2px 3px rgba(78, 75, 75, 0.1), 0 0 0 1px rgb(10 10 10 / 10%);
     
     border-top: 1px solid #3b3d3f;
-    background-color: #FFEEDD;
+    background-color: var(--color3);
+    color: var(--text-color);
     position: relative;
   }
   
@@ -140,7 +141,8 @@
   #tab-2:checked + label {
     color: #FFEEDD;
   }
-  
+  /*
   p span{
     color: #9381FF;
   }
+    */

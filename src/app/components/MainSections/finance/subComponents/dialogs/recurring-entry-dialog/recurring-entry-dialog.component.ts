@@ -21,11 +21,12 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     MatFormFieldModule,MatOptionModule,MatSelectModule],
   template: `
-    <h2 mat-dialog-title style="text-align: center;">
+  <div class="dialog">
+    <div mat-dialog-title class="dialogTitle">
       {{ entryData ? 'Edit Entry' : 'Add New Entry!' }}
       <div *ngIf="showWarning" class="warning-message" style="color: red;">Please complete all fields!</div>
 
-    </h2>
+  </div>
     <div mat-dialog-content>
       
       <form (ngSubmit)="onSubmit()">
@@ -72,9 +73,9 @@ import { CommonModule } from '@angular/common';
               (ngModelChange)="formData.MonthDay= $event"   required>
         </mat-form-field>
         
-        <mat-label [class.selected-label]="formData.Pictogram_Id">
+        <div class="st">
           {{ (selectedPic )? 'Pictogram selected!' : 'Select a pictogram!' }}
-        </mat-label>
+          </div>
         <div *ngIf="selectedPic || (entryData ?  entryData.Pictogram_Id : null)">
         <img [src]="selectedPic ? selectedPic : entryData.Pictogram_Id" alt="Selected Pictogram" class="selectedImg">
         </div>
@@ -86,6 +87,7 @@ import { CommonModule } from '@angular/common';
       <button type="button" class="buttonPictogram" (click)="openDialogPictogram()">Select</button>
       <button class="buttonSubmit" mat-button (click)="onSubmit()" color="primary" cdkFocusInitial>Submit</button>
     </div>
+  </div>
   `,
   styleUrl: './recurring-entry-dialog.component.css'
 })

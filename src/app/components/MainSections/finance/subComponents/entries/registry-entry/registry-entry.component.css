@@ -13,7 +13,7 @@ table {
 }
   
 .expense-entry {
-  background-color: #f8afaf; 
+  background-color: var(--expense-color); 
   border-radius: 5px; 
   font-family: Roboto, "Helvetica Neue", sans-serif;
   min-height: 50px;
@@ -21,7 +21,7 @@ table {
 }
 
 .income-entry {
-  background-color: #cef3c5; 
+  background-color: var(--income-color); 
   border-radius: 5px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   min-height: 50px;

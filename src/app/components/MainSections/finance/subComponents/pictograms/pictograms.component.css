@@ -22,6 +22,8 @@
 .pageContainer{
   width: 100vw;
   height: calc(100vh - 70px);
+  background-color: var(--accent-color);
+  color:var(--text-color);
 }
 
 .pictogramContainer {
@@ -50,7 +52,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ffeedd;
+  background-color: var(--button-color);
   /*margin: 5px; */
   margin-right: 5px;
   margin-bottom: 5px;
@@ -59,7 +61,7 @@
 }
 
 .entry:hover{
-    background-color: #ffd8be;
+    background-color: var(--color4);
     cursor: pointer;
     transform: scale(1.05);
 }
@@ -84,7 +86,7 @@
 
 .category-button:hover{
     cursor: pointer;
-    background-color: #ccc;
+    background-color: var(--secondary-color);
     transform: scaleX(1.05);
     width: 100px;
 }
@@ -94,8 +96,8 @@
     
     width: 100px;
     padding: 10px 20px; 
-    background-color: #9381FF;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--text-color);
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -116,22 +118,17 @@
 .category-button:hover::after {
   width: 100%; 
 }
-  
 
-
-.newPictogramButton
-{
-    width: 220px;
-    margin: 20px;
-    background-color: white;
-    color: var(--primary-color);
-    border-color:var(--primary-color);
-}
 .newPictogramButton{
+  width: 220px;
+  margin: 20px;
   height: 50px;
   padding-left: 10px;
   border-radius: 5px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--text-color);
+  background-color: var(--button-color);
+
 }
 
 
