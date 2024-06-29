@@ -9,7 +9,7 @@
     margin: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out; /* Add a smooth transition for the transform property */
+    transition: transform 0.2s ease-in-out;
 
   }
   .card:hover{
@@ -25,8 +25,8 @@
     border-bottom: 1px solid #ccc;
   }
   .card a {
-    color: white; /* Set the desired color for the link */
-    text-decoration: none; /* Remove the default underline */
+    color: white; 
+    text-decoration: none; 
   }
   
   

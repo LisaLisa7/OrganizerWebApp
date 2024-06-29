@@ -157,13 +157,7 @@ export class GamesService {
       }
 
       const entries: Game[] = await Promise.all(resultList.items.map(async (record: { [key: string]: any }) => {
-      
-        //console.log(this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'}));
-        //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-  
-        //const firstFilename = record['Pic']; // Assuming 'Pic' is an array of filenames
-        //const url = this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'})
-        
+    
         return {
           Id: record['id'],
           Name: record['Name'],

@@ -99,7 +99,6 @@ export class RegistryComponent {
   recurringEntries: recurringEntry[] = [];
   
   today :any;
-  yesterday: any;
 
 
   private unsubscribe$ = new Subject<void>();
@@ -109,10 +108,8 @@ export class RegistryComponent {
     this.loadRecurring();
     this.subscribeToEntryEvents();
     this.today = registryService.getCurrentDate();
-    this.yesterday = registryService.getYesterday();
 
     this.registryService.getRecentEntriesToday();
-    this.registryService.getRecentEntriesYesterday();
   }
 
   ngOnDestroy(): void {
@@ -198,22 +195,6 @@ export class RegistryComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed with result:', result);
     
-    });
-
-  }
-
-  openDialogAllEntriesSavings() : void{
-    //console.log(await this.registryService.getPaginated(undefined,undefined));
-    const dialogRef = this.dialog.open(SeeAllDialogComponent, {
-      width: '800px', 
-      data: {"savings":true} 
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog closed with result:', result);
-      
-      
-
     });
 
   }

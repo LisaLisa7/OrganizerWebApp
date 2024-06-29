@@ -17,11 +17,6 @@ import { SettingsDialogComponent } from './subComponents/dialogs/settings-dialog
   standalone: true,
   imports: [CommonModule,MatSidenavModule,FormsModule,MatIconModule,ExportDialogComponent],
   template: `
-    <!--
-    <div *ngFor="let entry of entries">
-     <pre>{{ entry | json }}</pre>
-    </div>
-    -->
     <mat-sidenav-container>
       <mat-sidenav [(opened)]="opened">
         <div class="button-container">
@@ -47,8 +42,6 @@ import { SettingsDialogComponent } from './subComponents/dialogs/settings-dialog
         </div>
         <ng-container #dynamicComponentContainer class="custom-registry-container"></ng-container>
 
-        
-
       </mat-sidenav-content>
     </mat-sidenav-container>
     
@@ -68,7 +61,6 @@ export class FinanceComponent {
   pictogramSVG = "/assets/pictogramButton.svg";
   statsSVG = "/assets/stats.svg";
 
-  //toggleSVGExpand = "/assets/arrowRight.svg";
   opened = true;
 
 
@@ -81,15 +73,12 @@ export class FinanceComponent {
   constructor(private componentFactoryResolver: ComponentFactoryResolver,public dialog:MatDialog) {}
 
   ngAfterViewInit(): void {
-    // Now dynamicComponentContainer is guaranteed to be defined
   }
  
 
   createRegistryComponent(): void {
-    // Clear existing components in the container
     this.dynamicComponentContainer.clear();
 
-    // Dynamically create the RegistryComponent
     const factory = this.componentFactoryResolver.resolveComponentFactory(RegistryComponent);
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
@@ -99,7 +88,6 @@ export class FinanceComponent {
 
     this.dynamicComponentContainer.clear();
 
-    // Dynamically create the RegistryComponent
     const factory = this.componentFactoryResolver.resolveComponentFactory(StatsComponent);
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
 
@@ -107,29 +95,23 @@ export class FinanceComponent {
 
 
   createPictogramsComponent(): void {
-    // Clear existing components in the container
     this.dynamicComponentContainer.clear();
 
-    // Dynamically create the RegistryComponent
     const factory = this.componentFactoryResolver.resolveComponentFactory(PictogramsComponent);
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
 
   createSavingsComponent(): void {
-    // Clear existing components in the container
     this.dynamicComponentContainer.clear();
 
-    // Dynamically create the RegistryComponent
     const factory = this.componentFactoryResolver.resolveComponentFactory(SavingsComponent);
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
 
   createHelpComponent() : void {
 
-    // Clear existing components in the container
     this.dynamicComponentContainer.clear();
 
-    // Dynamically create the RegistryComponent
     const factory = this.componentFactoryResolver.resolveComponentFactory(HelpPageComponent);
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
 
@@ -139,14 +121,12 @@ export class FinanceComponent {
   openExportDialog(){
 
     const dialogRef = this.dialog.open(ExportDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
       console.log('Dialog closed with result:', result);
-      
 
     });
     
@@ -155,18 +135,14 @@ export class FinanceComponent {
   openSettingsDialog(){
 
     const dialogRef = this.dialog.open(SettingsDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
       console.log('Dialog closed with result:', result);
-      
 
     });
     
   }
-
-
 }

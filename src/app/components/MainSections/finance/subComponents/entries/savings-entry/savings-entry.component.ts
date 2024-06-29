@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RegistryService } from '../../../../../../services/finance-services/registry.service';
 import { CommonModule } from '@angular/common';
 import { registryEntry } from '../../../../../../interfaces/finance-interfaces/registryEntry';
 import { DatePipe } from '@angular/common';
@@ -45,9 +44,7 @@ import { SavingsService } from '../../../../../../services/finance-services/savi
 })
 export class SavingsEntryComponent {
 
-  entries2: registryEntry[] = [];
   entriesToday : registryEntry[] = [];
-  entriesYesterday: registryEntry[] = [];
   
 
 
@@ -55,9 +52,6 @@ export class SavingsEntryComponent {
   private unsubscribe$ = new Subject<void>();
   private unsubscribeDelete$ = new Subject<void>();
   private unsubscribeModified$ = new Subject<void>();
-
-
- 
 
   constructor(public dialog:MatDialog,private savingsService:SavingsService) {
 
@@ -75,9 +69,6 @@ export class SavingsEntryComponent {
 
   }
 
-  async idk(){
-    console.log("?")
-  }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
@@ -95,8 +86,8 @@ export class SavingsEntryComponent {
   async modifyEntry(entry:registryEntry){
     console.log("ok")
     const dialogRef = this.dialog.open(EntryDialogFormComponent,{
-      width: '500px', // Adjust the width as needed
-      data: {entry} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {entry} 
   });
   dialogRef.afterClosed().subscribe((result: any) => {
     this.savingsService.modifyEntry();
@@ -108,11 +99,8 @@ export class SavingsEntryComponent {
 
   async loadEntries() {
     try {
-      this.entries2 = await this.savingsService.getAllEntries();
       this.entriesToday = await this.savingsService.getRecentEntriesToday();
-      this.entriesYesterday = await this.savingsService.getRecentEntriesYesterday();
 
-      //console.log(this.entries2)
     } catch (error) {
       console.error('Error loading entries:', error);
     }

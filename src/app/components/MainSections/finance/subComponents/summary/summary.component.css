@@ -37,9 +37,9 @@ h1:first-child {
   h1:first-child::after {
     content: '';
   position: absolute;
-  left: 20px; /* Adjust space on the left side */
-  right: 20px; /* Adjust space on the right side */
+  left: 20px;
+  right: 20px;
   bottom: 0;
-  height: 1px; /* Adjust line thickness as needed */
-  background-color: black; /* Adjust line color as needed */
+  height: 1px; 
+  background-color: black; 
   }

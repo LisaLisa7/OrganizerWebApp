@@ -54,6 +54,6 @@ form
 }
 
 .radioContainer {
-    display: flex; /* Display radio buttons in a flex container */
-    justify-content: space-between; /* Space items evenly in the container */
+    display: flex; 
+    justify-content: space-between; 
 }

@@ -38,7 +38,6 @@ export class PictogramDialogComponent {
   constructor(public dialogRef: MatDialogRef<PictogramDialogComponent>,
     private pictogramService:PictogramService) {
 
-      //this.idk = this.pictogramService.getAllPictograms();
       this.loadData();
     }
 
@@ -81,7 +80,7 @@ export class PictogramDialogComponent {
   }
 
   onSubmit():void{
-    console.log("sumbimted pictogram dialog");
+    console.log("submited pictogram dialog");
   }
 
 }

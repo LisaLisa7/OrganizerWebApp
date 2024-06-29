@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { PictogramEntry } from '../../../../../interfaces/finance-interfaces/pictogram-entry';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPictogramDialogComponent } from '../dialogs/new-pictogram-dialog/new-pictogram-dialog.component';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-pictograms',
@@ -80,22 +79,14 @@ export class PictogramsComponent {
   }
 
   openDialog():void{
-
-    //this.registryService.getEntriesByMonth();
-    
     const dialogRef = this.dialog.open(NewPictogramDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {categories : this.categories} // Optionally pass data to the dialog
+      width: '500px',
+      data: {categories : this.categories} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
       console.log('Dialog closed with result:', result);
       this.loadData();
-      //this.registryService.updateEntries();
-      //this.savingsService.updateEntries();
-      
-
     });
 
 

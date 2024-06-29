@@ -235,7 +235,6 @@ export class EntryDialogFormComponent {
 
   openDialog(message:string): void {
 
-    //this.registryService.getEntriesByMonth();
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
       width: '500px', 
       data: {"error":message} 

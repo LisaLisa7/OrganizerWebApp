@@ -3,7 +3,6 @@ import { PieChartComponent } from '../charts/pie-chart/pie-chart.component';
 import { BarChartComponent } from "../charts/bar-chart/bar-chart.component";
 import { registryEntry } from '../../../../../interfaces/finance-interfaces/registryEntry';
 import { StatsService } from '../../../../../services/finance-services/stats.service';
-import { PictogramService } from '../../../../../services/finance-services/pictogram.service';
 import { RegistryService } from '../../../../../services/finance-services/registry.service';
 import { GroupedBarChartComponent } from '../charts/grouped-bar-chart/grouped-bar-chart.component';
 
@@ -50,7 +49,6 @@ import { GroupedBarChartComponent } from '../charts/grouped-bar-chart/grouped-ba
         </div>
       </div>
 
-
       </div>
       
     </div>
@@ -83,19 +81,20 @@ export class StatsComponent {
       ]
 
   constructor(private statsService:StatsService,private registryService:RegistryService){
+    
     const currentDate = new Date();
-this.month_current = new Intl.DateTimeFormat('en', { month: 'long' }).format(currentDate);
+    this.month_current = new Intl.DateTimeFormat('en', { month: 'long' }).format(currentDate);
 
-currentDate.setDate(1);
+    currentDate.setDate(1);
 
-const currentMonth = currentDate.getMonth(); 
-const lastMonth = (currentMonth === 0) ? 11 : currentMonth - 1; 
-const lastMonthDate = new Date(currentDate); 
-lastMonthDate.setMonth(lastMonth); 
-this.month_prev = new Intl.DateTimeFormat('en', { month: 'long' }).format(lastMonthDate); 
+    const currentMonth = currentDate.getMonth(); 
+    const lastMonth = (currentMonth === 0) ? 11 : currentMonth - 1; 
+    const lastMonthDate = new Date(currentDate); 
+    lastMonthDate.setMonth(lastMonth); 
+    this.month_prev = new Intl.DateTimeFormat('en', { month: 'long' }).format(lastMonthDate); 
 
-console.log("Current month:", this.month_current); 
-console.log("Last month:", this.month_prev);
+    //console.log("Current month:", this.month_current); 
+    //console.log("Last month:", this.month_prev);
 
     this.loadData();
   }
@@ -104,15 +103,14 @@ console.log("Last month:", this.month_prev);
 
     this.entriesCurrentMonth = await this.registryService.getEntriesByMonth();
     this.entriesLastMonth = await this.registryService.getEntriesLastMonth();
-    console.log(this.entriesLastMonth);
-    console.log(this.entriesCurrentMonth);
+    //console.log(this.entriesLastMonth);
+    //console.log(this.entriesCurrentMonth);
     this.pieChartData =  this.statsService.calculateProportionsPieChart(this.entriesCurrentMonth);
     this.barChartData  =  this.statsService.calculateDataBarChart(this.entriesCurrentMonth);
     this.pieChartData2 = await this.statsService.calculateProportionsPieChart2(this.entriesCurrentMonth);
-
     this.barChartData2 = await this.statsService.calculateDataBarChart2(this.entriesCurrentMonth,this.entriesLastMonth,this.month_current,this.month_prev);
-    console.log(this.barChartData);
-    console.log(this.barChartData2);
+    //console.log(this.barChartData);
+    //console.log(this.barChartData2);
   }
 
 

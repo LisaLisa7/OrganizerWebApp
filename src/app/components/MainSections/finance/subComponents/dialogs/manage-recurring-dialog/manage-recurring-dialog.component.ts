@@ -66,14 +66,7 @@ export class ManageRecurringDialogComponent {
   currentPage = 1;
   itemsPerPage = 6;
   totalPages = 1;
-  savings = false
 
-  ngOnInit():void{
-    //this.loadData();
-  }
-  ngOnClose():void{
-    this.savings = false
-  }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,public recurringService : RecurringService,
   public dialog:MatDialog,

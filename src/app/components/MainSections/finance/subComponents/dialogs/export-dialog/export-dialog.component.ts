@@ -157,7 +157,6 @@ export class ExportDialogComponent {
 
   exportCSV(){
 
-
     this.generateCSVAndDownload();
   }
 

@@ -42,8 +42,8 @@
 
 .newEntrybutton img{
     float: left;
-    width: 30px; /* Adjust as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 30px; 
+    height: auto; 
 }
 .some-buttons-container button span{
     display: inline-block;
@@ -59,8 +59,8 @@
 
 .entryButtonPic {
     float: left;
-    width: 30px; /* Adjust as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 30px; 
+    height: auto; 
 }
 
 
@@ -68,9 +68,9 @@
 .summary-container{
     margin-top: 20px;
     display: flex;
-    justify-content: center; /* Adjust as needed for spacing between cards */
-    align-items: center; /* Align cards vertically in the center */
-    flex-wrap: wrap; /* Allow cards to wrap to the next line if they don't fit */
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
     text-align: center;
     
 }
@@ -99,8 +99,6 @@
 
     width: 100vw;
     height: calc(100vh - 70px);
-    
-    /*background-image: url(/assets/moneyBG.png);*/
     display: flex;
     flex-direction: column;
     

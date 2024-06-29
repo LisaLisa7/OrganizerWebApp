@@ -56,25 +56,13 @@ import { RecurringService } from '../../../../../../services/finance-services/re
 })
 export class RegistryEntryComponent {
 
-  //entries: RecordModel[] = [];
-  
-  entries2: registryEntry[] = [];
   entriesToday : registryEntry[] = [];
-  entriesYesterday: registryEntry[] = [];
   
-
-
-
   private unsubscribe$ = new Subject<void>();
   private unsubscribeDelete$ = new Subject<void>();
   private unsubscribeModified$ = new Subject<void>();
 
-
- 
-
   constructor(public dialog:MatDialog,private registryService: RegistryService,private recurringService:RecurringService) {
-
-    
 
     this.registryService.entryAdded$.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
       this.loadEntries();
@@ -108,31 +96,21 @@ export class RegistryEntryComponent {
   async modifyEntry(entry:registryEntry){
     console.log("ok")
     const dialogRef = this.dialog.open(EntryDialogFormComponent,{
-      width: '500px', // Adjust the width as needed
-      data: {entry} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {entry} 
   });
   dialogRef.afterClosed().subscribe((result: any) => {
     this.registryService.modifyEntry();
-    //this.loadEntries();
   });
 
   }
 
-
   async loadEntries() {
     try {
-      this.entries2 = await this.registryService.getAllEntries();
       this.entriesToday = await this.registryService.getRecentEntriesToday();
-      this.entriesYesterday = await this.registryService.getRecentEntriesYesterday();
-      //wtf
-
-      //console.log(this.entries2)
     } catch (error) {
       console.error('Error loading entries:', error);
     }
   }
-
-  
-  
 
 }

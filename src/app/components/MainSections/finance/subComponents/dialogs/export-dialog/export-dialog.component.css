@@ -2,7 +2,7 @@
 mat-dialog-content{
     display: flex;
     justify-content: center;
-    align-items: center; /* Optional: Centers vertically */
+    align-items: center; 
 
 }
 
@@ -34,7 +34,7 @@ button:hover{
 }
 
 h3{
-    text-align: lefts;
+    text-align: left;
 }
 span{
     margin-left: 5px;

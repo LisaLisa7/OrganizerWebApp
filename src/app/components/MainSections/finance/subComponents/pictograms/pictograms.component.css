@@ -5,12 +5,12 @@
 
 .entry .delete-button {
   
-  transition: opacity 0.3s ease-out; /* Apply transition to opacity */
-  opacity: 0; /* Initially hide the delete button */
+  transition: opacity 0.3s ease-out;
+  opacity: 0;
 }
 
 .entry:hover .delete-button {
-  opacity: 1; /* Show the delete button when the entry is hovered */
+  opacity: 1; 
 }
 
 .delete-button:hover{
@@ -28,20 +28,20 @@
     display: flex;
     flex-wrap: wrap;
     overflow-y: auto;
-    justify-content: flex-start; /* Align items to the left */
+    justify-content: flex-start;
     
 }
 .pictogramContainerWrapper{
     display: flex;
     justify-content: center;
     margin-left: 37px;
-    justify-content: flex-start; /* Align items to the left */
+    justify-content: flex-start;
 }
 
 
 
 .entry {
-  flex: 0 0 calc(25% - 20px); /* Calculate width with padding */
+  flex: 0 0 calc(25% - 20px); 
   width: 80px;
   padding: 10px;
   box-sizing: border-box;
@@ -51,7 +51,7 @@
   justify-content: center;
   align-items: center;
   background-color: #ffeedd;
-  /*margin: 5px; /* Add margin for spacing between entries */
+  /*margin: 5px; */
   margin-right: 5px;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -68,9 +68,9 @@
 
 .categoriesContainer{
 
-    width: auto;
-    display: flex; /* Use flexbox */
-  flex-wrap: nowrap; /* Prevent wrapping to multiple lines */
+  width: auto;
+  display: flex; 
+  flex-wrap: nowrap;
   margin-left: 37px;
   
 }
@@ -93,7 +93,7 @@
     position: relative;
     
     width: 100px;
-    padding: 10px 20px; /* Adjust padding as needed */
+    padding: 10px 20px; 
     background-color: #9381FF;
     color: white;
     border: none;
@@ -114,7 +114,7 @@
 }
 
 .category-button:hover::after {
-  width: 100%; /* Expand width on hover */
+  width: 100%; 
 }
   
 
@@ -152,8 +152,8 @@
 
 .buttonPic{
   float: left;
-  width: 30px; /* Adjust as needed */
-  height: auto; /* Maintain aspect ratio */
+  width: 30px; 
+  height: auto; 
 }
 
 .newPictogramButton span{

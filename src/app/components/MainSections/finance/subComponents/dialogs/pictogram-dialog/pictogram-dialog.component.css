@@ -14,22 +14,21 @@ img{
 .pictogramContainerWrapper{
     display: flex;
     justify-content: center;
-    justify-content: flex-start; /* Align items to the left */
+    justify-content: flex-start; 
 }
 
 
 .entry {
-    flex: 0 0 25%; /* This makes each entry take up 25% of the container width */
-    padding: 10px; /* Add spacing between entries */
-    box-sizing: border-box; /* Include padding in the width */
-    border: 1px solid black; /* Add black border */
-    display: flex; /* Use flexbox for centering */
-    flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* Center children horizontally */
-    align-items: center; /* Center children vertically */
+    flex: 0 0 25%; 
+    padding: 10px; 
+    box-sizing: border-box; 
+    border: 1px solid black; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
     
     width: 80px;
-    /*background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);*/
     background-color: #ffeedd;
 }
 
@@ -42,21 +41,20 @@ img{
 .categoriesContainer{
 
     width: auto;
-    display: flex; /* Use flexbox */
-    flex-wrap: wrap; /* Prevent wrapping to multiple lines */
+    display: flex; 
+    flex-wrap: wrap; 
 
 }
 
 
 .category-button {
     position: relative;
-    padding: 10px 20px; /* Adjust padding as needed */
+    padding: 10px 20px; 
     background-color: #9381FF;
     color: white;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    /*overflow: hidden;*/
   }
 
 

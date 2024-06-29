@@ -1,10 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatDialogRef } from '@angular/material/dialog';
 import { RegistryService } from '../../../../../../services/finance-services/registry.service';
 import { CommonModule } from '@angular/common';
 import { registryEntry } from '../../../../../../interfaces/finance-interfaces/registryEntry';
-import { PictogramDialogComponent } from '../pictogram-dialog/pictogram-dialog.component';
 import { EntryDialogFormComponent } from '../entry-dialog-form/entry-dialog-form.component';
 
 @Component({
@@ -70,9 +68,6 @@ export class SeeAllDialogComponent {
   totalPages = 1;
   savings = false
 
-  ngOnInit():void{
-    //this.loadData();
-  }
   ngOnClose():void{
     this.savings = false
   }
@@ -131,18 +126,15 @@ export class SeeAllDialogComponent {
   async modifyEntry(entry:registryEntry){
     console.log("ok")
     const dialogRef = this.dialog.open(EntryDialogFormComponent,{
-      width: '500px', // Adjust the width as needed
-      data: {entry} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {entry} 
   });
   dialogRef.afterClosed().subscribe((result: any) => {
     this.registryService.modifyEntry();
     this.loadData();
     //this.loadEntries();
   });
-  
 
   }
-
-  
 
 }

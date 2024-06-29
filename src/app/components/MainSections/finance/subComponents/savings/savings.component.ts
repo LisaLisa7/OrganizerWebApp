@@ -55,16 +55,14 @@ export class SavingsComponent {
     //console.log(await this.registryService.getPaginated(undefined,undefined));
 
     const dialogRef = this.dialog.open(SeeAllDialogComponent, {
-      width: '800px', // Adjust the width as needed
-      data: {"savings":true} // Optionally pass data to the dialog
+      width: '800px',
+      data: {"savings":true} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
+
       console.log('Dialog closed with result:', result);
       
-      
-
     });
   }
 

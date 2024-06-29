@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase'
 import { registryEntry } from '../../interfaces/finance-interfaces/registryEntry';
-import { PictogramEntry } from '../../interfaces/finance-interfaces/pictogram-entry';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +52,7 @@ export class StatsService {
     let count = 0;
 
     for (const entry of currentMonthEntries) {
-      if(entry.Type === "Expenses")
+      if(entry.Type === "Expenses" && entry.Pictogram)
       {
         count += 1;
         const category = await this.getCategoryOfPictogram(entry.Pictogram);

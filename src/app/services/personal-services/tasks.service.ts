@@ -149,12 +149,10 @@ export class TasksService {
 
   async getBoardNameById(id:string){
 
-    //console.log("Aici moare?");
     //console.log(id)
     const records = await this.pb.collection("Boards").getOne(id,{requestKey: null });
     console.log(records);
     if (records && Object.keys(records).length > 0 && records['Title']) {
-      //console.log("O intrat aici???");
       return records['Title'];
     } else {
       return ''; 

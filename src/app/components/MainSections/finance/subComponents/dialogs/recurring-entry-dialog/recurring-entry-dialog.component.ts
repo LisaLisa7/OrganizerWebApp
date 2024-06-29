@@ -2,8 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'; // Import MatInputModule for input fields
-import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
+import { MatInputModule } from '@angular/material/input'; 
+import { FormsModule } from '@angular/forms'; 
 import { MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { RecurringService } from '../../../../../../services/finance-services/recurring.service';
@@ -71,9 +71,6 @@ import { CommonModule } from '@angular/common';
           <input matInput type="number" [max]=28 id="monthday" name="monthday" [ngModel]="entryData ? entryData.MonthDay :formData.MonthDay"
               (ngModelChange)="formData.MonthDay= $event"   required>
         </mat-form-field>
-
-
-
         
         <mat-label [class.selected-label]="formData.Pictogram_Id">
           {{ (selectedPic )? 'Pictogram selected!' : 'Select a pictogram!' }}

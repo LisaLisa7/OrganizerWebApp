@@ -6,21 +6,21 @@ img{
   table {
     border-collapse: separate;
     border-spacing: 0 20px;
-    width: 100%; /* Ensures the table takes up full width of its parent */
+    width: 100%; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
   
   }
 
   .expense-entry {
-    background-color: #f8afaf; /* Adjust the background color for expenses */
-    border-radius: 5px; /* Adjust the radius as needed */
+    background-color: #f8afaf; 
+    border-radius: 5px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     
   }
   
   .income-entry {
-    background-color: #cef3c5; /* Adjust the background color for income */
-    border-radius: 5px; /* Adjust the radius as needed */
+    background-color: #cef3c5; 
+    border-radius: 5px; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
     
   }
@@ -29,7 +29,7 @@ img{
   td{
 
     text-align: center;
-    border-bottom: 1px solid #ccc; /* Adjust the color and style as needed */
+    border-bottom: 1px solid #ccc; 
     border-top: 1px solid #ccc;
     min-width: 70px;
     height: 70px;
@@ -46,10 +46,10 @@ img{
   }
   
   .separator {
-    border-left: 2px solid rgb(87, 84, 84); /* Vertical line */
-    height: 50%; /* Full height */
-    margin: 0 20px; /* Adjust margin as needed */
-    min-height: 30px; /* Ensure the separator appears even without content */
+    border-left: 2px solid rgb(87, 84, 84); 
+    height: 50%;
+    margin: 0 20px;
+    min-height: 30px; 
   
   }
 

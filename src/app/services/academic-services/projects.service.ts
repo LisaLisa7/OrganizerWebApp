@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase'
 import { Project } from '../../interfaces/academic-interfaces/project';
-import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
