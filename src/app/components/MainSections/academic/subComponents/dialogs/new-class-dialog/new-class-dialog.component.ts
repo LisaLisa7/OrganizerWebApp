@@ -115,9 +115,7 @@ export class NewClassDialogComponent {
   }
 
   onClose(){
-
-
-
+    this.dialogRef.close();
   }
 
   onSubmit(){
@@ -138,7 +136,6 @@ export class NewClassDialogComponent {
       this.openDialog('Please complete all the fields');
     }
       
-    
 
   }
 

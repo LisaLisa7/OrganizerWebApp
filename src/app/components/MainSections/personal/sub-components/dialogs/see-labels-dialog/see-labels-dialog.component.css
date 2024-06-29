@@ -1,7 +1,7 @@
 table {
     border-collapse: separate;
     border-spacing: 0 20px;
-    width: 100%; /* Ensures the table takes up full width of its parent */
+    width: 100%; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
   
   }
@@ -10,7 +10,7 @@ table {
   td{
 
     text-align: center;
-    border-bottom: 1px solid #ccc; /* Adjust the color and style as needed */
+    border-bottom: 1px solid #ccc; 
     border-top: 1px solid #ccc;
     min-width: 70px;
     height: 70px;
@@ -27,10 +27,10 @@ table {
   }
   
   .separator {
-    border-left: 2px solid rgb(87, 84, 84); /* Vertical line */
-    height: 50%; /* Full height */
-    margin: 0 20px; /* Adjust margin as needed */
-    min-height: 30px; /* Ensure the separator appears even without content */
+    border-left: 2px solid rgb(87, 84, 84);
+    height: 50%; 
+    margin: 0 20px; 
+    min-height: 30px; 
   
   }
 

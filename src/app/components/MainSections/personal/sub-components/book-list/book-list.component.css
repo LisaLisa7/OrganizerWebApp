@@ -10,7 +10,7 @@
 
   .statusContainer{
     display: inline-block;
-    margin-right: 10px; /* Adjust as needed for spacing between items */
+    margin-right: 10px; 
     /*background-color: rgb(151, 179, 179);*/
     
   }
@@ -60,16 +60,16 @@
   }
 
   .statusContainer button.active {
-  background-color: #9381FF; /* Change this to whatever color you prefer */
-  color: #fff; /* Change this to the text color you prefer */
-  /* Add any other styles you want to apply to the active button */
+  background-color: #9381FF; 
+  color: #fff;
+  
 }
 
   
   table {
     border-collapse: separate;
     border-spacing: 0;
-    width: 82vw; /* Ensures the table takes up full width of its parent */
+    width: 82vw;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     
     
@@ -79,9 +79,7 @@
   td,th{
 
     text-align: center;
-    border-bottom: 1px solid #ccc; /* Adjust the color and style as needed */
-    /*border-top: 1px solid #ccc;*/
-    /*min-width: 70px;*/
+    border-bottom: 1px solid #ccc; 
     height: 70px;
     min-width: 70px;
     
@@ -99,10 +97,10 @@
   }
   
   .separator {
-    border-left: 2px solid rgb(87, 84, 84); /* Vertical line */
-    height: 70%; /* Full height */
-    margin: 0 20px; /* Adjust margin as needed */
-    min-height: 30px; /* Ensure the separator appears even without content */
+    border-left: 2px solid rgb(87, 84, 84); 
+    height: 70%; 
+    margin: 0 20px;
+    min-height: 30px; 
   
   }
 
@@ -141,8 +139,8 @@
 
 .some-buttons-container button img{
     float: left;
-    width: 30px; /* Adjust as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 30px;
+    height: auto; 
 }
 .some-buttons-container button span{
     display: inline-block;

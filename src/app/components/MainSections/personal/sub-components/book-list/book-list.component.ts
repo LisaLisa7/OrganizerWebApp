@@ -152,13 +152,11 @@ export class BookListComponent {
     console.log("ok")
     //console.log(entry)
     const dialogRef = this.dialog.open(BookUpdateDialogComponent,{
-      width: '500px', // Adjust the width as needed
-      data: {entry} // Optionally pass data to the dialog
+      width: '500px',
+      data: {entry} 
   })
   dialogRef.afterClosed().subscribe((result: any) => {
-    this.booksService.modifyEntry();
-    //this.loadEntries();
-    
+    this.booksService.modifyEntry();    
     
   });
   }
@@ -167,8 +165,8 @@ export class BookListComponent {
     console.log("ok")
     //console.log(entry)
     const dialogRef = this.dialog.open(InsertBookDialogComponent,{
-      width: '500px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '500px',
+      data: {} 
     })
     
     dialogRef.afterClosed().subscribe((result: any) => {

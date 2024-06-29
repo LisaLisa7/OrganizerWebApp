@@ -48,10 +48,9 @@
 }
 
 
-
 .schedule-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* For Monday to Friday */
+    grid-template-columns: repeat(5, 1fr); 
     gap: 1em;
   }
   

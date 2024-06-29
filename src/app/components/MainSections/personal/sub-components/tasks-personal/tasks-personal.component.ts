@@ -4,7 +4,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { TasksService } from '../../../../../services/personal-services/tasks.service';
 import { BoardColumn } from '../../../../../interfaces/personal-interfaces/board-column';
-import { BoardTaskComponent } from '../board-task/board-task.component';
 import { BoardTask } from '../../../../../interfaces/personal-interfaces/board-task';
 import { MatDialog } from '@angular/material/dialog';
 import { NewBoardColumnDialogComponent } from '../dialogs/new-board-column-dialog/new-board-column-dialog.component';
@@ -17,7 +16,7 @@ import { ConfirmDialogComponent } from '../../../../../confirm-dialog/confirm-di
 @Component({
   selector: 'app-tasks-personal',
   standalone: true,
-  imports: [MatSelectModule,CommonModule,FormsModule,BoardTaskComponent],
+  imports: [MatSelectModule,CommonModule,FormsModule],
   template: `
     <div class="menu-container">
 
@@ -172,8 +171,8 @@ export class TasksPersonalComponent {
 
   openBoardDialog(){
     const dialogRef = this.dialog.open(NewBoardDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '500px',
+      data: {} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -184,8 +183,8 @@ export class TasksPersonalComponent {
 
   openColumnDialog(){
     const dialogRef = this.dialog.open(NewBoardColumnDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {'id' : this.selectedBoardId} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {'id' : this.selectedBoardId} 
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -197,8 +196,8 @@ export class TasksPersonalComponent {
 
   openTaskDialog(columnId : string){
     const dialogRef = this.dialog.open(NewBoardColumnTaskDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {'id_board' : this.selectedBoardId, 'id_col' : columnId} // Optionally pass data to the dialog
+      width: '500px',
+      data: {'id_board' : this.selectedBoardId, 'id_col' : columnId}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -210,8 +209,8 @@ export class TasksPersonalComponent {
 
   openLabelsDialog(){
     const dialogRef = this.dialog.open(SeeLabelsDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {} 
     });
 
     dialogRef.afterClosed().subscribe(result => {

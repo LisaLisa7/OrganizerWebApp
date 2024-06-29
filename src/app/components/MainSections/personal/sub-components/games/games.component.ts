@@ -81,7 +81,7 @@ export class GamesComponent {
   itemsPerPage = 20;
   totalPages = 1;
 
-  pageNumbers: number[] = []; // Array to store dynamically generated page numbers
+  pageNumbers: number[] = []; 
 
 
   async changePage(pageNumber : number) {
@@ -101,13 +101,8 @@ export class GamesComponent {
     this.pageNumbers = [];
     let startPage,endPage;
 
-   
     startPage =this.currentPage;
     endPage = this.currentPage+5;
-    
-
-    
-
     
     if(endPage > this.totalPages)
       {
@@ -115,8 +110,6 @@ export class GamesComponent {
         startPage = endPage -5 
       }
 
-
-    // Generate page numbers
     for (let i = startPage; i <= endPage; i++) {
       this.pageNumbers.push(i);
     }
@@ -166,8 +159,6 @@ export class GamesComponent {
       
       console.log('Dialog closed with result:', result);
       
-      
-
     });
   }
 

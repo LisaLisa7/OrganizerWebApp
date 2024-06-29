@@ -119,10 +119,9 @@ export class InsertBookDialogComponent {
   
   openDialog(message:string): void {
 
-    //this.registryService.getEntriesByMonth();
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
-      width: '500px', // Adjust the width as needed
-      data: {"error":message} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {"error":message} 
     });
 
     

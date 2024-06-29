@@ -99,9 +99,6 @@ export class ImportScheduleDialogComponent {
           this.processData();
           this.dialogRef.close();
           
-
-          
-          
         },
         error => {
           console.error('Error:', error.error);
@@ -143,6 +140,5 @@ export class ImportScheduleDialogComponent {
 
     
   }
-
 
 }

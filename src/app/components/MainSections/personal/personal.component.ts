@@ -75,7 +75,6 @@ export class PersonalComponent {
   expansSVG = "/assets/down-arrow.svg";
 
 
-  //toggleSVGExpand = "/assets/arrowRight.svg";
   opened = true;
 
   showSubButtons: boolean = false;

@@ -56,7 +56,6 @@ export class AcademicComponent {
   helpSVG = "/assets/help.svg";
 
 
-  //toggleSVGExpand = "/assets/arrowRight.svg";
   opened = true;
 
 
@@ -67,8 +66,8 @@ export class AcademicComponent {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   ngAfterViewInit(): void {
-    // Now dynamicComponentContainer is guaranteed to be defined
   }
+
   createHomeComponent() : void{
     this.dynamicComponentContainer.clear();
 
@@ -96,8 +95,5 @@ export class AcademicComponent {
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
 
   }
-
-
-
 
 }

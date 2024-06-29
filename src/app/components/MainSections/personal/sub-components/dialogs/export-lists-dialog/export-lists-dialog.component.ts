@@ -168,7 +168,6 @@ export class ExportListsDialogComponent {
     const numColumns = fieldNames.length;
     const columnWidths = Array(numColumns).fill('auto');
 
-    // Define document definition
     const docDefinition: TDocumentDefinitions = {
       content: [
         {text:this.currentDate},
@@ -206,7 +205,7 @@ export class ExportListsDialogComponent {
             fontSize: 18,
             bold: true,
             alignment: 'center',
-            margin: [0, 20, 0, 20] as [number, number, number, number] // [left, top, right, bottom]
+            margin: [0, 20, 0, 20] as [number, number, number, number] // [stg, sus, drpt, jos]
         },
       },
       

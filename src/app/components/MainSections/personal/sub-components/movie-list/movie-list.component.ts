@@ -149,8 +149,8 @@ export class MovieListComponent {
     console.log("ok")
     //console.log(entry)
     const dialogRef = this.dialog.open(MovieUpdateDialogComponent,{
-      width: '500px', // Adjust the width as needed
-      data: {entry} // Optionally pass data to the dialog
+      width: '500px',
+      data: {entry} 
   })
   dialogRef.afterClosed().subscribe((result: any) => {
     this.moviesService.modifyEntry();
@@ -164,8 +164,8 @@ export class MovieListComponent {
     console.log("ok")
     //console.log(entry)
     const dialogRef = this.dialog.open(InsertMovieDialogComponent,{
-      width: '500px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {} 
     })
     
     dialogRef.afterClosed().subscribe((result: any) => {

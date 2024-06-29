@@ -136,12 +136,8 @@ export class ScheduleComponent {
       await this.classesService.deleteClass(id);
       await this.loadData();
 
-    }
-    
+    }  
 
   }
-
-  
-
 
 }

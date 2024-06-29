@@ -74,7 +74,6 @@ export class SeeLabelsDialogComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //console.log('The dialog was closed');
       this.loadData();
 
     });
@@ -87,7 +86,6 @@ export class SeeLabelsDialogComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //console.log('The dialog was closed');
       this.loadData();
 
     });
