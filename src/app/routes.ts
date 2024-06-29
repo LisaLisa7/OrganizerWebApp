@@ -12,17 +12,17 @@ const routeConfig: Routes = [
         title: 'Home page'
       },
       {
-        path: 'fnc',
+        path: 'finance',
         component: FinanceComponent,
         title: 'Financial section'
       },
       {
-        path: 'acd',
+        path: 'academic',
         component: AcademicComponent,
         title: 'Academic section'
       },
       {
-        path: 'psl',
+        path: 'personal',
         component: PersonalComponent,
         title: 'Personal section'
       }

@@ -66,9 +66,10 @@ import { CommonModule } from '@angular/common';
         </mat-form-field>
 
         
-        <mat-form-field *ngIf="formData.Repeat === 'Monthly'">
+        <mat-form-field *ngIf="entryData ? entryData.Repeat === 'Monthly' : formData.Repeat === 'Monthly'">
           <mat-label for="monthday">Day of the Month</mat-label>
-          <input matInput type="number" id="monthday" name="monthday" [(ngModel)]="formData.MonthDay" required>
+          <input matInput type="number" [max]=28 id="monthday" name="monthday" [ngModel]="entryData ? entryData.MonthDay :formData.MonthDay"
+              (ngModelChange)="formData.MonthDay= $event"   required>
         </mat-form-field>
 
 
@@ -165,7 +166,7 @@ export class RecurringEntryDialogComponent {
     if (this.entryData == null)
     {
       console.log("caz doar new entry");
-      if(this.dataValidator(this.formData) == false )
+      if(this.dataValidator(this.formData) == false || this.formData.MonthDay>28 )
       {
         this.showWarning = true;
         return;
@@ -182,7 +183,7 @@ export class RecurringEntryDialogComponent {
       console.log("CAZ MODIFY ENTRY ! ____ ")
       console.log("formData:");
       console.log(this.formData);
-      if (this.patchDataValidator(this.formData) == false){
+      if (this.patchDataValidator(this.formData) == false || this.formData.MonthDay>28 ){
         this.showWarning = true;
         return;
       }
@@ -200,12 +201,11 @@ export class RecurringEntryDialogComponent {
     }
     
     const dialogRef2 = this.dialog.open(PictogramDialogComponent,{
-      width: '500px', // Adjust the width as needed
-      data: {} // Optionally pass data to the dialog
+      width: '500px',
+      data: {} 
     });
 
     dialogRef2.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
       console.log('Dialog closed with result:', result);
       if (result!=undefined)
       { this.formData.Pictogram_Id = result.picId;

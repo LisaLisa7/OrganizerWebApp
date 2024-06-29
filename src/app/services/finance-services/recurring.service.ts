@@ -212,8 +212,6 @@ export class RecurringService {
 
   isSameDay(currentDay:any,lastEx:any):boolean{
     let date = new Date(lastEx.toString());
-    //console.log(lastEx)
-    //console.log(currentDay.getFullYear() + "/" +currentDay.getMonth()+"/" +currentDay.getDate() );
 
     return date.getFullYear() === currentDay.getFullYear() &&
             date.getMonth() === currentDay.getMonth() &&
@@ -224,11 +222,7 @@ export class RecurringService {
   isRightDay(currentDay:Date,lastExecuted:any,monthDay:number):boolean{
 
     let duplicat = this.isSameDay(currentDay,lastExecuted);
-
     let lastE = new Date(lastExecuted.toString());
-    
-    //console.log(duplicat);
-    //console.log(currentDay.getDate()+ " " +monthDay)
     return !duplicat && currentDay.getDate() === monthDay;
 
   }

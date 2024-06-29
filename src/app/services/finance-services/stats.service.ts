@@ -9,11 +9,8 @@ import { PictogramEntry } from '../../interfaces/finance-interfaces/pictogram-en
 export class StatsService {
 
   constructor() { }
+
   pb = new PocketBase('http://127.0.0.1:8090');
-
-
-  
-
 
   async getCategoryOfPictogram(id:string){
   const record = await this.pb.collection('Pictograms').getOne(id, {
@@ -30,7 +27,6 @@ export class StatsService {
     const typeCounts: { [type: string]: number } = {};
     let pieChartData;
 
-    // Count the number of entries for each type
     currentMonthEntries.forEach(entry => {
       if (typeCounts[entry.Type]) {
         typeCounts[entry.Type]++;
@@ -39,11 +35,10 @@ export class StatsService {
       }
     });
 
-    // Calculate proportions
     const totalEntries = currentMonthEntries.length;
     pieChartData = Object.keys(typeCounts).map(type => ({
       name: type,
-      value: (typeCounts[type] / totalEntries) * 100 // Calculate percentage
+      value: (typeCounts[type] / totalEntries) * 100 
     }));
 
     return pieChartData;
@@ -57,30 +52,24 @@ export class StatsService {
     const typeCounts: { [type: string]: number } = {};
     let count = 0;
 
-    // Iterate over the current month entries
     for (const entry of currentMonthEntries) {
-      // Get the category for the entry's pictogram
       if(entry.Type === "Expenses")
       {
         count += 1;
-      const category = await this.getCategoryOfPictogram(entry.Pictogram);
-      
-      // Increment the count for the category
-      if (category) {
-        typeCounts[category['Category']] = (typeCounts[category['Category']] || 0) + 1;
+        const category = await this.getCategoryOfPictogram(entry.Pictogram);
+        
+        if (category) {
+          typeCounts[category['Category']] = (typeCounts[category['Category']] || 0) + 1;
+        }
       }
     }
-    }
     
-
-    // Convert the typeCounts object into an array of { category, count } objects
     const pieChartData = Object.keys(typeCounts).map(category => ({
       name : category,
-      value: (typeCounts[category] /count) * 100 // Calculate percentage
+      value: (typeCounts[category] /count) * 100 
     }));
 
     return pieChartData;
-    //console.log(pieChartData);
   }
 
 
@@ -127,15 +116,12 @@ export class StatsService {
 
   }
   
-
-
   calculateDataBarChart(currentMonthEntries:registryEntry[])
   {
 
     const typeSum: { [type: string]: number } = {};
   let barChartData;
 
-  // Count the sum of entries for each type
   currentMonthEntries.forEach(entry => {
     if (typeSum[entry.Type]) {
       typeSum[entry.Type] += entry.Sum;
@@ -144,7 +130,6 @@ export class StatsService {
     }
   });
 
-  // Convert typeSum to barChartData
   barChartData = Object.keys(typeSum).map(type => ({
     name: type,
     value: typeSum[type]

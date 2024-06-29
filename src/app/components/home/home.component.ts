@@ -27,17 +27,17 @@ export class HomeComponent {
     {
       name: "Financial section",
       photo: "/assets/finance2.svg",
-      path: "fnc"
+      path: "finance"
     },
     {
       name: "Academic section",
       photo: "/assets/academic2.svg",
-      path: "acd"
+      path: "academic"
     },
     {
       name: "Personal section",
       photo: "/assets/personal.svg",
-      path: "psl"
+      path: "personal"
     }
   ];
   constructor(){

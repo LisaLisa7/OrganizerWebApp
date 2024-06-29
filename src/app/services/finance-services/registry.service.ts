@@ -359,8 +359,6 @@ async updateRecord(data:any){
 
 async deleteRecord(id:string){
   const ok = await this.pb.collection('Registry').delete(id);
-  //this.entryDeletedSubject.next(undefined);
-  //console.log(ok)
 }
 
 async getAllSavings(){

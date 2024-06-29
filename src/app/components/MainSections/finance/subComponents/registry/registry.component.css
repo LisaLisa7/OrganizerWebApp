@@ -189,12 +189,14 @@ table {
   
   }
 
-
+th{
+    border-bottom: 1px solid #ccc; 
+}
   
 td {
     text-align: center;
-    border-bottom: 1px solid #ccc; 
-    border-top: 1px solid #ccc;
+    /*border-bottom: 1px solid #ccc; 
+    border-top: 1px solid #ccc;*/
     min-width: 70px;
     
 }

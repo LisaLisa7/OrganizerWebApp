@@ -29,8 +29,8 @@ import { TasksPersonalComponent } from './sub-components/tasks-personal/tasks-pe
             <button (click)="createGameListComponent()">Your Game List</button>
           </div>
 
-          <button (click)="createMovieListComponent()"><img [src]="movieSVG" alt="movies"><span>Movies</span><img [src]="expansSVG" style="float: right; height : 20px; margin-top : 5px;"></button>
-          <button (click)="createBookListComponent()"><img [src]="bookSVG" alt="books"><span>Books</span><img [src]="expansSVG" style="float: right; height : 20px; margin-top : 5px;"></button>
+          <button (click)="createMovieListComponent()"><img [src]="movieSVG" alt="movies"><span>Movies</span></button>
+          <button (click)="createBookListComponent()"><img [src]="bookSVG" alt="books"><span>Books</span></button>
           <button (click)="openExportDialog()" ><img [src]="exportSVG" alt="export"><span>Export</span></button>
           
 

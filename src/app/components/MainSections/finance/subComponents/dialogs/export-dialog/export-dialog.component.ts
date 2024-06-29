@@ -77,7 +77,6 @@ export class ExportDialogComponent {
     return header + rows;
 }
 
-// Function to download CSV file
   downloadCSV(data: any[], filename: string): void {
       const filteredEntries = data.map(({ Id, Pictogram, ...rest }) => rest);
       const csvContent = this.convertToCSV(filteredEntries);
@@ -99,7 +98,10 @@ export class ExportDialogComponent {
 
   public exportPDF(): void {
 
-    const filteredEntries = this.registryEntries.map(({ Id, Pictogram, ...rest }) => rest);
+    const filteredEntries = this.registryEntries.map(({ Id,
+                                                     Pictogram,
+                                                      ...rest }
+                                                    ) => rest);
     const fieldNames = Object.keys(filteredEntries[0]);
     const fieldValues = filteredEntries.map(entry => Object.values(entry));
     console.log(fieldValues);
@@ -107,52 +109,50 @@ export class ExportDialogComponent {
     const numColumns = fieldNames.length;
     const columnWidths = Array(numColumns).fill('auto');
 
-    // Define document definition
     const docDefinition: TDocumentDefinitions = {
       content: [
         {text:this.currentDate},
         { text: "All entries", style: 'header' },   
         {
-            columns: [
-                { width: '*', text: '' },
-                {
-                    width: 'auto',
-                    layout: 'lightHorizontalLines', 
-                    table: {
-                        headerRows: 1,
-                        widths: columnWidths,
-                        body: [
-                            fieldNames.map(fieldName => ({
-                                text: fieldName,
-                                style: 'tableHeader'
-                            })),
-                            ...fieldValues.map(entryValues => entryValues.map(value => String(value)))
-                        ]
-                    },
-                    //pageBreak: 'after'
+          columns: [
+              { width: '*', text: '' },
+              {
+                width: 'auto',
+                layout: 'lightHorizontalLines', 
+                table: {
+                    headerRows: 1,
+                    widths: columnWidths,
+                    body: [
+                        fieldNames.map(fieldName => ({
+                            text: fieldName,
+                            style: 'tableHeader'
+                        })),
+                        ...fieldValues.map(entryValues =>
+                                      entryValues.map(value => String(value)))
+                    ]
                 },
-                { width: '*', text: '' },
+                //pageBreak: 'after'
+              },
+              { width: '*', text: '' },
             ]
-        },
-        
+        },  
       ],
       styles: {
-          tableHeader: {
-              bold: true,
-              alignment: 'center'
-          },
-          header: {
-            fontSize: 18,
+        tableHeader: {
             bold: true,
-            alignment: 'center',
-            margin: [0, 20, 0, 20] as [number, number, number, number] // [left, top, right, bottom]
+            alignment: 'center'
         },
+        header: {
+          fontSize: 18,
+          bold: true,
+          alignment: 'center',
+          margin: [0, 20, 0, 20] as
+          [number, number, number, number]
+            // [stg, sus, dreapta, jos]
       },
-      
+      }, 
   };
-
     pdfMake.createPdf(docDefinition).download("data.pdf");
-    
   }
 
   exportCSV(){

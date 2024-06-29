@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TasksService } from '../../../../../services/personal-services/tasks.service';
-import { BoardTask } from '../../../../../interfaces/personal-interfaces/board-task';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,9 +11,7 @@ import { CommonModule } from '@angular/common';
 
     <div class="container-left">
 
-      <div class="container-left-1">
-
-        <h1>Tasks for today</h1>
+    <h1>Tasks for today</h1>
         <table *ngIf="todayTasks.length > 0; else noTodayTasks">
             <thead>
               <tr>
@@ -38,13 +35,11 @@ import { CommonModule } from '@angular/common';
             <p>No tasks for today.</p>
           </ng-template>
 
-      
 
-      </div>
+    </div>
 
-      <div class="container-left-2">
-
-        <h1>Tasks that are overdue</h1>
+    <div class="container-right">
+    <h1>Tasks that are overdue</h1>
         <table *ngIf="overdueTasks.length > 0; else noLateTasks">
             <thead>
               <tr>
@@ -65,13 +60,6 @@ import { CommonModule } from '@angular/common';
           <ng-template #noLateTasks>
             <p>You are up to date!</p>
           </ng-template>
-    
-      </div>
-
-    </div>
-
-    <div class="container-right">
-      <h1 class="h1_title"></h1>
 
     </div>
 

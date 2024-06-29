@@ -37,18 +37,18 @@ import { ErrorDialogComponent } from '../../../../personal/sub-components/dialog
 
         <mat-form-field>
           <mat-label>StartDate</mat-label>
-          <input matInput type="date" [(ngModel)]="formData.StartDate"
-          (ngModelChange)="updateData.StartDate = $event"  name="Date" required>
+          <input matInput type="date" [(ngModel)]="formData.startDate"
+          (ngModelChange)="updateData.startDate = $event"  name="Date" required>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>DueDate</mat-label>
-          <input matInput type="date" [ngModel]="dateBuffFinish"  name="DueDate" required>
+          <input matInput type="date" [(ngModel)]="dateBuffFinish"  name="DueDate" required>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Time</mat-label>
-          <input matInput type="time" placeholder="Time" [ngModel]="timeBuffFinish" name="time" required>
+          <input matInput type="time" placeholder="Time" [(ngModel)]="timeBuffFinish" name="time" required>
         </mat-form-field>
 
       </form>
@@ -78,10 +78,11 @@ export class UpdateTaskDialogComponent {
     if(data){
       this.formData = data;
 
-      this.formData.startDate = this.formData.startDate.split(' ')[0];
+      let buff = this.formData.startDate.split(' ')[0];
+      this.formData.startDate = buff;
       [this.dateBuffFinish,this.timeBuffFinish] = this.formData.finishDate.split(' ');
       this.timeBuffFinish = this.timeBuffFinish.slice(0, 5);
-
+      //console.log(this.dateBuffFinish + " " + this.timeBuffFinish)
     }
   }
 
@@ -116,21 +117,20 @@ export class UpdateTaskDialogComponent {
 
     if(this.dateBuffFinish && this.timeBuffFinish)
       {
+        
         this.updateData.FinishDate = this.dateBuffFinish + ' ' + this.timeBuffFinish + ':00.000Z';
+        console.log(this.updateData);
       }
-      if(this.patchDataValidator(this.updateData))
-        {
-          this.taskService.updateTask(this.formData.id,this.updateData);
-          if(this.updateData.Done == true)
-            {
-              console.log("Trb propagare")
-            }
-          this.dialogRef.close();
-        }
-        else
-        {
-          this.openDialog('Please complete all the fields');
-        }
+    if(this.patchDataValidator(this.updateData))
+      {
+        this.taskService.updateTask(this.formData.id,this.updateData);
+        console.log("?")
+        this.dialogRef.close();
+      }
+      else
+      {
+        this.openDialog('Please complete all the fields');
+      }
     
   }
 

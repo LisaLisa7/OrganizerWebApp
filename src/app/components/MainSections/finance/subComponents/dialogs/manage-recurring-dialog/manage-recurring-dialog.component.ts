@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { registryEntry } from '../../../../../../interfaces/finance-interfaces/registryEntry';
 import { PictogramDialogComponent } from '../pictogram-dialog/pictogram-dialog.component';
 import { RecurringEntryDialogComponent } from '../recurring-entry-dialog/recurring-entry-dialog.component';
 import { RecurringService } from '../../../../../../services/finance-services/recurring.service';
@@ -21,9 +20,8 @@ import { recurringEntry } from '../../../../../../interfaces/finance-interfaces/
             <th></th>
             <th>Title</th>
             <th>Sum</th>
-            <th>Time</th>
-            <th>Source</th>
-            <th></th>
+            <th>Repeat</th>
+            <th>On</th>
         </tr>
         </thead>
         <tbody>
@@ -34,8 +32,9 @@ import { recurringEntry } from '../../../../../../interfaces/finance-interfaces/
       <td class="td"><img [src]="item.Pictogram"></td>
           <td class="td">{{ item.Description}}</td>
           <td class="td" >{{ item.Type === 'Expenses' ? '-' : '+' }}{{ item.Sum }}</td>
-          <td class="td">{{item.Date |  date:' dd MMM yyyy':'UTC'}}</td>
-          <td class="td">{{item.Source}}</td>
+          <td class="td">{{item.Repeat}}</td> 
+          <td class="td">{{item.MonthDay ? item.MonthDay : '-'}}</td>
+
           <td class="td"><div class="separator"></div></td>
           <td class="td">
             <div class="actionButtonsContainer">

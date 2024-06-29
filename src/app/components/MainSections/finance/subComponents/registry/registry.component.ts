@@ -72,9 +72,6 @@ import { ManageRecurringDialogComponent } from '../dialogs/manage-recurring-dial
               </tr>
             </tbody>
 
-          
-
-
           </table>
 
         </div>
