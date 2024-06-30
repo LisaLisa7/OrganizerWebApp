@@ -9,6 +9,7 @@ import { ProjectComponent } from './subComponents/project/project.component';
 import { TasksAcademicComponent } from './subComponents/tasks-academic/tasks-academic.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SettingsDialogComponent } from '../../shared/settings-dialog/settings-dialog.component';
+import { Theme,ThemeService } from '../../../theme.service';
 @Component({
   selector: 'app-academic',
   standalone: true,
@@ -57,15 +58,22 @@ export class AcademicComponent {
   settingsSVG = "/assets/settings.svg"
   helpSVG = "/assets/help.svg";
 
-
   opened = true;
-
 
   toggleSidenav(): void {
     this.opened = !this.opened;
   }
   @ViewChild('dynamicComponentContainer', { read: ViewContainerRef }) dynamicComponentContainer!: ViewContainerRef;
-  constructor(private componentFactoryResolver: ComponentFactoryResolver,private dialog:MatDialog) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,private dialog:MatDialog,private themeService:ThemeService) {
+
+
+    const storedTheme = localStorage.getItem('selectedTheme');
+    if (storedTheme) {
+      const theme: Theme = JSON.parse(storedTheme);
+      this.themeService.setTheme(theme);
+    }
+
+  }
 
   ngAfterViewInit(): void {
   }

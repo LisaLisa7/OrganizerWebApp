@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SectionComponent } from '../sectionHome/section.component';
 import { Section } from '../../interfaces/finance-interfaces/section';
+import { Theme, ThemeService } from '../../theme.service';
 
 @Component({
   selector: 'app-home',
@@ -40,7 +41,13 @@ export class HomeComponent {
       path: "personal"
     }
   ];
-  constructor(){
+  constructor(private themeService:ThemeService){
+
+    const storedTheme = localStorage.getItem('selectedTheme');
+    if (storedTheme) {
+      const theme: Theme = JSON.parse(storedTheme);
+      this.themeService.setTheme(theme);
+    }
   }
 }
 

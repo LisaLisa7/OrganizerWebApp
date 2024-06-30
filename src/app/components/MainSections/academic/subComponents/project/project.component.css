@@ -182,5 +182,9 @@ mat-label{
     display:contents;
     
   }
+
+ .no-projects-message{
+  color: var(--text-color);
+ }
  
   

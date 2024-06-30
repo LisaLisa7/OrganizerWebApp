@@ -9,7 +9,6 @@ import { ThemeService,Theme } from '../../../theme.service';
   template: `
     <h2 mat-dialog-title style="text-align: center;">Settings</h2>
     <div mat-dialog-content>
-      <h3>Currency</h3>
       <h3>Theme</h3>
       <button (click)="darkTheme()">dark theme</button>
       <button (click)="lightTheme()">light theme</button>
@@ -25,6 +24,7 @@ export class SettingsDialogComponent {
 
   darkTheme(): void {
     this.themeService.switchToDarkTheme();
+
   }
   lightTheme(): void {
     

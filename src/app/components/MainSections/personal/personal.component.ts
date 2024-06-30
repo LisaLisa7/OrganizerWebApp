@@ -12,6 +12,7 @@ import { ExportListsDialogComponent } from './sub-components/dialogs/export-list
 import { HomePersonalComponent } from './sub-components/home-personal/home-personal.component';
 import { TasksPersonalComponent } from './sub-components/tasks-personal/tasks-personal.component';
 import { SettingsDialogComponent } from '../../shared/settings-dialog/settings-dialog.component';
+import { Theme, ThemeService } from '../../../theme.service';
 
 @Component({
   selector: 'app-personal',
@@ -89,7 +90,15 @@ export class PersonalComponent {
     this.opened = !this.opened;
   }
   @ViewChild('dynamicComponentContainer', { read: ViewContainerRef }) dynamicComponentContainer!: ViewContainerRef;
-  constructor(private componentFactoryResolver: ComponentFactoryResolver,public dialog:MatDialog) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,public dialog:MatDialog,private themeService:ThemeService) {
+
+    const storedTheme = localStorage.getItem('selectedTheme');
+    if (storedTheme) {
+      const theme: Theme = JSON.parse(storedTheme);
+      this.themeService.setTheme(theme);
+    }
+
+  }
 
   ngAfterViewInit(): void {
     

@@ -23,7 +23,8 @@ export class ThemeService {
       '--shadow-color': '#9381FF',
       '--text-color' : '#ffffff',
       '--income-color' : '#cef3c5',
-      '--expense-color' : '#f8afaf'
+      '--expense-color' : '#f8afaf',
+      '--section-color' : '#9381FF'
     }
   });
 
@@ -43,14 +44,17 @@ export class ThemeService {
         '--text-color' : '#ffffff',
         '--button-color' : '#008170',
         '--income-color' : '#005B41',
-        '--expense-color' : '#DC5F00'
+        '--expense-color' : '#DC5F00',
+        '--section-color' : '#005B41'
       }
     };
     this.setTheme(darkTheme);
+    localStorage.setItem('selectedTheme', JSON.stringify(darkTheme));
+
   }
 
   switchToLightTheme(): void {
-    const darkTheme: Theme = {
+    const lightTheme: Theme = {
       name: 'dark',
       properties: {
         '--primary-color': '#634bec',
@@ -62,10 +66,13 @@ export class ThemeService {
         '--text-color' : '#060000',
         '--button-color' : '#E8E8E8',
         '--income-color' : '#cef3c5',
-        '--expense-color' : '#f8afaf'
+        '--expense-color' : '#f8afaf',
+        '--section-color' : '#5440c7'
       }
     };
-    this.setTheme(darkTheme);
+    this.setTheme(lightTheme);
+    localStorage.setItem('selectedTheme', JSON.stringify(lightTheme));
+
   }
 
 

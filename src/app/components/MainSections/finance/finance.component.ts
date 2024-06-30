@@ -11,6 +11,7 @@ import { HelpPageComponent } from './subComponents/help-page/help-page.component
 import { ExportDialogComponent } from './subComponents/dialogs/export-dialog/export-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SettingsDialogComponent } from '../../shared/settings-dialog/settings-dialog.component';
+import { Theme, ThemeService } from '../../../theme.service';
 
 @Component({
   selector: 'app-finance',
@@ -70,7 +71,14 @@ export class FinanceComponent {
     this.opened = !this.opened;
   }
   @ViewChild('dynamicComponentContainer', { read: ViewContainerRef }) dynamicComponentContainer!: ViewContainerRef;
-  constructor(private componentFactoryResolver: ComponentFactoryResolver,public dialog:MatDialog) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,public dialog:MatDialog,private themeService:ThemeService) {
+
+    const storedTheme = localStorage.getItem('selectedTheme');
+    if (storedTheme) {
+      const theme: Theme = JSON.parse(storedTheme);
+      this.themeService.setTheme(theme);
+    }
+  }
 
   ngAfterViewInit(): void {
   }

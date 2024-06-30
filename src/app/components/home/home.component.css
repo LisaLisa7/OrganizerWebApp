@@ -9,6 +9,7 @@
   section h1{
     padding-top: 100px;
     text-align: center;
+    color:var(--text-color);
   }
   
   input[type="text"] {

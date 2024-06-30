@@ -101,6 +101,9 @@ mat-label{
   td {
     text-align: center;
   }
+  .no-projects-message{
+    color: var(--text-color);
+  }
 
 
 
