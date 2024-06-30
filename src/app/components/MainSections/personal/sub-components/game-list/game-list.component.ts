@@ -28,7 +28,7 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
               <tr>
                 <th (click)="sort('Name')">Name</th>
                 <th>Status</th>
-                <th>Rating</th>
+                <th (click)="sortRating()" class="clickable">Rating</th>
                 <th>Review</th>
                 <th></th>
                 <th></th>
@@ -39,7 +39,7 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
               <tr *ngFor="let game of gameData" (click)="actions(game)">
                 <td>{{game.Name}}</td>
                 <td>{{game.Status}}</td>
-                <td>{{game.Rating}}/10</td>
+                <td >{{game.Rating}}/10</td>
                 <td>{{game.Review}}</td>
                 <td class="td"><div class="separator"></div></td>
                 <td>
@@ -70,6 +70,8 @@ export class GameListComponent {
   gameData : ListGame[] = [];
 
   currentStatus :string = 'All'
+  ascending = true;
+
 
   private unsubscribeDelete$ = new Subject<void>();
   private unsubscribeModified$ = new Subject<void>();
@@ -101,6 +103,25 @@ export class GameListComponent {
   sort(name:string){
     console.log(name);
 
+  }
+
+  sortRating(){
+
+    if(this.ascending == true)
+    {
+      console.log(1);
+      this.gameData.sort((a, b) => a.Rating - b.Rating);
+      this.ascending = false;
+    }
+    else
+    {
+      console.log(2);
+      this.gameData.sort((a, b) => b.Rating - a.Rating);
+      this.ascending = true;
+
+    }
+
+    console.log("sort");
   }
 
 

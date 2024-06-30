@@ -126,4 +126,7 @@
   background-color: #ccc;
 }
 
+.clickable:hover{
+  cursor: pointer;
+}
 

@@ -37,7 +37,7 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
                 <th>Title</th>
                 <th>Author</th>
                 <th>Status</th>
-                <th>Rating</th>
+                <th (click)="sortRating()" class="clickable">Rating</th>
                 <th>Review</th>
                 <th></th>
                 <th></th>
@@ -84,6 +84,7 @@ export class BookListComponent {
   bookData : ListBook[] = [];
 
   currentStatus :string = 'All'
+  ascending = true;
 
   
   private unsubscribeDelete$ = new Subject<void>();
@@ -113,6 +114,26 @@ export class BookListComponent {
     this.bookData = await this.booksService.getAllList();
     
   }
+
+  sortRating(){
+
+    if(this.ascending == true)
+    {
+      console.log(1);
+      this.bookData.sort((a, b) => a.Rating - b.Rating);
+      this.ascending = false;
+    }
+    else
+    {
+      console.log(2);
+      this.bookData.sort((a, b) => b.Rating - a.Rating);
+      this.ascending = true;
+
+    }
+
+    console.log("sort");
+  }
+
 
   
   buttonClick(status:string){

@@ -13,6 +13,7 @@ import { HomePersonalComponent } from './sub-components/home-personal/home-perso
 import { TasksPersonalComponent } from './sub-components/tasks-personal/tasks-personal.component';
 import { SettingsDialogComponent } from '../../shared/settings-dialog/settings-dialog.component';
 import { Theme, ThemeService } from '../../../theme.service';
+import { HelpPersonalComponent } from './sub-components/help-personal/help-personal.component';
 
 @Component({
   selector: 'app-personal',
@@ -39,7 +40,7 @@ import { Theme, ThemeService } from '../../../theme.service';
 
           </div>
           <div>
-          <button><img [src]="helpSVG" alt="help"><span>Help</span></button>
+          <button (click)="createHelpComponent()"><img [src]="helpSVG" alt="help"><span>Help</span></button>
           <button (click)="openSettingsDialog()" class="bottomButton"><img [src]="settingsSVG" alt="settings"><span>Settings</span></button>
           </div>
           
@@ -148,6 +149,16 @@ export class PersonalComponent {
 
     const factory = this.componentFactoryResolver.resolveComponentFactory(TasksPersonalComponent);
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
+
+  }
+
+  createHelpComponent():void{
+
+    this.dynamicComponentContainer.clear();
+
+    const factory = this.componentFactoryResolver.resolveComponentFactory(HelpPersonalComponent);
+    const componentRef = this.dynamicComponentContainer.createComponent(factory);
+
 
   }
 

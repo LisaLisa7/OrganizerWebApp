@@ -37,7 +37,7 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
               <tr>
                 <th>Title</th>
                 <th>Status</th>
-                <th>Rating</th>
+                <th class="clickable" (click)="sortRating()">Rating</th>
                 <th>Review</th>
                 <th></th>
                 <th></th>
@@ -77,10 +77,10 @@ export class MovieListComponent {
   statusArray = ['All','Watched','Plan to Watch','Dropped'];
   readonly entryButtonPath = "/assets/plus.svg";
 
-
   movieData : ListMovie[] = [];
 
   currentStatus :string = 'All'
+  ascending = false;
 
   
   private unsubscribeDelete$ = new Subject<void>();
@@ -109,6 +109,25 @@ export class MovieListComponent {
   async loadData(){
     this.movieData = await this.moviesService.getAllList();
     
+  }
+
+  sortRating(){
+
+    if(this.ascending == true)
+    {
+      console.log(1);
+      this.movieData.sort((a, b) => a.Rating - b.Rating);
+      this.ascending = false;
+    }
+    else
+    {
+      console.log(2);
+      this.movieData.sort((a, b) => b.Rating - a.Rating);
+      this.ascending = true;
+
+    }
+
+    console.log("sort");
   }
 
   

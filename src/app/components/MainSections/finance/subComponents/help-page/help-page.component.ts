@@ -26,9 +26,10 @@ import { Component } from '@angular/core';
           <section class="content">
             <div class="item" id="content-1">
               <h2>Section 'Home'</h2>
+
               <p>In the <span>top side</span> you can see how much money you've spent/recieved/saved during the current month.On the <span>bottom right</span>
-               you can see your last 4 entries for the current day with the option to see all entries on a paginated dialog!
-               Your recurring entries that still havent taken place in the current month will show on the <span>bottom left.</span> This will also show you the remaing time for each of them.
+              you can see your last 4 entries for the current day with the option to see all entries on a paginated dialog!
+              Your recurring entries that still havent taken place in the current month will show on the <span>bottom left.</span> This will also show you the remaing time for each of them.
               </p>
               <h2>What do the buttons do?</h2>
               <p>The first button you see is the <span>"Add a new entry"</span> one. With this, you can update your registry to reflect your current balance!

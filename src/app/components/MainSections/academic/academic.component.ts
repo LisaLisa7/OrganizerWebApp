@@ -10,6 +10,7 @@ import { TasksAcademicComponent } from './subComponents/tasks-academic/tasks-aca
 import { MatDialog } from '@angular/material/dialog';
 import { SettingsDialogComponent } from '../../shared/settings-dialog/settings-dialog.component';
 import { Theme,ThemeService } from '../../../theme.service';
+import { HelpAcademicComponent } from './subComponents/help-academic/help-academic.component';
 @Component({
   selector: 'app-academic',
   standalone: true,
@@ -26,7 +27,7 @@ import { Theme,ThemeService } from '../../../theme.service';
           
           </div>
           <div>
-          <button><img [src]="helpSVG" alt="help"><span>Help</span></button>
+          <button (click)="createHelpComponent()"><img [src]="helpSVG" alt="help"><span>Help</span></button>
           <button (click)="openSettingsDialog()" class="bottomButton"><img [src]="settingsSVG" alt="settings"><span>Settings</span></button>
           </div>
           
@@ -104,6 +105,13 @@ export class AcademicComponent {
     const factory = this.componentFactoryResolver.resolveComponentFactory(TasksAcademicComponent);
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
 
+  }
+
+  createHelpComponent():void{
+    this.dynamicComponentContainer.clear();
+
+    const factory = this.componentFactoryResolver.resolveComponentFactory(HelpAcademicComponent);
+    const componentRef = this.dynamicComponentContainer.createComponent(factory);
   }
 
   openSettingsDialog(){

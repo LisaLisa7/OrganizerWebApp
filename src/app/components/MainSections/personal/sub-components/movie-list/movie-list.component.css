@@ -65,6 +65,10 @@
   color: #fff; 
 }
 
+.clickable:hover{
+
+  cursor: pointer;
+}
   
   table {
     border-collapse: separate;
@@ -149,4 +153,14 @@
     display: inline-block;
     padding-top: 9px;
     
+}
+
+.buttonPic{
+  float: left;
+  width: 30px; 
+  height: auto;
+
+}
+.span2{
+  display: inline-block;
 }

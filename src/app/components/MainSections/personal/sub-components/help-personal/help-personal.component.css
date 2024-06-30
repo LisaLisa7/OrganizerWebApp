@@ -141,8 +141,6 @@
   #tab-2:checked + label {
     color: #FFEEDD;
   }
-  
   p span{
     color: var(--primary-color);
   }
-  
