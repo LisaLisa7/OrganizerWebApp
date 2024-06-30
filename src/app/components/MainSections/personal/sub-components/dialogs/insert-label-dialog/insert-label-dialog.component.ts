@@ -5,7 +5,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input'; 
 import { FormsModule } from '@angular/forms'; 
-import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../../../../shared/error-dialog/error-dialog.component';
 import { TasksService } from '../../../../../../services/personal-services/tasks.service';
 import { NgxColorsModule } from 'ngx-colors';
 
@@ -15,7 +15,8 @@ import { NgxColorsModule } from 'ngx-colors';
   standalone: true,
   imports: [MatFormFieldModule,MatDialogModule,MatSelectModule,CommonModule,MatInputModule,FormsModule,NgxColorsModule],
   template: `
-    <h2 mat-dialog-title style="text-align: center;">New Label</h2>
+  <div class="dialog">
+    <div mat-dialog-title class="dialogTitle">New Labels</div>
     <div mat-dialog-content>
       <form>
 
@@ -43,6 +44,7 @@ import { NgxColorsModule } from 'ngx-colors';
       <button class="buttonCancel" mat-button (click)="onClose()">Cancel</button>
       <button class="buttonSubmit" mat-button (click)="onSubmit()" color="primary" cdkFocusInitial>Submit</button>
     </div>
+  </div>
   `,
   styleUrl: './insert-label-dialog.component.css'
 })

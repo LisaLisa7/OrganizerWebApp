@@ -35,9 +35,6 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
         <button (click)="openProjectDialog()">
         <img [src]="plusSVG" alt="newBoard"><span>New Project</span>
         </button>
-        <button (click)="openLabelsDialog()">
-        <img [src]="labelSVG" alt="labels" ><span>Labels</span>
-        </button>
         <button>
         <img [src]="filterSVG" alt="filter" ><span>Filter</span>
         </button>
@@ -65,7 +62,8 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
                   <div class="progress-text">
                     {{ getCompletionPercentage(projectTasks[p.id]).toFixed(0) }}%
                   </div>
-                  <mat-progress-bar mode="determinate" [value]="getCompletionPercentage(projectTasks[p.id])"></mat-progress-bar>
+                  <mat-progress-bar mode="determinate" [value]="getCompletionPercentage(projectTasks[p.id])">
+                  </mat-progress-bar>
                 </div>
 
                 <table>
@@ -115,7 +113,6 @@ export class ProjectComponent {
   plusSVG = "/assets/plus.svg"
   filterSVG = "/assets/filter.svg";
   deleteSVG = "/assets/delete.svg";
-  labelSVG = "/assets/label.svg";
   updateSVG = "/assets/settings.svg";
 
 
@@ -183,18 +180,7 @@ export class ProjectComponent {
       this.loadProjectsAndTasks();
     });
   }
-  openLabelsDialog(){
-    const dialogRef = this.dialog.open(NewClassDialogComponent, {
-      width: '500px', 
-      data: {} 
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //this.test();
-    });
-  }
-
+  
   async deleteProject(id:string){
 
     const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this project?\nAll its tasks will also be deleted");

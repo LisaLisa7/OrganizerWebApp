@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SheduleService } from '../../../../../../services/academic-services/shedule.service';
 import { ClassesService } from '../../../../../../services/academic-services/classes.service';
-import { ErrorDialogComponent } from '../../../../personal/sub-components/dialogs/error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../../../../shared/error-dialog/error-dialog.component';
 
 
 @Component({
@@ -18,7 +18,8 @@ import { ErrorDialogComponent } from '../../../../personal/sub-components/dialog
   imports: [MatFormFieldModule,MatDialogModule,MatSelectModule,CommonModule,MatInputModule,FormsModule,MatIconModule,
     MatTooltipModule],
   template: `
-    <h2 mat-dialog-title style="text-align: center;">Import Schedule</h2>
+  <div class="dialog">
+    <div mat-dialog-title class="dialogTitle">Import Schedule</div>
     <div mat-dialog-content>
       <form>
 
@@ -56,6 +57,7 @@ import { ErrorDialogComponent } from '../../../../personal/sub-components/dialog
       <button class="buttonCancel" mat-button (click)="onClose()">Cancel</button>
       <button class="buttonSubmit" mat-button (click)="onSubmit()" color="primary" cdkFocusInitial>Submit</button>
     </div>
+  </div>
   `,
   styleUrl: './import-schedule-dialog.component.css'
 })

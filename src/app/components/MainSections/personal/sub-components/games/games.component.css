@@ -6,6 +6,7 @@
     flex-direction: column;
     
     text-align: center;
+    color: var(--text-color);
   }
 
 
@@ -37,7 +38,7 @@ img {
 
   border: 3px solid;
   border-radius: 8px;
-  background-color: #FFF;
+  background-color: var(--accent-color);
   position: relative;
   transition: .15s ease;
   
@@ -46,7 +47,7 @@ img {
   &:hover {			
     transform: scale(1.05);
     cursor: pointer;
-    background-color: #FFEEDD;
+    background-color: var(--color3);
     
   }
   

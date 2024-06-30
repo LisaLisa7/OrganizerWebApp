@@ -4,6 +4,8 @@
     height: calc(100vh - 70px);
     display: grid;
     grid-template-rows: 1fr 1fr;
+    color: var(--text-color);
+
     
 }
 
@@ -38,7 +40,7 @@ table {
   }
 
 th{
-    border-bottom: 1px solid #000000; 
+    border-bottom: 1px solid var(--text-color);
 }
   
 td {

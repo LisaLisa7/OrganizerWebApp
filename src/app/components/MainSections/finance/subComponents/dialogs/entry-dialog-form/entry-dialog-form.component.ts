@@ -11,7 +11,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PictogramDialogComponent } from '../pictogram-dialog/pictogram-dialog.component';
 import { CommonModule } from '@angular/common';
 import { SavingsService } from '../../../../../../services/finance-services/savings.service';
-import { ErrorDialogComponent } from '../../../../personal/sub-components/dialogs/error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../../../../shared/error-dialog/error-dialog.component';
 
 
 

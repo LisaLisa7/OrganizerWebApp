@@ -6,6 +6,7 @@
     flex-direction: column;
     
     text-align: center;
+    color: var(--text-color);
   }
 
   .statusContainer{
@@ -28,7 +29,7 @@
     text-align: center;
     border: none;
     border-bottom: 0.5pt solid #1d1e22;
-    color: #000000;
+    color: var(--text-color);
     display: inline-flex;
     padding: 5pt 10pt;
     
@@ -41,7 +42,7 @@
     margin-bottom: 0.5px;
     border-radius: 7px 7px 0 0;
     border-top: 1px solid #3b3d3f;
-    background-color: #B8B8FF;
+    background-color: var(--button-color);
     cursor: pointer;
   }
 
@@ -60,7 +61,7 @@
   }
 
   .statusContainer button.active {
-  background-color: #9381FF; 
+  background-color: var(--primary-color);
   color: #fff; 
 }
 
@@ -78,7 +79,7 @@
   td,th{
 
     text-align: center;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--text-color);
     height: 70px;
     min-width: 70px;
     
@@ -91,12 +92,12 @@
   
 
   tbody tr:hover{
-    background-color: #FFEEDD;
+    background-color: var(--color3);
     cursor: pointer;
   }
   
   .separator {
-    border-left: 2px solid rgb(87, 84, 84);
+    border-left: 2px solid var(--text-color);
     height: 70%; 
     margin: 0 20px; 
     min-height: 30px; 
@@ -114,6 +115,7 @@
     border-radius: 8px;
     margin-right: 20px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    
   
   }
   .buttonContainer button:hover{
@@ -129,6 +131,8 @@
     padding-left: 10px;
     border-radius: 5px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: var(--button-color);
+    color: var(--text-color);
 }
 .some-buttons-container button:hover{
     cursor: pointer;

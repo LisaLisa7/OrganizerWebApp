@@ -5,14 +5,22 @@ form
     flex-direction: column;
 }
 
+.dialog{
+    background-color: var(--accent-color);
+    color: var(--text-color);
+
+}
+
+.dialogTitle{
+    text-align: center;
+    color: var(--text-color);
+}
+
 
 .buttonContainer{
     display: flex;
     justify-content: space-between;
 }
-
-
-
 
 .buttonCancel{
     width: 100px;

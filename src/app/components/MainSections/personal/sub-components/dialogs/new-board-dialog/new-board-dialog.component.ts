@@ -5,7 +5,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input'; 
 import { FormsModule } from '@angular/forms'; 
-import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../../../../shared/error-dialog/error-dialog.component';
 import { TasksService } from '../../../../../../services/personal-services/tasks.service';
 
 @Component({
@@ -13,7 +13,8 @@ import { TasksService } from '../../../../../../services/personal-services/tasks
   standalone: true,
   imports: [MatFormFieldModule,MatDialogModule,MatSelectModule,CommonModule,MatInputModule,FormsModule],
   template: `
-    <h2 mat-dialog-title style="text-align: center;">New board</h2>
+  <div class="dialog">
+    <div mat-dialog-title class="dialogTitle">New board</div>
     <div mat-dialog-content>
       <form>
       <mat-form-field>
@@ -30,6 +31,7 @@ import { TasksService } from '../../../../../../services/personal-services/tasks
       <button class="buttonCancel" mat-button (click)="onClose()">Cancel</button>
       <button class="buttonSubmit" mat-button (click)="onSubmit()" color="primary" cdkFocusInitial>Submit</button>
     </div>
+  </div>
   `,
   styleUrl: './new-board-dialog.component.css'
 })

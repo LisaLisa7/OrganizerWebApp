@@ -7,14 +7,15 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ClassTasksService } from '../../../../../../services/academic-services/class-tasks.service';
-import { ErrorDialogComponent } from '../../../../personal/sub-components/dialogs/error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../../../../shared/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-update-task-dialog',
   standalone: true,
   imports: [CommonModule,MatFormFieldModule,MatDialogModule,MatSelectModule,MatInputModule,FormsModule,MatCheckboxModule],
   template: `
-    <h2 mat-dialog-title style="text-align: center;">{{this.formData.title}}</h2>
+  <div class="dialog">
+    <div mat-dialog-title class="dialogTitle">{{this.formData.title}}</div>
     <div mat-dialog-content>
       <form>
 
@@ -59,7 +60,7 @@ import { ErrorDialogComponent } from '../../../../personal/sub-components/dialog
       <button class="buttonCancel" mat-button (click)="onClose()">Cancel</button>
       <button class="buttonSubmit" mat-button (click)="onSubmit()" color="primary" cdkFocusInitial>Submit</button>
     </div>
-
+  </div>
   
   `,
   styleUrl: './update-task-dialog.component.css'

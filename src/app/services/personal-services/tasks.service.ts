@@ -3,7 +3,7 @@ import PocketBase from 'pocketbase'
 import { BoardColumn } from '../../interfaces/personal-interfaces/board-column';
 import { BoardTask } from '../../interfaces/personal-interfaces/board-task';
 import { TaskLabel } from '../../interfaces/personal-interfaces/task-label';
-import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../components/shared/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({

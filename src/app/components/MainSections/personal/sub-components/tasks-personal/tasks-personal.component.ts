@@ -11,7 +11,7 @@ import { NewBoardDialogComponent } from '../dialogs/new-board-dialog/new-board-d
 import { NewBoardColumnTaskDialogComponent } from '../dialogs/new-board-column-task-dialog/new-board-column-task-dialog.component';
 import { SeeBoardColumnTaskDialogComponent } from '../dialogs/see-board-column-task-dialog/see-board-column-task-dialog.component';
 import { SeeLabelsDialogComponent } from '../dialogs/see-labels-dialog/see-labels-dialog.component';
-import { ConfirmDialogComponent } from '../../../../../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-tasks-personal',

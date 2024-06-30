@@ -11,7 +11,16 @@ form
 }
 
 
-
+.dialog{
+    background-color: var(--accent-color);
+    color: var(--text-color);
+ 
+ }
+ 
+ .dialogTitle{
+    text-align: center;
+    color: var(--text-color);
+ }
 
 .buttonCancel{
     width: 100px;

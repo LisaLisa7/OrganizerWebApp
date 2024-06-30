@@ -6,13 +6,14 @@ import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms'; 
 import { MoviesService } from '../../../../../../../services/personal-services/movies.service';
-import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../../../../../shared/error-dialog/error-dialog.component';
 @Component({
   selector: 'app-movie-update-dialog',
   standalone: true,
   imports: [MatFormFieldModule,MatDialogModule,MatSelectModule,CommonModule,MatInputModule,FormsModule],
-  template: `<h2 mat-dialog-title style="text-align: center;">New movie</h2>
-
+  template: `
+<div class="dialog">
+  <div mat-dialog-title class="dialogTitle">New movie</div>
   <div mat-dialog-content>
 
     <form>
@@ -45,19 +46,14 @@ import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component'
         (ngModelChange)="updateData.Review = $event"  [(ngModel)]="formData.Review"></textarea>
 
         </mat-form-field>
-
-
-
     </form>
-
-
-
   </div>
 
   <div mat-dialog-actions class="buttonContainer">
     <button class="buttonCancel" mat-button (click)="onClose()">Cancel</button>
     <button class="buttonSubmit" mat-button (click)="onSubmit()" color="primary" cdkFocusInitial>Submit</button>
   </div>
+</div>
     
   `,
   styleUrl: './movie-update-dialog.component.css'

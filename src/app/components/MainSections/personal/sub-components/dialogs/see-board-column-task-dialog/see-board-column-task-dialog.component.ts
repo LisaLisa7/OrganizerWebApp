@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { TasksService } from '../../../../../../services/personal-services/tasks.service';
-import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../../../../shared/error-dialog/error-dialog.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input'; 
@@ -15,7 +15,8 @@ import { TaskLabel } from '../../../../../../interfaces/personal-interfaces/task
   standalone: true,
   imports: [CommonModule,MatFormFieldModule,MatDialogModule,MatSelectModule,MatInputModule,FormsModule,MatCheckboxModule],
   template: `
-    <h2 mat-dialog-title style="text-align: center;">{{this.passedData.Title}}</h2>
+<div class="dialog">
+    <div mat-dialog-title class="dialogTitle">{{this.passedData.Title}}</div>
     <div mat-dialog-content>
       <form>
       <mat-form-field>
@@ -42,7 +43,7 @@ import { TaskLabel } from '../../../../../../interfaces/personal-interfaces/task
         </mat-form-field>
 
 
-        <mat-checkbox class="example-margin" [(ngModel)]="this.formData.Done" name="done" >Done?</mat-checkbox>
+        <mat-checkbox color="accent" class="example-margin" [(ngModel)]="this.formData.Done" name="done" >Done?</mat-checkbox>
 
 
         <p>Move to?</p>
@@ -85,6 +86,7 @@ import { TaskLabel } from '../../../../../../interfaces/personal-interfaces/task
       <button class="buttonCancel" mat-button (click)="onDelete()">Delete</button>
       <button class="buttonSubmit" mat-button (click)="onSubmit()" color="primary" cdkFocusInitial>Submit</button>
     </div>
+</div>
   
   `,
   styleUrl: './see-board-column-task-dialog.component.css'

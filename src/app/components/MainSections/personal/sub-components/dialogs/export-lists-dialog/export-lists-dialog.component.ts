@@ -4,7 +4,6 @@ import { MatDialogRef,MatDialogModule } from '@angular/material/dialog';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
-
 import { saveAs } from 'file-saver';
 import { BooksService } from '../../../../../../services/personal-services/books.service';
 import { GamesService } from '../../../../../../services/personal-services/games.service';
@@ -23,7 +22,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   standalone: true,
   imports: [MatFormFieldModule,MatDialogModule,FormsModule,MatSelectModule],
   template: `
-   <h2 mat-dialog-title style="text-align: center;">Export</h2>
+  <div class="dialog">
+   <div mat-dialog-title class="dialogTitle">Export</div>
     <div mat-dialog-content>
 
       <form>
@@ -55,6 +55,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
     <div mat-dialog-actions class="buttonContainer">
       <button mat-button (click)="export()">export</button>
     </div>
+  </div>
   `,
   styleUrl: './export-lists-dialog.component.css'
 })

@@ -4,19 +4,30 @@ mat-dialog-content{
     flex-direction: column;
 }
 
+.dialog{
+   background-color: var(--accent-color);
+   color: var(--text-color);
+
+}
+
+.dialogTitle{
+   text-align: center;
+   color: var(--text-color);
+}
+
 img{
     width: 100%;
  }
 
  h3{
-    color: #9381FF;
+    color: var(--text-color);
  }
 
  span{
-    color:rgb(0, 0, 0);
+    color:var(--text-color);
  }
 
 h2{
     text-align: center;
-    color: black;
+    color: var(--text-color);
  }

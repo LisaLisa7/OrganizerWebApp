@@ -5,6 +5,16 @@ form
     flex-direction: column;
 }
 
+.dialog{
+    background-color: var(--accent-color);
+}
+
+.dialogTitle{
+    text-align: center;
+    color: var(--text-color);
+}
+
+
 
 .buttonContainer{
     display: flex;

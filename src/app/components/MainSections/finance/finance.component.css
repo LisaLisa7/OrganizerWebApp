@@ -2,8 +2,6 @@ mat-sidenav-container{
     height: calc(100vh - 70px);
     background-color: var(--accent-color);
     
-    
-
 }
 
 mat-sidenav{

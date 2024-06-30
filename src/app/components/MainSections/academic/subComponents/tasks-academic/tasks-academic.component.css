@@ -44,6 +44,8 @@ mat-label{
     border-radius: 5px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     width: 200px;
+    background-color: var(--button-color);
+    color: var(--text-color);
     
 }
 
@@ -64,10 +66,7 @@ mat-label{
     height: auto;
 }
 
-/* */
-
 .mainContent{
-    background-color: #F8F7FF;
     margin-left: 35px;
     flex:1;
     
@@ -81,56 +80,6 @@ mat-label{
     
 }
 
-.project {
-
-  border: 3px solid;
-  border-radius: 8px;
-  background-color: #FFF;
-  position: relative;
-  transition: .15s ease;
-  
-  padding: 5% 5% 15% 5%;
-  min-height: 150px;
-  height: auto;
-  
-  
-  
-
-  &:hover {			
-    transform: scale(1.05);
-    cursor: pointer;
-    background-color: #FFEEDD;
-    
-  }
-    
-    
-}
-.project h1{
-  position: relative;
-  padding-top: 5px;
-  text-align: center;
-  margin-top: 20px;
-}
-.project h1::after {
-  content: '';
-  position: absolute;
-  left: 20px; 
-  right: 20px; 
-  bottom: 0;
-  height: 1px; 
-  background-color: black; 
-}
-
-.progress-container {
-    width: 100%;
-    text-align: center;
-  }
-  
-  .progress-text {
-    margin-bottom: 5px;
-    font-size: 14px;
-    font-weight: bold;
-  }
 
 
   table {
@@ -153,10 +102,5 @@ mat-label{
     text-align: center;
   }
 
-  .project-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
 
 

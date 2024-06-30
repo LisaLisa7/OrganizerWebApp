@@ -7,6 +7,8 @@ import { HomeAcademicComponent } from './subComponents/home-academic/home-academ
 import { ScheduleComponent } from './subComponents/schedule/schedule.component';
 import { ProjectComponent } from './subComponents/project/project.component';
 import { TasksAcademicComponent } from './subComponents/tasks-academic/tasks-academic.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SettingsDialogComponent } from '../../shared/settings-dialog/settings-dialog.component';
 @Component({
   selector: 'app-academic',
   standalone: true,
@@ -24,7 +26,7 @@ import { TasksAcademicComponent } from './subComponents/tasks-academic/tasks-aca
           </div>
           <div>
           <button><img [src]="helpSVG" alt="help"><span>Help</span></button>
-          <button class="bottomButton"><img [src]="settingsSVG" alt="settings"><span>Settings</span></button>
+          <button (click)="openSettingsDialog()" class="bottomButton"><img [src]="settingsSVG" alt="settings"><span>Settings</span></button>
           </div>
           
         </div>
@@ -63,7 +65,7 @@ export class AcademicComponent {
     this.opened = !this.opened;
   }
   @ViewChild('dynamicComponentContainer', { read: ViewContainerRef }) dynamicComponentContainer!: ViewContainerRef;
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,private dialog:MatDialog) {}
 
   ngAfterViewInit(): void {
   }
@@ -94,6 +96,20 @@ export class AcademicComponent {
     const factory = this.componentFactoryResolver.resolveComponentFactory(TasksAcademicComponent);
     const componentRef = this.dynamicComponentContainer.createComponent(factory);
 
+  }
+
+  openSettingsDialog(){
+
+    const dialogRef = this.dialog.open(SettingsDialogComponent, {
+      width: '500px', 
+      data: {} 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed with result:', result);
+
+    });
+    
   }
 
 }

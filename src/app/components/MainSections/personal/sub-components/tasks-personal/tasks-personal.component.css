@@ -35,6 +35,9 @@ mat-label{
     border-radius: 5px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     width: 200px;
+
+    color: var(--text-color);
+    background-color: var(--button-color);
     
 }
 
@@ -56,7 +59,7 @@ mat-label{
 }
 
 .mainContent{
-    background-color: #F8F7FF;
+    background-color: var(--accent-color);
     width: 100vw;
     height: 100vh;
 }
@@ -73,9 +76,10 @@ mat-label{
 
   border: 3px solid;
   border-radius: 8px;
-  background-color: #FFF;
+  background-color:var(--shadow-color);
   position: relative;
   transition: .15s ease;
+  color: var(--text-color);
   
   padding: 5% 5% 15% 5%;
   min-height: 250px;
@@ -86,7 +90,7 @@ mat-label{
   &:hover {			
     transform: scale(1.05);
     cursor: pointer;
-    background-color: #FFEEDD;
+    background-color: var(--color3);
     
   }
     
@@ -104,11 +108,13 @@ mat-label{
   right: 20px; 
   bottom: 0;
   height: 1px; 
-  background-color: black; 
+  background-color: var(--text-color) 
 }
 
 .newColumnButton{
   height: 20px;
+  background-color: var(--button-color);
+  color: var(--text-color);
 }
 
 .newColumnButton:hover{

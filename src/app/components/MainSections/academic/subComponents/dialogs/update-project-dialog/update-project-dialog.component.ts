@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input'; 
 import { FormsModule } from '@angular/forms'; 
 import { ProjectsService } from '../../../../../../services/academic-services/projects.service';
-import { ErrorDialogComponent } from '../../../../personal/sub-components/dialogs/error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../../../../shared/error-dialog/error-dialog.component';
 
 
 @Component({
@@ -14,7 +14,8 @@ import { ErrorDialogComponent } from '../../../../personal/sub-components/dialog
   standalone: true,
   imports: [MatFormFieldModule,MatDialogModule,MatSelectModule,CommonModule,MatInputModule,FormsModule],
   template: `
-    <h2 mat-dialog-title style="text-align: center;">Update project</h2>
+  <div class="dialog">
+    <div mat-dialog-title class="dialogTitle">Update project</div>
     <div mat-dialog-content>
       <form>
         <mat-form-field>
@@ -47,6 +48,7 @@ import { ErrorDialogComponent } from '../../../../personal/sub-components/dialog
       <button class="buttonCancel" mat-button (click)="onClose()">Cancel</button>
       <button class="buttonSubmit" mat-button (click)="onSubmit()" color="primary" cdkFocusInitial>Submit</button>
     </div>
+  </div>
   `,
   styleUrl: './update-project-dialog.component.css'
 })

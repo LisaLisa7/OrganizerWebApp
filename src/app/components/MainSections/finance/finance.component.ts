@@ -10,7 +10,7 @@ import { StatsComponent } from './subComponents/stats/stats.component';
 import { HelpPageComponent } from './subComponents/help-page/help-page.component';
 import { ExportDialogComponent } from './subComponents/dialogs/export-dialog/export-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { SettingsDialogComponent } from './subComponents/dialogs/settings-dialog/settings-dialog.component';
+import { SettingsDialogComponent } from '../../shared/settings-dialog/settings-dialog.component';
 
 @Component({
   selector: 'app-finance',

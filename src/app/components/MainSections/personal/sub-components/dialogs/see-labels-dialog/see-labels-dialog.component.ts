@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { TasksService } from '../../../../../../services/personal-services/tasks.service';
-import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../../../../shared/error-dialog/error-dialog.component';
 import { InsertLabelDialogComponent } from '../insert-label-dialog/insert-label-dialog.component';
 import { TaskLabel } from '../../../../../../interfaces/personal-interfaces/task-label';
 @Component({
@@ -10,7 +10,8 @@ import { TaskLabel } from '../../../../../../interfaces/personal-interfaces/task
   standalone: true,
   imports: [MatDialogModule,CommonModule],
   template: `
-  <h2 mat-dialog-title style="text-align: center;">Manage your labels</h2>
+<div class="dialog">
+  <div mat-dialog-title class="dialogTitle">Manage your labels</div>
   <div mat-dialog-content>
     <table>
       <thead>
@@ -39,6 +40,7 @@ import { TaskLabel } from '../../../../../../interfaces/personal-interfaces/task
       <button class="buttonCancel" mat-button (click)="onClose()">Close</button>
       <button class="buttonSubmit" mat-button (click)="openNewLabelDialog()" color="primary" cdkFocusInitial>New Label</button>
   </div>
+</div>
   `,
   styleUrl: './see-labels-dialog.component.css'
 })

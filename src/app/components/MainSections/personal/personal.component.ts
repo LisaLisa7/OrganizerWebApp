@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ExportListsDialogComponent } from './sub-components/dialogs/export-lists-dialog/export-lists-dialog.component';
 import { HomePersonalComponent } from './sub-components/home-personal/home-personal.component';
 import { TasksPersonalComponent } from './sub-components/tasks-personal/tasks-personal.component';
+import { SettingsDialogComponent } from '../../shared/settings-dialog/settings-dialog.component';
 
 @Component({
   selector: 'app-personal',
@@ -38,7 +39,7 @@ import { TasksPersonalComponent } from './sub-components/tasks-personal/tasks-pe
           </div>
           <div>
           <button><img [src]="helpSVG" alt="help"><span>Help</span></button>
-          <button class="bottomButton"><img [src]="settingsSVG" alt="settings"><span>Settings</span></button>
+          <button (click)="openSettingsDialog()" class="bottomButton"><img [src]="settingsSVG" alt="settings"><span>Settings</span></button>
           </div>
           
         </div>
@@ -152,6 +153,20 @@ export class PersonalComponent {
       console.log('Dialog closed with result:', result);
       
     });
+  }
+
+  openSettingsDialog(){
+
+    const dialogRef = this.dialog.open(SettingsDialogComponent, {
+      width: '500px', 
+      data: {} 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed with result:', result);
+
+    });
+    
   }
 
 

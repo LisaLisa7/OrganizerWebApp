@@ -8,7 +8,8 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [MatDialogModule,FormsModule],
   template: `
-    <h1 mat-dialog-title style="text-align: center;">{{game.Name}}</h1>
+  <div class="dialog">
+    <div mat-dialog-title class="dialogTitle">{{game.Name}}</div>
     <div mat-dialog-content >
       <img [src] ="game.URL">
       
@@ -19,7 +20,7 @@ import { FormsModule } from '@angular/forms';
       
 
     </div>
-
+  </div>
   `,
   styleUrl: './game-details-dialog.component.css'
 })

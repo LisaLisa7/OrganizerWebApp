@@ -9,7 +9,16 @@ form
     display: flex;
     justify-content: space-between;
 }
+.dialog{
+    background-color: var(--accent-color);
+    color: var(--text-color);
 
+}
+
+.dialogTitle{
+    text-align: center;
+    color: var(--text-color);
+}
 
 
 
