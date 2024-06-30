@@ -5,6 +5,7 @@ import { TasksService } from '../../../../../../services/personal-services/tasks
 import { ErrorDialogComponent } from '../../../../../shared/error-dialog/error-dialog.component';
 import { InsertLabelDialogComponent } from '../insert-label-dialog/insert-label-dialog.component';
 import { TaskLabel } from '../../../../../../interfaces/personal-interfaces/task-label';
+
 @Component({
   selector: 'app-see-labels-dialog',
   standalone: true,

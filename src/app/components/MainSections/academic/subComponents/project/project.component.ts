@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { ClassTask } from '../../../../../interfaces/academic-interfaces/class-task';
 import { ClassesService } from '../../../../../services/academic-services/classes.service';
 import { MatDialog } from '@angular/material/dialog';
-import { NewClassDialogComponent } from '../dialogs/new-class-dialog/new-class-dialog.component';
 import { ProjectsService } from '../../../../../services/academic-services/projects.service';
 import { ClassTasksService } from '../../../../../services/academic-services/class-tasks.service';
 import { Project } from '../../../../../interfaces/academic-interfaces/project';
@@ -34,9 +33,6 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
       <div class="button-Container">
         <button (click)="openProjectDialog()">
         <img [src]="plusSVG" alt="newBoard"><span>New Project</span>
-        </button>
-        <button>
-        <img [src]="filterSVG" alt="filter" ><span>Filter</span>
         </button>
         
       </div>

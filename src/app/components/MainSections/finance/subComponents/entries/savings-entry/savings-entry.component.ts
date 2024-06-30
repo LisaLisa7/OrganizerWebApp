@@ -7,6 +7,8 @@ import { takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { EntryDialogFormComponent } from '../../dialogs/entry-dialog-form/entry-dialog-form.component';
 import { SavingsService } from '../../../../../../services/finance-services/savings.service';
+import { ConfirmationDialogService } from '../../../../../../services/confirmation-dialog.service';
+import { RegistryService } from '../../../../../../services/finance-services/registry.service';
 
 @Component({
   selector: 'app-savings-entry',
@@ -34,7 +36,6 @@ import { SavingsService } from '../../../../../../services/finance-services/savi
           <td class="td">
             <button (click)="deleteEntry(entry)">Delete</button>
             <button (click)="modifyEntry(entry)">Modify</button>
-            <button>Details</button>
           </td>
         </tr>
       </tbody>
@@ -46,29 +47,25 @@ export class SavingsEntryComponent {
 
   entriesToday : registryEntry[] = [];
   
-
-
-
   private unsubscribe$ = new Subject<void>();
   private unsubscribeDelete$ = new Subject<void>();
   private unsubscribeModified$ = new Subject<void>();
 
-  constructor(public dialog:MatDialog,private savingsService:SavingsService) {
+  constructor(public dialog:MatDialog,private savingsService:SavingsService,private registryService:RegistryService,private confirmService:ConfirmationDialogService) {
 
     
 
-    this.savingsService.entryAdded$.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
+    this.registryService.entryAdded$.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
       this.loadEntries();
     });
-    this.savingsService.entryDeleted$.pipe(takeUntil(this.unsubscribeDelete$)).subscribe(() => {
+    this.registryService.entryDeleted$.pipe(takeUntil(this.unsubscribeDelete$)).subscribe(() => {
       this.loadEntries();
     });
-    this.savingsService.entryModified$.pipe(takeUntil(this.unsubscribeModified$)).subscribe(() => {
+    this.registryService.entryModified$.pipe(takeUntil(this.unsubscribeModified$)).subscribe(() => {
       this.loadEntries();
     });
 
   }
-
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
@@ -76,11 +73,16 @@ export class SavingsEntryComponent {
   }
 
   async deleteEntry(entry: registryEntry){
-    console.log(entry);
-    await this.savingsService.deleteRecord(entry.Id)
-    this.savingsService.deleteEntry();
+    const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this entry?");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+      console.log(entry);
+      await this.savingsService.deleteRecord(entry.Id)
+      this.savingsService.deleteEntry();
+    }
     
-    //this.loadEntries();
+    this.loadEntries();
   }
 
   async modifyEntry(entry:registryEntry){
@@ -90,8 +92,9 @@ export class SavingsEntryComponent {
       data: {entry} 
   });
   dialogRef.afterClosed().subscribe((result: any) => {
-    this.savingsService.modifyEntry();
-    //this.loadEntries();
+    console.log("wtffff")
+    //this.savingsService.modifyEntry();
+    this.loadEntries();
   });
 
   }

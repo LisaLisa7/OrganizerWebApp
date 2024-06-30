@@ -5,6 +5,7 @@ import { ListGame } from '../../../../../interfaces/personal-interfaces/list-gam
 import { Subject, takeUntil } from 'rxjs';
 import { GameUpdateDialogComponent } from '../dialogs/lists-dialogs/game-update-dialog/game-update-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogService } from '../../../../../services/confirmation-dialog.service';
 
 @Component({
   selector: 'app-game-list',
@@ -74,7 +75,7 @@ export class GameListComponent {
   private unsubscribeModified$ = new Subject<void>();
 
 
-  constructor(private gamesService:GamesService,public dialog: MatDialog)
+  constructor(private gamesService:GamesService,public dialog: MatDialog,private confirmService:ConfirmationDialogService)
   {
     //this.loadData();
     this.gamesService.entryDeleted$.pipe(takeUntil(this.unsubscribeDelete$)).subscribe(() => {
@@ -114,9 +115,14 @@ export class GameListComponent {
   }
 
   async deleteEntry(entry: ListGame){
-    console.log(entry);
-    await this.gamesService.deleteListGame(entry.Id)
-    this.gamesService.deleteEntry();
+    const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this game?");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+      console.log(entry);
+      await this.gamesService.deleteListGame(entry.Id)
+      this.gamesService.deleteEntry();
+    }
     
     //this.loadEntries();
   }
@@ -126,8 +132,8 @@ export class GameListComponent {
     console.log("ok")
     //console.log(entry)
     const dialogRef = this.dialog.open(GameUpdateDialogComponent,{
-      width: '500px', // Adjust the width as needed
-      data: {entry} // Optionally pass data to the dialog
+      width: '500px', 
+      data: {entry} 
     })
     
     dialogRef.afterClosed().subscribe((result: any) => {

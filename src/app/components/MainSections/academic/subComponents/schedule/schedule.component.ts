@@ -120,9 +120,14 @@ export class ScheduleComponent {
   }
 
   async clearSchedule(){
+    const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this schedule?");
 
-    await this.classesService.deleteAll(this.classes);
-    this.loadData();
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+
+      await this.classesService.deleteAll(this.classes);
+      this.loadData();
+    }
 
   }
 

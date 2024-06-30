@@ -6,6 +6,7 @@ import { RegistryService } from '../../../../../services/finance-services/regist
 import { MatDialog } from '@angular/material/dialog';
 import { Summary } from '../../../../../interfaces/finance-interfaces/summary';
 import { SummaryComponent } from '../summary/summary.component';
+import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -45,9 +46,36 @@ import { SummaryComponent } from '../summary/summary.component';
 export class SavingsComponent {
   
   summaryList : Summary[] = [];
+  private unsubscribe$ = new Subject<void>();
+
 
   constructor(public dialog: MatDialog, private registryService: RegistryService){
+    this.subscribeToEntryEvents();
     this.loadData();
+    //this.subscribeToEntryEvents();
+
+  }
+
+  subscribeToEntryEvents() {
+    this.registryService.entryAdded$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(() => {
+      this.loadData();
+      
+    });
+
+    this.registryService.entryDeleted$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(() => {
+      this.loadData();
+    });
+
+    this.registryService.entryModified$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(() => {
+      this.loadData();
+    });
+
 
   }
 

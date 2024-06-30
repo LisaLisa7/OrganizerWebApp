@@ -6,6 +6,7 @@ import { BooksService } from '../../../../../services/personal-services/books.se
 import { MatDialog } from '@angular/material/dialog';
 import { BookUpdateDialogComponent } from '../dialogs/lists-dialogs/book-update-dialog/book-update-dialog.component';
 import { InsertBookDialogComponent } from '../dialogs/lists-dialogs/insert-book-dialog/insert-book-dialog.component';
+import { ConfirmationDialogService } from '../../../../../services/confirmation-dialog.service';
 @Component({
   selector: 'app-book-list',
   standalone: true,
@@ -88,7 +89,7 @@ export class BookListComponent {
   private unsubscribeDelete$ = new Subject<void>();
   private unsubscribeModified$ = new Subject<void>();
 
-  constructor(private booksService : BooksService,public dialog: MatDialog){
+  constructor(private booksService : BooksService,public dialog: MatDialog,private confirmService:ConfirmationDialogService){
 
     this.booksService.entryDeleted$.pipe(takeUntil(this.unsubscribeDelete$)).subscribe(() => {
 
@@ -140,9 +141,14 @@ export class BookListComponent {
   }
 
   async deleteEntry(entry: ListBook){
-    console.log(entry);
-    await this.booksService.deleteListBook(entry.Id)
-    this.booksService.deleteEntry();
+    const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this book?");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+      console.log(entry);
+      await this.booksService.deleteListBook(entry.Id)
+      this.booksService.deleteEntry();
+    }
     
     //this.loadEntries();
   }

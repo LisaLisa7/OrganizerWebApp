@@ -199,13 +199,7 @@ export class RegistryService {
       filter: filterString,requestKey: null 
   });
   const entries: registryEntry[] = await Promise.all(resultList.items.map(async (record: { [key: string]: any }) => {
-      
-    //console.log(this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'}));
-    //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
-    //const firstFilename = record['Pic']; // Assuming 'Pic' is an array of filenames
-    //const url = this.pb.files.getUrl(record, firstFilename,{'thumb': '100x250'})
-   
     if(record['Pictogram_Id'] != "")
       { picUrl = await this.getPicById(record['Pictogram_Id']);
       }

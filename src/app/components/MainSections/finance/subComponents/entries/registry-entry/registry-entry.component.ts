@@ -8,6 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { EntryDialogFormComponent } from '../../dialogs/entry-dialog-form/entry-dialog-form.component';
 import { RecurringService } from '../../../../../../services/finance-services/recurring.service';
+import { ConfirmationDialogService } from '../../../../../../services/confirmation-dialog.service';
 
 
 @Component({
@@ -62,7 +63,7 @@ export class RegistryEntryComponent {
   private unsubscribeDelete$ = new Subject<void>();
   private unsubscribeModified$ = new Subject<void>();
 
-  constructor(public dialog:MatDialog,private registryService: RegistryService,private recurringService:RecurringService) {
+  constructor(public dialog:MatDialog,private registryService: RegistryService,private recurringService:RecurringService,private confirmService:ConfirmationDialogService) {
 
     this.registryService.entryAdded$.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
       this.loadEntries();
@@ -76,19 +77,21 @@ export class RegistryEntryComponent {
 
   }
 
-  async idk(){
-    console.log("?")
-  }
-
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
 
   async deleteEntry(entry: registryEntry){
-    console.log(entry);
-    await this.registryService.deleteRecord(entry.Id)
-    this.registryService.deleteEntry();
+    const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this entry?");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+
+      console.log(entry);
+      await this.registryService.deleteRecord(entry.Id)
+      this.registryService.deleteEntry();
+    }
     
     //this.loadEntries();
   }

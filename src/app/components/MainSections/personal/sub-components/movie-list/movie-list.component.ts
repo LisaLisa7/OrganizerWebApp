@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { InsertMovieDialogComponent } from '../dialogs/lists-dialogs/insert-movie-dialog/insert-movie-dialog.component';
 import { MovieUpdateDialogComponent } from '../dialogs/lists-dialogs/movie-update-dialog/movie-update-dialog.component';
+import { ConfirmationDialogService } from '../../../../../services/confirmation-dialog.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -85,7 +86,7 @@ export class MovieListComponent {
   private unsubscribeDelete$ = new Subject<void>();
   private unsubscribeModified$ = new Subject<void>();
 
-  constructor(private moviesService : MoviesService,public dialog: MatDialog){
+  constructor(private moviesService : MoviesService,public dialog: MatDialog,private confirmService:ConfirmationDialogService){
 
     this.moviesService.entryDeleted$.pipe(takeUntil(this.unsubscribeDelete$)).subscribe(() => {
 
@@ -137,9 +138,14 @@ export class MovieListComponent {
   }
 
   async deleteEntry(entry: ListMovie){
-    console.log(entry);
-    await this.moviesService.deleteListMovie(entry.Id)
-    this.moviesService.deleteEntry();
+    const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this movie?");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+      console.log(entry);
+      await this.moviesService.deleteListMovie(entry.Id)
+      this.moviesService.deleteEntry();
+    }
     
     //this.loadEntries();
   }

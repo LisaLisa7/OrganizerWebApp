@@ -37,9 +37,7 @@ import { ConfirmDialogComponent } from '../../../../shared/confirm-dialog/confir
         <button (click)="openLabelsDialog()">
         <img [src]="labelSVG" alt="labels" ><span>Labels</span>
         </button>
-        <button>
-        <img [src]="filterSVG" alt="filter" ><span>Filter</span>
-        </button>
+        
         <button (click)="deleteBoard()">
         <img [src]="deleteSVG" alt="delete" ><span>Delete Board</span>
         </button>

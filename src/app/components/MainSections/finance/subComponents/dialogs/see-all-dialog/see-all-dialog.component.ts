@@ -4,6 +4,7 @@ import { RegistryService } from '../../../../../../services/finance-services/reg
 import { CommonModule } from '@angular/common';
 import { registryEntry } from '../../../../../../interfaces/finance-interfaces/registryEntry';
 import { EntryDialogFormComponent } from '../entry-dialog-form/entry-dialog-form.component';
+import { ConfirmationDialogService } from '../../../../../../services/confirmation-dialog.service';
 
 @Component({
   selector: 'app-see-all-dialog',
@@ -98,7 +99,7 @@ export class SeeAllDialogComponent {
   }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,public registryService : RegistryService,
-  public dialog:MatDialog)
+  public dialog:MatDialog,private confirmService:ConfirmationDialogService)
   {
 
     //console.log(data)
@@ -115,10 +116,15 @@ export class SeeAllDialogComponent {
   }
 
   async deleteEntry(entry: registryEntry){
-    console.log(entry);
-    await this.registryService.deleteRecord(entry.Id)
-    this.registryService.deleteEntry();
-    this.loadData()
+    const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this entry?");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+      console.log(entry);
+      await this.registryService.deleteRecord(entry.Id)
+      this.registryService.deleteEntry();
+      this.loadData()
+    }
     
     //this.loadEntries();
   }

@@ -71,7 +71,6 @@ export class SavingsService {
    
     if(record['Pictogram_Id'] != "")
       { picUrl = await this.getPicById(record['Pictogram_Id']);
-        console.log("BOMBAAAAAAAAAAAAAAA");
       }
     
 
@@ -172,7 +171,6 @@ export class SavingsService {
       
     if(record['Pictogram_Id'] != "")
       { picUrl = await this.getPicById(record['Pictogram_Id']);
-        console.log("BOMBAAAAAAAAAAAAAAA");
       }
     
 

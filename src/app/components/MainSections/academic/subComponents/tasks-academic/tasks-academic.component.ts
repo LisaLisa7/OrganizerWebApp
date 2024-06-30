@@ -36,9 +36,6 @@ import { Subject, takeUntil } from 'rxjs';
           <img [src]="plusSVG" alt="newBoard"><span>New Task</span>
           </button>
           
-          <button>
-          <img [src]="filterSVG" alt="filter" ><span>Filter</span>
-          </button>
         </div>
       </div>
       <div class="mainContent">

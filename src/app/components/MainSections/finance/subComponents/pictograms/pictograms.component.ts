@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PictogramEntry } from '../../../../../interfaces/finance-interfaces/pictogram-entry';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPictogramDialogComponent } from '../dialogs/new-pictogram-dialog/new-pictogram-dialog.component';
+import { ConfirmationDialogService } from '../../../../../services/confirmation-dialog.service';
 
 @Component({
   selector: 'app-pictograms',
@@ -32,7 +33,7 @@ import { NewPictogramDialogComponent } from '../dialogs/new-pictogram-dialog/new
             <div *ngFor="let entry of entries" class="entry">
               <img [src] = "entry.Url" class="entry-img" >
               <p>{{entry.Title}}</p>
-              <button class="delete-button" (click)="selectPictogram(entry)" >Delete</button>
+              <button class="delete-button" (click)="deletePictogram(entry)" >Delete</button>
 
               
             </div>
@@ -52,7 +53,7 @@ export class PictogramsComponent {
   readonly newSVG = "/assets/addPic.svg";
   
 
-  constructor(private pictogramService:PictogramService,public dialog: MatDialog)
+  constructor(private pictogramService:PictogramService,public dialog: MatDialog,private confirmService:ConfirmationDialogService)
   {
     this.loadData();
     
@@ -92,11 +93,15 @@ export class PictogramsComponent {
 
   }
 
-  async selectPictogram(entry:any){
-    console.log(entry.Id);
-    await this.pictogramService.deletePictogram(entry.Id);
-    console.log("????");
-    this.loadData();
+  async deletePictogram(entry:any){
+    const dialogRef = this.confirmService.openConfirmDialog("Are you sure you want to delete this pictogram?");
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if(result){
+      console.log(entry.Id);
+      await this.pictogramService.deletePictogram(entry.Id);
+      this.loadData();
+    }
   }
 
 
