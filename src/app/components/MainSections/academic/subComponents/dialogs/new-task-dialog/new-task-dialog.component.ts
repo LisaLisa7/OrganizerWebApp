@@ -97,8 +97,9 @@ export class NewTaskDialogComponent {
     if(this.dateBuffFinish && this.timeBuffFinish)
       {
         const combinedDateTime = this.dateBuffFinish + ' ' + this.timeBuffFinish + ':00.000Z';
-        
-        this.formData.FinishDate = combinedDateTime;
+        const localDate = new Date(combinedDateTime);
+
+        this.formData.FinishDate = localDate;
       }
 
       if(this.dataValidator(this.formData) == true)

@@ -13,7 +13,6 @@ export class ProjectsService {
 
   }
 
-
   async getProjectId(projectName : string)
   {
     let filterString = `Title = '${projectName}'`;
@@ -137,8 +136,6 @@ export class ProjectsService {
   async deleteProject(id:string){
     const rec = await this.pb.collection("Projects").delete(id);
   }
-
-
 
 
 

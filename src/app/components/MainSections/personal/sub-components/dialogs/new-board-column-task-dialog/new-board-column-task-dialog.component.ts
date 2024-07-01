@@ -70,8 +70,11 @@ export class NewBoardColumnTaskDialogComponent {
     console.log(this.timeBuff);
     if(this.dateBuff && this.timeBuff)
       {
+        
         const combinedDateTime = this.dateBuff + ' ' + this.timeBuff + ':00.000Z';
-        this.formData.DueDate = combinedDateTime;
+        const localDate = new Date(combinedDateTime);
+
+        this.formData.DueDate = localDate;
       }
 
     if(this.formData.Title && this.formData.DueDate)

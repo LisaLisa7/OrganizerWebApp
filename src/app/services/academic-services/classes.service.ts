@@ -115,8 +115,6 @@ export class ClassesService {
 
   }
 
-
-
   async createClass(data:any){
     await this.pb.collection('Classes').create(data);
   }

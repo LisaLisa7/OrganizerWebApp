@@ -181,11 +181,6 @@ export class ClassTasksService {
     return filtered;
   }
 
-  
-
-
-
-
   async getAllParentTasksByProject(project_id : string){
 
     let filterString = `Project_Id = '${project_id}' && ParentTask= ''`;
@@ -228,9 +223,5 @@ export class ClassTasksService {
     const rec = await this.pb.collection("Tasks").delete(id);
   }
 
-
-
-
-  
 
 }

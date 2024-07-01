@@ -15,7 +15,7 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
     <div class="task-container">
       <div class="task-header" (click)="toggleCollapse()">
         <h3 [ngClass]="{ 'crossed-out': task.done }">{{ task.title }}</h3>
-        <p>{{ task.startDate | date:'dd/MM/yyyy' }} - {{ task.finishDate | date:'dd/MM/yyyy' }}</p>
+        <p>{{ task.startDate | date:'dd/MM/yyyy' }} - {{ task.finishDate | date:'dd/MM/yyyy HH:mm ' :'UTC' }}</p>
         
       </div>
       <div class="task-body" *ngIf="!isCollapsed">

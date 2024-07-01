@@ -198,7 +198,9 @@ export class EntryDialogFormComponent {
     if(this.dateBuff && this.timeBuff)
     {
       const combinedDateTime = this.dateBuff + ' ' + this.timeBuff + ':00.000Z';
-      this.formData.Date = combinedDateTime;
+      const localDate = new Date(combinedDateTime);
+
+      this.formData.Date = localDate;
     }
   
     
@@ -212,6 +214,7 @@ export class EntryDialogFormComponent {
       }
       else
       {
+        console.log(this.formData.Date)
           this.registryService.createRecord(this.formData);
       }
     }

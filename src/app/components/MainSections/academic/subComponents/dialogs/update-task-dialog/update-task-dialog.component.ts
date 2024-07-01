@@ -38,7 +38,7 @@ import { ErrorDialogComponent } from '../../../../../shared/error-dialog/error-d
         <mat-form-field>
           <mat-label>StartDate</mat-label>
           <input matInput type="date" [(ngModel)]="formData.startDate"
-          (ngModelChange)="updateData.startDate = $event"  name="Date" required>
+          (ngModelChange)="updateData.StartDate = $event"  name="Date" required>
         </mat-form-field>
 
         <mat-form-field>
@@ -117,9 +117,11 @@ export class UpdateTaskDialogComponent {
 
     if(this.dateBuffFinish && this.timeBuffFinish)
       {
-        
-        this.updateData.FinishDate = this.dateBuffFinish + ' ' + this.timeBuffFinish + ':00.000Z';
-        console.log(this.updateData);
+        const combinedDateTime = this.dateBuffFinish + ' ' + this.timeBuffFinish + ':00.000Z';
+        const localDate = new Date(combinedDateTime);
+
+        this.updateData.FinishDate = localDate;
+        //console.log(this.updateData);
       }
     if(this.patchDataValidator(this.updateData))
       {

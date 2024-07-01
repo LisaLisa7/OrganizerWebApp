@@ -71,8 +71,8 @@ import { ConfirmationDialogService } from '../../../../../services/confirmation-
                   </thead>
                   <tbody>
                     <tr>
-                      <td>{{ p.startDate | date:'dd/MM/yyyy' }}</td>
-                      <td>{{ p.finishDate | date:'dd/MM/yyyy' }}</td>
+                      <td>{{ p.startDate | date:'dd/MM/yyyy':'UTC' }}</td>
+                      <td>{{ p.finishDate | date:'dd/MM/yyyy  HH:mm' :'UTC'}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -124,11 +124,11 @@ export class ProjectComponent {
   async onClassChange(value:string){
 
     this.isLoading = true;
-    console.log('Selected status:', value);
+    //console.log('Selected status:', value);
     this.selectedClass= value;
     this.selectedClassId = await this.classService.getClassId(this.selectedClass);
 
-    console.log(this.selectedClass)
+    //console.log(this.selectedClass)
     //this.selectedBoardColumns = await this.tasksService.getAllColumns(value)
     await this.loadProjectsAndTasks();
   }
@@ -138,7 +138,7 @@ export class ProjectComponent {
       this.selectedClassProjects = await this.projectService.getAllProjectsByClass(this.selectedClassId);
       for (const project of this.selectedClassProjects) {
         this.projectTasks[project.id] = await this.tryTasks(project.id);
-        console.log(this.projectTasks);
+        //console.log(this.projectTasks);
       }
     } catch (error) {
       console.error('Error loading tasks:', error);
@@ -199,7 +199,7 @@ export class ProjectComponent {
     }
     const totalPercentage = tasks.reduce((sum, task) => sum + (task.done ? 1 : 0), 0);
     
-    console.log(totalPercentage + " " + tasks.length);
+    //console.log(totalPercentage + " " + tasks.length);
     return totalPercentage / tasks.length * 100;
     //return 0;
   }

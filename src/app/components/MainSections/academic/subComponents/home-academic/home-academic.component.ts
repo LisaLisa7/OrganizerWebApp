@@ -61,7 +61,7 @@ import { ProjectsService } from '../../../../../services/academic-services/proje
 
               <div class="task">
                 <h3>Title: {{t.title}}</h3>
-                <p>{{t.finishDate | date : 'dd/MM/yyyy'}}</p>
+                <p>{{t.finishDate | date : 'dd/MM/yyyy HH:mm ' :'UTC'}}</p>
                 <h4>Project: {{t.project_id}}</h4>
               </div>
 
@@ -82,7 +82,7 @@ import { ProjectsService } from '../../../../../services/academic-services/proje
 
               <div class="task">
                 <h3>Title: {{t.title}}</h3>
-                <p>{{t.finishDate | date : 'dd/MM/yyyy'}}</p>
+                <p>{{t.finishDate | date : 'dd/MM/yyyy HH:mm ' :'UTC'}}</p>
                 <h4>Project: {{t.project_id}}</h4>
               </div>
 

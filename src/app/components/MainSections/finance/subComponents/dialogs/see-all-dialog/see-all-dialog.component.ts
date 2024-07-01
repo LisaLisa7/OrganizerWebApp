@@ -34,7 +34,7 @@ import { ConfirmationDialogService } from '../../../../../../services/confirmati
       <td class="td"><img [src]="item.Pictogram"></td>
           <td class="td">{{ item.Description}}</td>
           <td class="td" >{{ item.Type === 'Expenses' ? '-' : '+' }}{{ item.Sum }}</td>
-          <td class="td">{{item.Date |  date:' dd MMM yyyy':'UTC'}}</td>
+          <td class="td">{{item.Date |  date:' dd MMM yyyy HH:mm ':'UTC'}}</td>
           <td class="td">{{item.Source}}</td>
           <td class="td"><div class="separator"></div></td>
           <td class="td">

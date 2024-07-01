@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
                 <th>Title</th>
                 <th>Description</th>
                 <th>Board</th>
+                <th>Deadline</th>
 
               </tr>
             </thead>
@@ -26,6 +27,7 @@ import { CommonModule } from '@angular/common';
                 <td>{{r.Title}}</td>
                 <td>{{r.Description}}</td>
                 <td>{{r.Board_Id}}</td>
+                <td>{{r.Due |  date:' HH:mm ':'UTC' }}</td>
 
               </tr>
             </tbody>
