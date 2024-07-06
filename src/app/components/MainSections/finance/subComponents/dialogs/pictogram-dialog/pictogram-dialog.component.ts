@@ -8,6 +8,7 @@ import { PictogramEntry } from '../../../../../../interfaces/finance-interfaces/
   standalone: true,
   imports: [CommonModule],
   template: `
+  <div class="dialog">
     <div mat-dialog-content>
       <div class="categoriesContainer">
         <button class="category-button" (click)="loadData()" >All</button>
@@ -27,6 +28,7 @@ import { PictogramEntry } from '../../../../../../interfaces/finance-interfaces/
       </div>
 
     </div>
+  </div>
   `,
   styleUrl: './pictogram-dialog.component.css'
 })

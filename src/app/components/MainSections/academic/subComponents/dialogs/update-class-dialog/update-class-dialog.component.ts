@@ -26,13 +26,13 @@ import { ClassesService } from '../../../../../../services/academic-services/cla
       
       <mat-form-field>
         <mat-label>StartHour</mat-label>
-        <input matInput type="number" placeholder="StartHour" [ngModel]="startHour" 
+        <input matInput type="number" placeholder="StartHour" [(ngModel)]="startHour" 
                 name="StartHour" required >
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>FinishHour</mat-label>
-        <input matInput type="number" placeholder="FinishHour" [ngModel]="finishHour" 
+        <input matInput type="number" placeholder="FinishHour" [(ngModel)]="finishHour" 
                 name="FinishHour" required >
       </mat-form-field>
 

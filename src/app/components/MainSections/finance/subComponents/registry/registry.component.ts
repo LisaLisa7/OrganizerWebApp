@@ -98,9 +98,10 @@ export class RegistryComponent {
   private unsubscribe$ = new Subject<void>();
 
   constructor(public dialog: MatDialog, private registryService: RegistryService,private recurringService:RecurringService,private savingsService : SavingsService) {
-    this.loadData();
+    //
     this.loadRecurring();
     this.subscribeToEntryEvents();
+    this.loadData();
     this.today = registryService.getCurrentDate();
 
     this.registryService.getRecentEntriesToday();

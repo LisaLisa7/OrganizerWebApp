@@ -118,7 +118,7 @@ export class NewClassDialogComponent {
     this.dialogRef.close();
   }
 
-  onSubmit(){
+  async onSubmit(){
 
     if(this.startHour !=null && this.finishHour !=null )
     {
@@ -127,9 +127,17 @@ export class NewClassDialogComponent {
 
     if(this.dataValidator(this.formData) == true)
     {
-      this.classesService.createClass(this.formData);
-      console.log("tot ok?")
-      this.dialogRef.close();
+      let duplicate = await this.classesService.searchClass(this.formData);
+      if(duplicate == false)
+      {
+        this.classesService.createClass(this.formData);
+        this.dialogRef.close();
+      }
+      else
+      {
+        this.openDialog('A class with the same name and type already exists!');
+
+      }
     }
     else
     {

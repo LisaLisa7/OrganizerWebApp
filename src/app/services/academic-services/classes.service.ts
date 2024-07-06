@@ -115,6 +115,20 @@ export class ClassesService {
 
   }
 
+  async searchClass(data:any){
+
+    let filterString = `ClassName = "${data.ClassName}" && Type = "${data.Type}"`;
+    let rez;
+    try{
+      rez = await this.pb.collection('Classes').getFirstListItem(filterString);
+    }catch(e)
+    {
+      return false;
+    }
+    return true;
+
+  }
+
   async createClass(data:any){
     await this.pb.collection('Classes').create(data);
   }
