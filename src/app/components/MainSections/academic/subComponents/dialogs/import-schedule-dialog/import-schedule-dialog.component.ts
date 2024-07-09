@@ -109,7 +109,10 @@ export class ImportScheduleDialogComponent {
       );
     }
     else
+    {  
       console.log("Format wrongg");
+      this.openDialog("Formatul grupei este gresit!");
+    }
     
 
   }
